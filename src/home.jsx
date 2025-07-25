@@ -20,7 +20,7 @@ function Home() {
         {/*Encabezado*/}
         <header className = "w-full bg-[#c9c9c9] shadow-md">
             {/*Parte superior*/}
-            <div className="flex  items-center px-4 py-3">
+            <div className="flex items-center px-4 py-3">
             {/*Boton para abrir y cerrar el sidebar */}
             <button
                 onClick ={toggleSidebar}
@@ -36,7 +36,7 @@ function Home() {
             <h1 className="text-3xl font-semibold text-center">Modelo Tradicional 📦</h1>
             </div>
             {/*Parte inferior*/}
-            <div className="p-4 flex items-center space-x-4">
+            <div className="p-4 flex justify-end items-center space-x-4">
             {/* Input de búsqueda */}
             <input
             type="text"
@@ -80,6 +80,12 @@ function Home() {
                 className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2">
                     Perfil
                 </button>
+                {/* Botón para cambiar la Interfaz*/}
+                <button
+                onClick={() => navigate("/home2")}
+                className="w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition mb-2">
+                Cambiar Modelo ★★
+                </button>
                 <button
                 onClick ={toggleSidebar}
                 className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2">
@@ -87,12 +93,7 @@ function Home() {
                 </button>
 
 
-                {/* Botón para cambiar la Interfaz*/}
-                <button
-                onClick={() => navigate("/home2")}
-                className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition">
-                Cambiar Modelo ★★
-                </button>
+
 
                 </div>
             </div>
