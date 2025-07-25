@@ -84,7 +84,7 @@ function Home_IA() {
                 <img src={favicon} alt="Logo" className="w-16 h-auto" />
                 {/* Título */}
                 <h1 className="text-white text-3xl font-semibold">
-                    Modelo de sistema de búsqueda 📦
+                    Modelo IA 📦
                 </h1>
             </div>
         </header>
@@ -123,13 +123,10 @@ function Home_IA() {
                 <div className="flex flex-col md:flex-row justify-between items-center">
                     {/* Parte izquierda */}
                     <div className="flex gap-4">
-                        <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition">
-                            Cambiar Modelo
-                        </button>
                         <button
                         onClick={() => navigate("/")}
                         className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition">
-                            ★★
+                            Cambiar Modelo ★★
                         </button>
                     </div>
                     
