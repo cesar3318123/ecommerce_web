@@ -134,7 +134,7 @@ function Home_IA() {
                     </div>
                     
                     {/* Parte derecha */}
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 mb-4 md:mb-0">
                         <input
                           type="text"
                           placeholder="Escribe tu consulta aquí"
