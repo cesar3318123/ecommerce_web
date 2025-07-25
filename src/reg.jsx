@@ -30,7 +30,7 @@ function Register() {
   // Lo que retorna el componente (JSX = JavaScript + HTML)
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
-    <p className="text-3xl font-semibold mb-6 text-center">Nota: No insertes tu cuenta y contraseña verdadera, inventa una con tu nombre y registrala</p>
+    <p className="text-2xl font-semibold mb-6 text-center">Nota: No insertes tu cuenta y contraseña verdadera, inventa una con tu nombre y registrala</p>
       {/* Contenedor del formulario con estilos de Tailwind */}
       <form
         onSubmit={handleSubmit}
@@ -108,7 +108,7 @@ function Register() {
 
         {/*Boton para cancelar */}
         <button
-            onClick={() => navigate("/log")} // Redirige a la página de inicio
+            onClick={() => navigate("/")} // Redirige a la página de inicio
             type="button"
             className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-400 transition mt-4"
         >
