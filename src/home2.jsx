@@ -75,7 +75,7 @@ function Home_IA() {
     }
 
     return (
-    <div className="relative min-h-screen bg-gray-100 flex flex-col">
+    <div className="relative min-h-screen bg-gray-100 flex flex-col overflow-x-hidden">
         {/* Encabezado */}
         <header className="w-full bg-black shadow-md">
             {/* Contenedor en línea */}
@@ -121,7 +121,7 @@ function Home_IA() {
 
             {/* Panel inferior tipo chat de IA (como el de ChatGPT) */}
             <div className="fixed bottom-4 left-4 right-4 bg-black text-white px-6 py-4 rounded-md shadow-lg z-50">
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col md:flex-row justify-between items-center">
                     {/* Parte izquierda */}
                     <div className="flex gap-4">
                         <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition">
