@@ -138,7 +138,7 @@ function Home_IA() {
                         <input
                           type="text"
                           placeholder="Escribe tu consulta aquí"
-                          className="w-[900px] px-8 py-2 text-black border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          className="w-full max-w-[600px] px-4 py-2 text-black border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                           value={prompt}
                           onChange={(e) => setPrompt(e.target.value)}
                           onKeyDown ={(e) => e.key === "Enter" && handleSearch() } // Permite enviar la consulta con Enter
