@@ -134,7 +134,7 @@ function Home_IA() {
              disabled={loading}
              className="bg-white text-black px-4 py-2 rounded-md hover:bg-blue-400 transition"
             >
-                 Buscar ⬆️
+                ⬆️
             </button>
          </div>
         </div>
