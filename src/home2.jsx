@@ -116,32 +116,28 @@ function Home_IA() {
 
             </div>
             )}
-
-
-{/* Panel inferior tipo chat de IA (como el de ChatGPT) */}
-            <div className="fixed bottom-4 left-4 right-4 bg-black text-white px-6 py-4 rounded-md shadow-lg z-50">
-                <div className="flex flex-col md:flex-row md:justify-end items-center">
-                    
-                    {/* Parte derecha */}
-                    <div className="flex gap-4 mb-4 md:mb-0">
-                        <input
-                          type="text"
-                          placeholder="Escribe tu consulta aquí"
-                          className="w-full max-w-[600px] px-4 py-2 text-black border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                          value={prompt}
-                          onChange={(e) => setPrompt(e.target.value)}
-                          onKeyDown ={(e) => e.key === "Enter" && handleSearch() } // Permite enviar la consulta con Enter
-                          />
-
-                        <button 
-                        onClick={handleSearch}
-                        disabled={loading} // Deshabilita el botón mientras se carga
-                        className="bg-white text-black px-8 py-2 rounded-md hover:bg-blue-400 transition">
-                            Buscar
-                        </button>
-                    </div>
-                </div>
-            </div>
+        {/* Panel inferior tipo chat de IA (como el de ChatGPT) */}
+        <div className="fixed bottom-4 left-4 right-4 bg-black text-white px-6 py-4 rounded-md shadow-lg z-50">
+            <div className="flex flex-col md:flex-row md:justify-end items-center space-y-4 md:space-y-0 md:space-x-4">
+            {/* Input y botón alineados a la derecha */}
+            <input
+             type="text"
+             placeholder="Escribe tu consulta aquí"
+             className="flex-grow max-w-md px-4 py-2 text-black border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+             value={prompt}
+             onChange={(e) => setPrompt(e.target.value)}
+             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            />
+            
+            <button 
+             onClick={handleSearch}
+             disabled={loading}
+             className="bg-white text-black px-4 py-2 rounded-md hover:bg-blue-400 transition"
+            >
+                 Buscar
+            </button>
+         </div>
+        </div>
 
 
            {/*Drawer (Sidebar) */}
