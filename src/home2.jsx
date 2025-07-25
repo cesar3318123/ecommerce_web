@@ -118,39 +118,41 @@ function Home_IA() {
             )}
 
 
+{/* Panel inferior tipo chat de IA (como el de ChatGPT) */}
+            <div className="fixed bottom-4 left-4 right-4 bg-black text-white px-6 py-4 rounded-md shadow-lg z-50">
+                <div className="flex flex-col md:flex-row justify-between items-center">
+                    {/* Parte izquierda */}
+                    <div className="flex gap-4">
+                        <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition">
+                            Cambiar Modelo
+                        </button>
+                        <button
+                        onClick={() => navigate("/")}
+                        className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition">
+                            ★★
+                        </button>
+                    </div>
+                    
+                    {/* Parte derecha */}
+                    <div className="flex gap-4">
+                        <input
+                          type="text"
+                          placeholder="Escribe tu consulta aquí"
+                          className="w-[900px] px-8 py-2 text-black border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          value={prompt}
+                          onChange={(e) => setPrompt(e.target.value)}
+                          onKeyDown ={(e) => e.key === "Enter" && handleSearch() } // Permite enviar la consulta con Enter
+                          />
 
-            {/* Panel inferior tipo chat de IA (como el de ChatGPT) */}
-<div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 w-full">
-  {/* Parte izquierda */}
-  <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-    <button className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition">
-      Cambiar Modelo
-    </button>
-    <button
-      onClick={() => navigate("/")}
-      className="w-full sm:w-auto bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition">
-      ★★
-    </button>
-  </div>
-
-  {/* Parte derecha */}
-  <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-    <input
-      type="text"
-      placeholder="Escribe tu consulta aquí"
-      className="w-full sm:w-[300px] md:w-[500px] px-4 py-2 text-black border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-      value={prompt}
-      onChange={(e) => setPrompt(e.target.value)}
-      onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-    />
-    <button
-      onClick={handleSearch}
-      disabled={loading}
-      className="w-full sm:w-auto bg-white text-black px-4 py-2 rounded-md hover:bg-blue-400 transition">
-      Buscar
-    </button>
-  </div>
-</div>
+                        <button 
+                        onClick={handleSearch}
+                        disabled={loading} // Deshabilita el botón mientras se carga
+                        className="bg-white text-black px-8 py-2 rounded-md hover:bg-blue-400 transition">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+            </div>
 
 
            {/*Drawer (Sidebar) */}
