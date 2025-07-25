@@ -123,7 +123,7 @@ function Home_IA() {
             <input
              type="text"
              placeholder="Escribe tu consulta aquí"
-             className="w-full md:w-[400px] max-w-md px-4 py-2 text-black border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+             className="flex-grow max-w-md px-4 py-2 text-black border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
              value={prompt}
              onChange={(e) => setPrompt(e.target.value)}
              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
@@ -134,7 +134,7 @@ function Home_IA() {
              disabled={loading}
              className="bg-white text-black px-4 py-2 rounded-md hover:bg-blue-400 transition"
             >
-                 Buscar
+                 Buscar ⬆️
             </button>
          </div>
         </div>
