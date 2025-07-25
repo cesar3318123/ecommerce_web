@@ -121,14 +121,6 @@ function Home_IA() {
 {/* Panel inferior tipo chat de IA (como el de ChatGPT) */}
             <div className="fixed bottom-4 left-4 right-4 bg-black text-white px-6 py-4 rounded-md shadow-lg z-50">
                 <div className="flex flex-col md:flex-row justify-between items-center">
-                    {/* Parte izquierda */}
-                    <div className="flex gap-4">
-                        <button
-                        onClick={() => navigate("/")}
-                        className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition">
-                            Cambiar Modelo ★★
-                        </button>
-                    </div>
                     
                     {/* Parte derecha */}
                     <div className="flex gap-4 mb-4 md:mb-0">
@@ -176,6 +168,12 @@ function Home_IA() {
                 onClick ={toggleSidebar}
                 className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2">
                 {isOpen ? "Cerrar" : "Cerrar"}
+                </button>
+
+                <button
+                 onClick={() => navigate("/")}
+                 className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition">
+                 Cambiar Modelo ★★
                 </button>
 
                 </div>
