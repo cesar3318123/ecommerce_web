@@ -132,8 +132,7 @@ function Home_IA() {
             <button 
              onClick={handleSearch}
              disabled={loading}
-             className="bg-white text-black px-4 py-2 rounded-md hover:bg-blue-400 transition"
-            >
+             style={{ backgroundColor: '#00a6ed' }} className="text-black px-4 py-2 rounded-md transition">
                 ⬆️
             </button>
          </div>
