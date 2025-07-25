@@ -21,7 +21,7 @@ function Login() {
         e.preventDefault();  // evita que la página se recargue
 
         try {
-            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/login`,{
+            const res = await fetch(`https://ecommerce-backend-ytl2.onrender.com/api/login`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
