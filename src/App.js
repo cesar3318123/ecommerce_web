@@ -4,12 +4,12 @@ import Register from "./reg"; //Para la pagina de registro
 import Login from "./log"; //Para la pagina de inicio de sesion
 import Home from "./home"; //Para la pagina de inicio
 import Profile from "./profile"; //Para la pagina de perfil
-import Purchase_screen from "./purchase";
+import Purchasescreen from "./purchase";
 import Home2 from "./home2"; //Para la pagina de inicio IA modo interfaz
 import Information from "./information"; //Para la pagina de informacion
 import Instruction from "./instructions"; //Para la pagina de instrucciones
 import End from "./end"; //Para la pagina de fin de prueba
-import Start_s from "./start_s"; //Para la pagina de inicio de prueba
+import Starts from "./start_s"; //Para la pagina de inicio de prueba
 import Survey from "./survey"; //Para la pagina de encuesta
 
 function App() {
@@ -17,16 +17,16 @@ function App() {
     //Rutas de las paginas
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} /> 
+        <Route path="/home" element={<Home />} /> 
         <Route path="/reg" element={<Register />} />
-        <Route path="/log" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/purchase" element={<Purchase_screen />} />
+        <Route path="/purchase" element={<Purchasescreen />} />
         <Route path="/home2" element={<Home2 />} />
         <Route path="/information" element={<Information />} />
         <Route path="/instructions" element={<Instruction />} />
         <Route path="/end" element={<End />} />
-        <Route path="/start_s" element={<Start_s />} />
+        <Route path="/start_s" element={<Starts />} />
         <Route path="/survey" element={<Survey />} />
       </Routes>
     </Router>
