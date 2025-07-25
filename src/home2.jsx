@@ -123,7 +123,7 @@ function Home_IA() {
             <input
              type="text"
              placeholder="Escribe tu consulta aquí"
-             className="flex-grow max-w-md px-4 py-2 text-black border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+             className="w-full md:w-[400px] flex-grow max-w-md px-4 py-2 text-black border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
              value={prompt}
              onChange={(e) => setPrompt(e.target.value)}
              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
