@@ -74,6 +74,10 @@ function Login() {
             <p className="text-center mt-4">
                 ¿No tienes cuenta? <Link to="/reg" className="text-blue-500 hover:underline"> Regístrate aquí </Link>
             </p>
+            {/*Entrar como invitado */}
+            <p className="text-center mt-4">
+                <Link to="/home" className="text-blue-500 hover:underline"> Entrar como invitado </Link>
+            </p>
 
         </form>
 
