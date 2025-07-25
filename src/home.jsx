@@ -33,7 +33,7 @@ function Home() {
             </div>
 
 
-            <h1 className="text-5xl font-semibold text-center">Modelo Tradicional 📦</h1>
+            <h1 className="text-3xl font-semibold text-center">Modelo Tradicional 📦</h1>
             </div>
             {/*Parte inferior*/}
             <div className="p-4 flex items-center space-x-4">
@@ -47,12 +47,7 @@ function Home() {
             <button className="bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition">
                 Buscar
             </button>
-            {/* Botón para cambiar la Interfaz*/}
-            <button
-                onClick={() => navigate("/home2")}
-                className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition">
-                Cambiar Modelo ★★
-            </button>
+
             </div>
             
             </header>
@@ -89,6 +84,14 @@ function Home() {
                 onClick ={toggleSidebar}
                 className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2">
                 {isOpen ? "Cerrar" : "Cerrar"}
+                </button>
+
+
+                {/* Botón para cambiar la Interfaz*/}
+                <button
+                onClick={() => navigate("/home2")}
+                className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition">
+                Cambiar Modelo ★★
                 </button>
 
                 </div>
