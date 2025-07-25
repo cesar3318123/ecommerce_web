@@ -17,10 +17,31 @@ function Login() {
     };
 
 // Función que se ejecuta al enviar el formulario
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();  // evita que la página se recargue
-        alert(`Iniciado sesión:\nCuenta: ${form.email}`);
-        // Aquí podrías hacer una llamada al backend con los datos del usuario
+
+        try {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/login`,{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },  // Indicamos que el cuerpo de la petición es JSON
+                body: JSON.stringify(form),  // Convertimos el formulario a JSON
+            });
+
+
+            const data = await res.json();  // Parseamos la respuesta JSON
+
+            if (res.ok) {
+                alert(`Bienvenido, ${data.username}`);  // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
+            } else {
+                alert(`Error: ${data.message}`);  // Si hay un error, mostramos el mensaje de error
+            }
+        } catch (error) {
+            console.error("Error al iniciar sesión:", error);  // Si ocurre un error, lo mostramos en la consola
+            alert("Error al iniciar sesión. Por favor, inténtalo de nuevo.");  // Mostramos un mensaje de error al usuario
+        }
+
     };
 
 // Lo que retorna el componente (JSX = JavaScript + HTML)
@@ -28,7 +49,7 @@ function Login() {
         <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
         {/* Contenedor del formulario con estilos de Tailwind */}
         <form
-        onsubmit={handleSubmit}
+        onSubmit={handleSubmit}
         className="bg-[#c9c9c9] p-8 rounded-xl shadow-md w-full max-w-md"
         >
             {/* Título */}
