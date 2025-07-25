@@ -33,7 +33,7 @@ function Home() {
             </div>
 
 
-            <h1 className="text-5xl font-semibold text-center">Modelo de sistema de busqueda 📦</h1>
+            <h1 className="text-5xl font-semibold text-center">Modelo Tradicional 📦</h1>
             </div>
             {/*Parte inferior*/}
             <div className="p-4 flex items-center space-x-4">
@@ -47,15 +47,11 @@ function Home() {
             <button className="bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition">
                 Buscar
             </button>
-            {/* Botón Cambiar Modelo */}
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition">
-                Cambiar Modelo
-            </button>
             {/* Botón para cambiar la Interfaz*/}
             <button
                 onClick={() => navigate("/home2")}
                 className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition">
-                ★★
+                Cambiar Modelo ★★
             </button>
             </div>
             
