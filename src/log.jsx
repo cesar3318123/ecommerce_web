@@ -21,7 +21,7 @@ function Login() {
         e.preventDefault();  // evita que la página se recargue
 
         try {
-            const res = await fetch(`https://ecommerce-backend-ytl2.onrender.com/api/login`,{
+            const res = await fetch(`https://ecommercebackend-production-8245.up.railway.app/api/login`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
