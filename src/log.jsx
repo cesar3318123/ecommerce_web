@@ -1,6 +1,7 @@
 // Importamos React y el hook useState
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Importamos Link para navegación
+import { navigate } from "react-router-dom";
 
 //Declaramos el componente llamado Log
 function Login() {
@@ -34,6 +35,7 @@ function Login() {
 
             if (res.ok) {
                 alert(`Bienvenido, ${data.username}`);  // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
+                navigate("/home");  // Redirige a la página de inicio
             } else {
                 alert(`Error: ${data.message}`);  // Si hay un error, mostramos el mensaje de error
             }

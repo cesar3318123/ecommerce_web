@@ -20,10 +20,32 @@ function Register() {
   };
 
   // Función que se ejecuta al enviar el formulario
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // evita que la página se recargue
-    alert(`Registrado:\nNombre: ${form.nombre}\nCuenta: ${form.email}`);
-    // Aquí podrías hacer una llamada al backend con los datos del usuario
+
+
+    try {
+      const res = await fetch(`https://ecommercebackend-production-8245.up.railway.app/api/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        }, // Indicamos que el cuerpo de la petición es JSON
+        body: JSON.stringify(form), // Convertimos el formulario a JSON
+      });
+
+      const data = await res.json(); // Parseamos la respuesta JSON
+      if (res.ok) {
+        alert(`Bienvenido, ${data.nombre}`); // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
+        navigate("/"); // Redirige a la página de inicio de sesión
+      } else {
+        alert(`Error: ${data.message}`); // Si hay un error, mostramos el mensaje de error
+      }
+
+    } catch (error) {
+      console.error("Error al registrarse:", error); // Si ocurre un error, lo mostramos en la consola
+      alert("Error al registrarse. Por favor, inténtalo de nuevo."); // Mostramos un mensaje de error al usuario
+    }
+
   };
   const navigate = useNavigate(); // Hook para redirección
 
