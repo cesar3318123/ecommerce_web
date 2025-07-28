@@ -39,6 +39,18 @@ function Login() {
                 alert(`Tu cuenta: ${form.email} ha sido identificada correctamente`);  // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
                 navigate("/home");  // Redirige a la página de inicio
                 localStorage.setItem("userEmail", form.email);  // Guardamos el email del usuario en localStorage
+
+                try {
+                    const userResponse = await fetch(`https://ecommercebackend-production-8245.up.railway.app/api/user/${form.email}`);
+                    const userData = await userResponse.json();
+                    if (userResponse.ok) {
+                        localStorage.setItem("username", userData.username);  // Guardamos el nombre de usuario en localStorage
+                    } else {
+                        console.error("Error al obtener el nombre de usuario:", userData.message);
+                    }
+                } catch (error) {
+                    console.error("Error al obtener el nombre de usuario:", error);  // Si ocurre un error, lo mostramos en la consola
+                }
             } else {
                 alert(`Error: ${data.message}`);  // Si hay un error, mostramos el mensaje de error
             }

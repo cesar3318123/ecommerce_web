@@ -10,6 +10,8 @@ function Home() {
 
     const [email, setEmail] = useState(""); // Estado para el email
 
+    const [username, setUsername] = useState(""); // Estado para el nombre de usuario
+
     const [isOpen, setIsOpen] = useState(false); // Estado para el drawer (Sidebar)
 
     const toggleSidebar = () => setIsOpen(!isOpen); // Función para alternar el estado del drawer
@@ -21,10 +23,13 @@ function Home() {
     useEffect(() => {
         // Verifica si el usuario está autenticado
         const userEmail = localStorage.getItem("userEmail");
+        const userName = localStorage.getItem("username");
         if (!userEmail) {
             setEmail("Invitado"); // Si no hay email en localStorage, muestra "Invitado"
+            setUsername("Invitado"); // También establece el nombre de usuario como "Invitado"
         } else {
             setEmail(userEmail); // Si hay email, lo establece en el estado
+            setUsername(userName); // También establece el nombre de usuario en el estado
         }
 
     }, [navigate]);
@@ -90,7 +95,7 @@ function Home() {
                 <div className="p-4">
                     <img src={logo} alt="Logo" className="w-32 h-auto" />
                 </div>
-                <p>Usuario:</p>
+                <p>Usuario: <strong>{username}</strong></p>
                 <p>Cuenta: <strong>{email}</strong></p>
                 <button
                 onClick={() => navigate("/Profile")}
