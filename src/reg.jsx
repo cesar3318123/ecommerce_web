@@ -35,7 +35,7 @@ function Register() {
 
       const data = await res.json(); // Parseamos la respuesta JSON
       if (res.ok) {
-        alert(`Bienvenido, ${data.nombre}`); // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
+        alert(`Bienvenido, ${form.username}`); // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
         navigate("/"); // Redirige a la página de inicio de sesión
       } else {
         alert(`Error: ${data.message}`); // Si hay un error, mostramos el mensaje de error
@@ -105,20 +105,7 @@ function Register() {
           placeholder="********"
           className="w-full mb-6 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
-        {/* Input: Repite la contraseña */}
-        <label className="block mb-2 font-medium" htmlFor="password">
-          Repite otra vez tu contraseña
-        </label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          value={form.password}
-          onChange={handleChange}
-          required
-          placeholder="********"
-          className="w-full mb-6 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
+
 
         {/* Botón de enviar */}
         <button

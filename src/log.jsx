@@ -10,7 +10,7 @@ function Login() {
         email: "",
         password: "",
     });
-    
+
 // Función que se ejecuta cada vez que se cambia un input
     const handleChange = (e) => {
         setForm({
@@ -36,7 +36,7 @@ function Login() {
             const data = await res.json();  // Parseamos la respuesta JSON
 
             if (res.ok) {
-                alert(`Bienvenido, ${data.username}`);  // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
+                alert(`Bienvenido, ${form.username}`);  // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
                 navigate("/home");  // Redirige a la página de inicio
             } else {
                 alert(`Error: ${data.message}`);  // Si hay un error, mostramos el mensaje de error
