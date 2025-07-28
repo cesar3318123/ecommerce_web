@@ -10,6 +10,7 @@ function Login() {
         email: "",
         password: "",
     });
+    
 // Función que se ejecuta cada vez que se cambia un input
     const handleChange = (e) => {
         setForm({
