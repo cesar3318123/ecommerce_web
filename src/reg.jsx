@@ -62,14 +62,14 @@ function Register() {
         <h2 className="text-5xl font-semibold mb-6 text-center">Registro</h2>
 
         {/* Input: Nombre */}
-        <label className="block mb-2 font-medium" htmlFor="nombre">
+        <label className="block mb-2 font-medium" htmlFor="username">
           Nombre
         </label>
         <input
-          id="nombre"
-          name="nombre"
+          id="username"
+          name="username"
           type="text"
-          value={form.nombre} // Valor del estado
+          value={form.username} // Valor del estado
           onChange={handleChange} // Actualiza el estado al escribir
           required
           placeholder="Tu nombre"
