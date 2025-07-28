@@ -1,11 +1,15 @@
 //Importamos React y el hook useState
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.jpg"; // Importamos el logo de la carpeta public
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redirección
 import favicon from "./CIGR_20_2.png"; // Importamos el favicon de la carpeta public
 
+
 //Declaramos el componente llamado Home
 function Home() {
+
+    const [email, setEmail] = useState(""); // Estado para el email
+
     const [isOpen, setIsOpen] = useState(false); // Estado para el drawer (Sidebar)
 
     const toggleSidebar = () => setIsOpen(!isOpen); // Función para alternar el estado del drawer
@@ -13,6 +17,19 @@ function Home() {
     const closeSidebar = () => setIsOpen(false); // Función para cerrar el drawer
 
     const navigate = useNavigate(); // Hook para redirección
+
+    useEffect(() => {
+        // Verifica si el usuario está autenticado
+        const userEmail = localStorage.getItem("userEmail");
+        if (!userEmail) {
+            setEmail("Invitado"); // Si no hay email en localStorage, muestra "Invitado"
+        } else {
+            setEmail(userEmail); // Si hay email, lo establece en el estado
+        }
+
+    }, [navigate]);
+
+
     return (
         
 
@@ -74,7 +91,7 @@ function Home() {
                     <img src={logo} alt="Logo" className="w-32 h-auto" />
                 </div>
                 <p>Usuario:</p>
-                <p>Cuenta:</p>
+                <p>Cuenta: <strong>{email}</strong></p>
                 <button
                 onClick={() => navigate("/Profile")}
                 className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2">
