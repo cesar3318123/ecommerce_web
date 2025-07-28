@@ -36,7 +36,7 @@ function Login() {
             const data = await res.json();  // Parseamos la respuesta JSON
 
             if (res.ok) {
-                alert(`Bienvenido, ${form.username}`);  // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
+                alert(`Tu cuenta: , ${data.email} ha sido identificada correctamente`);  // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
                 navigate("/home");  // Redirige a la página de inicio
             } else {
                 alert(`Error: ${data.message}`);  // Si hay un error, mostramos el mensaje de error
