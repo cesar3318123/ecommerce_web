@@ -35,7 +35,7 @@ function Register() {
 
       const data = await res.json(); // Parseamos la respuesta JSON
       if (res.ok) {
-        alert(`Bienvenido, ${form.username}`); // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
+        alert(`Bienvenido ${form.username}`); // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
         navigate("/"); // Redirige a la página de inicio de sesión
       } else {
         alert(`Error: ${data.message}`); // Si hay un error, mostramos el mensaje de error
