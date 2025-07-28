@@ -1,10 +1,11 @@
 // Importamos React y el hook useState
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Importamos Link para navegación
-import { navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //Declaramos el componente llamado Log
 function Login() {
+    const navigate = useNavigate(); // Hook para redirección
     const [form, setForm] = useState({
         email: "",
         password: "",
