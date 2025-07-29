@@ -1,5 +1,5 @@
 //Importamos React y el hook useState
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.jpg"; // Importamos el logo de la carpeta public
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redire
 import favicon from "./Logo_invertido.png"; // Importamos el favicon de la carpeta public
@@ -7,6 +7,11 @@ import favicon from "./Logo_invertido.png"; // Importamos el favicon de la carpe
 
 //Creamos el componente llamado Home_IA
 function Home_IA() {
+
+    const [email, setEmail] = useState(""); // Estado para el email
+
+    const [username, setUsername] = useState(""); // Estado para el nombre de usuario
+
     const [isOpen, setIsOpen] = useState(false); // Estado para el drawer (Sidebar)
 
     const toggleSidebar = () => setIsOpen(!isOpen); // Función para alternar el estado del drawer
@@ -20,6 +25,20 @@ function Home_IA() {
     const [response, setResponse] = useState(""); // Estado para la respuesta generada
 
     const [ loading, setLoading] = useState(false); // Estado para el indicador de carga
+
+    useEffect(() => {
+            // Verifica si el usuario está autenticado
+            const userEmail = localStorage.getItem("userEmail");
+            const userName = localStorage.getItem("username");
+            if (!userEmail) {
+                setEmail("Invitado"); // Si no hay email en localStorage, muestra "Invitado"
+                setUsername("Invitado"); // También establece el nombre de usuario como "Invitado"
+            } else {
+                setEmail(userEmail); // Si hay email, lo establece en el estado
+                setUsername(userName); // También establece el nombre de usuario en el estado
+            }
+    
+        }, [navigate]);
 
 
     // Función asincrona para manejar la búsqueda
@@ -152,8 +171,8 @@ function Home_IA() {
                 <div className="p-4">
                     <img src={logo} alt="Logo" className="w-32 h-auto" />
                 </div>
-                <p>Usuario:</p>
-                <p>Cuenta:</p>
+                <p>Usuario: <strong>{username}</strong></p>
+                <p>Cuenta: <strong>{email}</strong></p>
                 <button
                 onClick={() => navigate("/Profile")}
                 className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2">
