@@ -72,6 +72,8 @@ function Home() {
             {/* Input de búsqueda */}
             <input
             type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="Escribe tu consulta aquí"
             className="flex-grow max-w-md px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
