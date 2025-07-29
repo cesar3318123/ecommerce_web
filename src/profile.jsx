@@ -1,9 +1,37 @@
 //Importamos el React y el hook useState
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "./logo.jpg"; // Importamos el logo de la carpeta public
 
 //Creamos el componente llamado Profile
 function Profile() {
+
+
+
+  const [email, setEmail] = useState(""); // Estado para el email
+  
+  const [username, setUsername] = useState(""); // Estado para el nombre de usuario
+
+  const navigate = useNavigate(); 
+
+
+      useEffect(() => {
+              // Verifica si el usuario está autenticado
+              const userEmail = localStorage.getItem("userEmail");
+              const userName = localStorage.getItem("username");
+              if (!userEmail) {
+                  setEmail("Invitado"); // Si no hay email en localStorage, muestra "Invitado"
+                  setUsername("Invitado"); // También establece el nombre de usuario como "Invitado"
+              } else {
+                  setEmail(userEmail); // Si hay email, lo establece en el estado
+                  setUsername(userName); // También establece el nombre de usuario en el estado
+              }
+      
+          }, [navigate]);
+
+
+
+
   return (
     <div className="relative flex flex-col justify-center items-center min-h-screen bg-gray-100">
       
