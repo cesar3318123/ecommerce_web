@@ -56,12 +56,12 @@ function Profile() {
 
         {/* Nombre */}
         <label className="block mb-2 font-medium" htmlFor="nombre">
-          Nombre:
+          Nombre: <strong>{username}</strong>
         </label>
 
         {/* Cuenta */}
         <label className="block mb-2 font-medium" htmlFor="email">
-          Cuenta (Email):
+          Cuenta (Email): <strong>{email}</strong>
         </label>
 
         {/* Botón cerrar sesión */}

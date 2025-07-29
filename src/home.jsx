@@ -3,10 +3,14 @@ import React, { useEffect, useState } from "react";
 import logo from "./logo.jpg"; // Importamos el logo de la carpeta public
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redirección
 import favicon from "./CIGR_20_2.png"; // Importamos el favicon de la carpeta public
+import { useSearchProducts} from "./hooks/useSearchProducts"; // Importamos el hook personalizado para buscar productos
 
 
 //Declaramos el componente llamado Home
 function Home() {
+    const [query, setQuery] = useState(""); // Estado para la consulta de búsqueda
+
+    const { results, search } = useSearchProducts(); // Usamos el hook personalizado para buscar productos
 
     const [email, setEmail] = useState(""); // Estado para el email
 
@@ -19,6 +23,11 @@ function Home() {
     const closeSidebar = () => setIsOpen(false); // Función para cerrar el drawer
 
     const navigate = useNavigate(); // Hook para redirección
+
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    search(query);
+  };
 
     useEffect(() => {
         // Verifica si el usuario está autenticado
@@ -59,6 +68,7 @@ function Home() {
             </div>
             {/*Parte inferior*/}
             <div className="p-4 flex justify-end items-center space-x-4">
+            <form onSubmit = {handleSubmit}>
             {/* Input de búsqueda */}
             <input
             type="text"
@@ -70,9 +80,22 @@ function Home() {
                 Buscar
             </button>
 
+            </form>
+
             </div>
             
             </header>
+
+
+            <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+           {results.map((item, i) => (
+          <a href={item.link} key={i} target="_blank" rel="noopener noreferrer" className="border p-2 rounded shadow">
+            <img src={item.imagen} alt={item.titulo} className="w-full h-40 object-contain mb-2" />
+            <p className="text-sm font-semibold">{item.titulo}</p>
+            <p className="text-green-600 font-bold">${item.precio}</p>
+          </a>
+        ))}
+      </div>
 
             {/*Fondo semitrasparente del overlay */}
             {isOpen && (
