@@ -3,14 +3,15 @@ import React, { useEffect, useState } from "react";
 import logo from "./logo.jpg"; // Importamos el logo de la carpeta public
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redirección
 import favicon from "./CIGR_20_2.png"; // Importamos el favicon de la carpeta public
-import { useSearchProducts} from "./hooks/useSearchProducts"; // Importamos el hook personalizado para buscar productos
 
 
 //Declaramos el componente llamado Home
 function Home() {
     const [query, setQuery] = useState(""); // Estado para la consulta de búsqueda
 
-    const { results, search } = useSearchProducts(); // Usamos el hook personalizado para buscar productos
+    const [products, setProducts] = useState([]); // Estado para almacenar los productos
+
+    const [error, setError] = useState(''); // Estado para manejar errores
 
     const [email, setEmail] = useState(""); // Estado para el email
 
@@ -24,10 +25,31 @@ function Home() {
 
     const navigate = useNavigate(); // Hook para redirección
 
-    const handleSubmit = (e) => {
-    e.preventDefault();
-    search(query);
-  };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); //Evita que la pagina se recargue al enviar el formulario
+        setError(''); //Resetea el estado de error antes de hacer la búsqueda
+        setProducts([]); //Resetea el estados de los resultados de productos antes de hacer una nueva búsqueda
+
+
+        try {
+            //Realiza una petición GET a la API para buscar productos
+            const response = await fetch('https://ecommercebackend-production-8245.up.railway.app/api/searchTradictional?q=${encodeURIComponent(query)}');
+            //Verifica si la respuesta es exitosa
+            if (!response.ok) {
+                throw new Error('Error al buscar productos');
+            }
+
+            const data = await response.json(); //Convierte la respuesta a JSON
+            setProducts(data); //Actualiza el estado de los productos con los datos obtenidos
+        } catch (error) {
+            console.error('Error frontend: No se pudo buscar productos:', error);
+            setError('Error frontend: No se pudo buscar productos'); //Actualiza el estado de error si ocurre un problema
+        }
+    }
+
+ 
 
     useEffect(() => {
         // Verifica si el usuario está autenticado
@@ -73,12 +95,14 @@ function Home() {
             <input
             type="text"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => setQuery(e.target.value)} // Actualiza el estado de la consulta al cambiar el input
             placeholder="Escribe tu consulta aquí"
             className="flex-grow max-w-md px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
             {/* Botón Buscar */}
-            <button className="bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition">
+            <button 
+            type = "submit" // Envía el formulario al hacer clic
+            className="bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition">
                 Buscar
             </button>
 
@@ -88,16 +112,29 @@ function Home() {
             
             </header>
 
+            {/*Contenedor del error*/}
+            {error && <p className = "text-red-500 text-center mt-4">{error}</p>}
 
-            <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-           {results.map((item, i) => (
-          <a href={item.link} key={i} target="_blank" rel="noopener noreferrer" className="border p-2 rounded shadow">
-            <img src={item.imagen} alt={item.titulo} className="w-full h-40 object-contain mb-2" />
-            <p className="text-sm font-semibold">{item.titulo}</p>
-            <p className="text-green-600 font-bold">${item.precio}</p>
-          </a>
-        ))}
-      </div>
+
+            <ul className = "space-y-4">
+                {products.map((product, index) => (
+                    <li key={index} className = "border p-4 rounded shadow">
+                        <h3 className = "font-bold text-lg">{product.nombre || 'Sin nombre' }</h3>
+                        <p className = "text-gray-700">Marca: {product.marca || 'Sin marca' }</p>
+                        {product.imagen && (
+                            <img
+                                src={product.imagen}
+                                alt={product.nombre || 'Producto sin nombre'}
+                                className="mt-2 w-32 h-auto"
+                            />
+
+                        )}
+                    </li>
+                ))}
+            </ul>
+
+
+  
 
             {/*Fondo semitrasparente del overlay */}
             {isOpen && (
