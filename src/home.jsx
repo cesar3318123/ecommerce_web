@@ -35,7 +35,7 @@ function Home() {
 
         try {
             //Realiza una petición GET a la API para buscar productos
-            const response = await fetch('https://ecommercebackend-production-8245.up.railway.app/api/searchTradictional?q=${encodeURIComponent(query)}');
+            const response = await fetch(`https://ecommercebackend-production-8245.up.railway.app/api/searchTradictional?q=${encodeURIComponent(query)}`);
             //Verifica si la respuesta es exitosa
             if (!response.ok) {
                 throw new Error('Error al buscar productos');
