@@ -22,10 +22,10 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/purchase" element={<Purchasescreen />} />
         <Route path="/home2" element={<Home2 />} />
-        <Route path="/information" element={<Information />} />
+        <Route path="/information" element={<Information />} /> 
         <Route path="/instructions" element={<Instruction />} />
         <Route path="/end" element={<End />} />
-        <Route path="/survey" element={<Survey />} />
+        <Route path="/survey" element={<Survey />} /> 
       </Routes>
     </Router>
   );

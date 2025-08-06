@@ -173,13 +173,13 @@ function Home() {
                 {/*Boton para ver instruccines de la prueba */}
                 <button
                 onClick={() => navigate("/instructions")}
-                className="w-full bg-Orange-600 text-white px-4 py-2 rounded-md hover:bg-Orange-400 transition mb-2">
-                Instruccciones de la prueba
+                className="w-full bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-400 transition mb-2">
+                Instrucciones de la prueba
                 </button>
                 {/*Botón de formulario */}
                 <button
                 onClick={() => navigate("/survey")}
-                className="w-full bg-Orange-600 text-white px-4 py-2 rounded-md hover:bg-Orange-400 transition mb-2">
+                className="w-full bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-400 transition mb-2">
                 Formulario de prueba
                 </button>
                 
