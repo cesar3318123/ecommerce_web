@@ -9,7 +9,6 @@ import Home2 from "./home2"; //Para la pagina de inicio IA modo interfaz
 import Information from "./information"; //Para la pagina de informacion
 import Instruction from "./instructions"; //Para la pagina de instrucciones
 import End from "./end"; //Para la pagina de fin de prueba
-import Starts from "./start_s"; //Para la pagina de inicio de prueba
 import Survey from "./survey"; //Para la pagina de encuesta
 
 function App() {
@@ -26,7 +25,6 @@ function App() {
         <Route path="/information" element={<Information />} />
         <Route path="/instructions" element={<Instruction />} />
         <Route path="/end" element={<End />} />
-        <Route path="/start_s" element={<Starts />} />
         <Route path="/survey" element={<Survey />} />
       </Routes>
     </Router>

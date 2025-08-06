@@ -170,6 +170,19 @@ function Home() {
                 className="w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition mb-2">
                 Cambiar Modelo ★★
                 </button>
+                {/*Boton para ver instruccines de la prueba */}
+                <button
+                onClick={() => navigate("/instructions")}
+                className="w-full bg-Orange-600 text-white px-4 py-2 rounded-md hover:bg-Orange-400 transition mb-2">
+                Instruccciones de la prueba
+                </button>
+                {/*Botón de formulario */}
+                <button
+                onClick={() => navigate("/survey")}
+                className="w-full bg-Orange-600 text-white px-4 py-2 rounded-md hover:bg-Orange-400 transition mb-2">
+                Formulario de prueba
+                </button>
+                
                 <button
                 onClick ={toggleSidebar}
                 className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2">
