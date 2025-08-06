@@ -6,6 +6,16 @@ import React, { useState } from "react";
 function Survey() {
     return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+
+    {/* Botón de regresar en la esquina superior izquierda */}
+      <div className="absolute top-4 left-4">
+        <button 
+          onClick={() => window.history.back()}
+          className="bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition"
+        >
+          Regresar
+        </button>
+      </div>
         <div className="bg-[#c9c9c9] p-8 rounded-xl shadow-md w-full max-w-md">
             <p className="text-3xl font-semibold mb-6 text-center">Encuesta de satisfacción</p>
         {/* Pregunta 1 */}
