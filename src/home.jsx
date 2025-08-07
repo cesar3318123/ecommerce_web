@@ -115,6 +115,15 @@ function Home() {
             {/*Contenedor del error*/}
             {error && <p className = "text-red-500 text-center mt-4">{error}</p>}
 
+            {/*Fondo semitrasparente del overlay */}
+            {isOpen && (
+                <div
+                onClick={closeSidebar}               // Cierra sidebar al clicar fuera
+                className="fixed inset-0 bg-black bg-opacity-40 z-40">
+
+            </div>
+            )}
+
 
             <ul className = "space-y-4">
                 {products.map((product, index) => (
@@ -136,14 +145,7 @@ function Home() {
 
   
 
-            {/*Fondo semitrasparente del overlay */}
-            {isOpen && (
-                <div
-                onClick={closeSidebar}               // Cierra sidebar al clicar fuera
-                className="fixed inset-0 bg-black bg-opacity-40 z-40">
 
-            </div>
-            )}
             {/*Drawer (Sidebar) */}
             <div
              className={`
