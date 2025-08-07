@@ -77,7 +77,7 @@ function Home() {
             {/*Boton para abrir y cerrar el sidebar */}
             <button
                 onClick ={toggleSidebar}
-                className="fixed left-4 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                className="fixed left-4 top-4 z-50 transform -translate-y-1/2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
                 {isOpen ? "Cerrar ➤" : "Ménu ➤"}
             </button>
 
