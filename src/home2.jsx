@@ -176,17 +176,29 @@ function Home_IA() {
                 <button
                 onClick={() => navigate("/Profile")}
                 className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2">
-                    Perfil
+                    Perfil 🪪
                 </button>
                 <button
-                 onClick={() => navigate("/")}
+                 onClick={() => navigate("/home")}
                  className="w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition mb-2">
                  Cambiar Modelo ★★
+                </button>
+                {/*Boton para ver instruccines de la prueba */}
+                <button
+                onClick={() => navigate("/instructions")}
+                className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2">
+                Instrucciones de prueba 🔍
+                </button>
+                {/*Botón de formulario */}
+                <button
+                onClick={() => navigate("/survey")}
+                className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2">
+                Formulario de prueba 📝
                 </button>
                 <button
                 onClick ={toggleSidebar}
                 className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2">
-                {isOpen ? "Cerrar" : "Cerrar"}
+                {isOpen ? "Cerrar ❌" : "Cerrar ❌"}
                 </button>
 
 
