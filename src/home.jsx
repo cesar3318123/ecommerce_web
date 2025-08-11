@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import logo from "./logo.jpg"; // Importamos el logo de la carpeta public
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redirección
 import favicon from "./CIGR_20_2.png"; // Importamos el favicon de la carpeta public
+import addToCart from "./addToCar.jsx"; // Asegúrate de que la ruta sea correcta
 
 
 //Declaramos el componente llamado Home
 function Home() {
+
     const [query, setQuery] = useState(""); // Estado para la consulta de búsqueda
 
     const [queryDefault, setQueryDefault] = useState("cookie"); // término por defecto
@@ -182,6 +184,12 @@ function Home() {
                             />
 
                         )}
+                        {/* Agregamos un botón para añadir al carrito */}
+                        <button
+                            onClick={() => addToCart(product)}
+                            className="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition">
+                            Añadir al carrito 🛒
+                        </button>
                     </li>
                 ))}
             </ul>
@@ -202,6 +210,12 @@ function Home() {
                                 className="mt-2 w-32 h-auto"
                             />
                         )}
+                        {/* Agregamos un botón para añadir al carrito */}
+                        <button
+                            onClick={() => alert(`Producto ${product.nombre} añadido al carrito`)}
+                            className="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition">
+                            Añadir al carrito 🛒
+                        </button>
                     </li>
                 ))}
             </ul>
