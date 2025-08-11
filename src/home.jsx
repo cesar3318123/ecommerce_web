@@ -31,12 +31,15 @@ function Home() {
 
     const navigate = useNavigate(); // Hook para redirección
 
+    const [loading, setLoading] = useState(false);
+
 
 
     const handleSubmit = async (e) => {
         e.preventDefault(); //Evita que la pagina se recargue al enviar el formulario
         setError(''); //Resetea el estado de error antes de hacer la búsqueda
         setProducts([]); //Resetea el estados de los resultados de productos antes de hacer una nueva búsqueda
+        setLoading(true); // Establece el estado de carga a verdadero para mostrar un indicador de carga si es necesario
 
 
         try {
@@ -52,6 +55,8 @@ function Home() {
         } catch (error) {
             console.error('Error frontend: No se pudo buscar productos:', error);
             setError('Error frontend: No se pudo buscar productos'); //Actualiza el estado de error si ocurre un problema
+        } finally {
+            setLoading(false); // termina cargando
         }
     }
 
@@ -144,6 +149,13 @@ function Home() {
                 className="fixed inset-0 bg-black bg-opacity-40 z-40">
 
             </div>
+            )}
+
+            {/* Mensaje de cargando */}
+            {loading && (
+                <p className="text-center mt-4 text-blue-500 font-semibold">
+                    Cargando...
+                </p>
             )}
 
             {/*Contenedor de los productos que apareceran por default al cargar la pagina*/}
