@@ -158,26 +158,7 @@ function Home() {
                 </p>
             )}
 
-            {/*Contenedor de los productos que apareceran por default al cargar la pagina*/}
-            {productsDefault.length > 0 && (
-               <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
-               Recomendado para ti:
-            </h2>)}
-            <ul className = "space-y-4">
-                {productsDefault.map((product, index) => (
-                    <li key={index} className = "border p-4 rounded shadow">
-                        <h3 className = "font-bold text-lg">{product.nombre || 'Sin nombre' }</h3>
-                        <p className = "text-gray-700">Marca: {product.marca || 'Sin marca' }</p>
-                        {product.imagen && (
-                            <img
-                                src={product.imagen}
-                                alt={product.nombre || 'Producto sin nombre'}
-                                className="mt-2 w-32 h-auto"
-                            />
-                        )}
-                    </li>
-                ))}
-            </ul>
+
             {/*Contenedor de los productos que aparecen al buscar*/}
 
 
@@ -200,6 +181,26 @@ function Home() {
                                 className="mt-2 w-32 h-auto"
                             />
 
+                        )}
+                    </li>
+                ))}
+            </ul>
+            {/*Contenedor de los productos que apareceran por default al cargar la pagina*/}
+            {productsDefault.length > 0 && (
+               <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+               Recomendado para ti:
+            </h2>)}
+            <ul className = "space-y-4">
+                {productsDefault.map((product, index) => (
+                    <li key={index} className = "border p-4 rounded shadow">
+                        <h3 className = "font-bold text-lg">{product.nombre || 'Sin nombre' }</h3>
+                        <p className = "text-gray-700">Marca: {product.marca || 'Sin marca' }</p>
+                        {product.imagen && (
+                            <img
+                                src={product.imagen}
+                                alt={product.nombre || 'Producto sin nombre'}
+                                className="mt-2 w-32 h-auto"
+                            />
                         )}
                     </li>
                 ))}
