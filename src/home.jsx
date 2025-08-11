@@ -124,6 +124,12 @@ function Home() {
             </div>
             )}
 
+            {products.length > 0 && (
+               <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+               Resultados de tu búsqueda:
+               </h2>
+            )}
+
 
             <ul className = "space-y-4">
                 {products.map((product, index) => (
