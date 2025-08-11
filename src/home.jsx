@@ -9,9 +9,15 @@ import favicon from "./CIGR_20_2.png"; // Importamos el favicon de la carpeta pu
 function Home() {
     const [query, setQuery] = useState(""); // Estado para la consulta de búsqueda
 
+    const [queryDefault, setQueryDefault] = useState("cookie"); // término por defecto
+
     const [products, setProducts] = useState([]); // Estado para almacenar los productos
 
+    const [productsDefault, setProductsDefault] = useState([]); // Estado para almacenar los productos por defecto
+
     const [error, setError] = useState(''); // Estado para manejar errores
+
+    const [errorDefault, setErrorDefault] = useState(''); // Estado para manejar errores por defecto
 
     const [email, setEmail] = useState(""); // Estado para el email
 
@@ -49,10 +55,24 @@ function Home() {
         }
     }
 
+
+    const buscarProductos = async (termino) => {
+        setProductsDefault([]); // Resetea el estado de los productos antes de buscar
+        setErrorDefault(''); // Resetea el estado de error antes de buscar
+    try {
+      const res = await fetch(`https://ecommercebackend-production-8245.up.railway.app/api/searchTradictional?q=${encodeURIComponent(termino)}`);
+      const data = await res.json();
+      setProductsDefault(data);
+    } catch (error) {
+      console.error("Error al buscar productos:", error);
+    }
+   };
+
  
 
     useEffect(() => {
         // Verifica si el usuario está autenticado
+        buscarProductos(queryDefault); // Llama a la función para buscar productos con el término por defecto
         const userEmail = localStorage.getItem("userEmail");
         const userName = localStorage.getItem("username");
         if (!userEmail) {
@@ -115,6 +135,8 @@ function Home() {
             {/*Contenedor del error*/}
             {error && <p className = "text-red-500 text-center mt-4">{error}</p>}
 
+            {errorDefault && <p className = "text-red-500 text-center mt-4">{errorDefault}</p>}
+
             {/*Fondo semitrasparente del overlay */}
             {isOpen && (
                 <div
@@ -123,6 +145,29 @@ function Home() {
 
             </div>
             )}
+
+            {/*Contenedor de los productos que apareceran por default al cargar la pagina*/}
+            {productsDefault.length > 0 && (
+               <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+               Recomendado para ti:
+            </h2>)}
+            <ul className = "space-y-4">
+                {productsDefault.map((product, index) => (
+                    <li key={index} className = "border p-4 rounded shadow">
+                        <h3 className = "font-bold text-lg">{product.nombre || 'Sin nombre' }</h3>
+                        <p className = "text-gray-700">Marca: {product.marca || 'Sin marca' }</p>
+                        {product.imagen && (
+                            <img
+                                src={product.imagen}
+                                alt={product.nombre || 'Producto sin nombre'}
+                                className="mt-2 w-32 h-auto"
+                            />
+                        )}
+                    </li>
+                ))}
+            </ul>
+            {/*Contenedor de los productos que aparecen al buscar*/}
+
 
             {products.length > 0 && (
                <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
