@@ -40,7 +40,7 @@ function Profile() {
 
                     // Si hay userId, obtenemos los productos del carrito
       if (userId) {
-        fetch(`http://localhost:3000/cart/${userId}`)
+        fetch(`https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`)
           .then((res) => {
             if (!res.ok) {
               throw new Error("No se pudieron obtener los productos");
