@@ -36,6 +36,8 @@ function Login() {
             const data = await res.json();  // Parseamos la respuesta JSON
 
             if (res.ok) {
+                localStorage.setItem("userId", data.id);  // Guardamos el userId en localStorage
+                console.log("Usuario autenticado:", data);  // Mostramos el usuario autenticado en la consola
                 alert(`Tu cuenta: ${form.email} ha sido identificada correctamente`);  // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
                 navigate("/home");  // Redirige a la página de inicio
                 localStorage.setItem("userEmail", form.email);  // Guardamos el email del usuario en localStorage
