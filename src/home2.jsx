@@ -68,8 +68,8 @@ function Home_IA() {
 
         // Guardamos la respuesta de la IA en el estado, si no hay respuesta, mostramos un mensaje de error
 
-        if (data.response) {
-            setResponse(data.response);
+        if (data.aiResult) {
+            setResponse(data.aiResult);
         } else {
             setResponse("No se pudo generar una respuesta. Inténtalo de nuevo.");
         }
