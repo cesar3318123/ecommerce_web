@@ -55,7 +55,7 @@ function Home_IA() {
 
         try {
             //Realizamos una petición POST a la API de búsqueda
-            const res = await fetch("http://localhost:3001/api/google-ai", {
+            const res = await fetch("https://ecommercebackend-production-8245.up.railway.app/api/searchIA", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
