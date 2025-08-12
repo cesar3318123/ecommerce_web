@@ -60,7 +60,7 @@ function Home_IA() {
                 headers: {
                     "Content-Type": "application/json",
                 }, // Indicamos que el cuerpo de la petición es JSON
-                body: JSON.stringify({ query: prompt }), // Convertimos el prompt a JSON
+                body: JSON.stringify({ prompt }), // Convertimos el prompt a JSON
         });
 
         //Parseamos la respuesta JSON
@@ -209,15 +209,6 @@ function Home_IA() {
 
             
             </div>
-
-
-
-
-
-
-
-
-
 
 
     </div>
