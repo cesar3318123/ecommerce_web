@@ -12,7 +12,17 @@ function Profile() {
   
   const [username, setUsername] = useState(""); // Estado para el nombre de usuario
 
+  const [cartItems, setCartItems] = useState([]); // Estado para productos en carrito
+
+  const [loading, setLoading] = useState(true); // Estado de carga
+
+  const [error, setError] = useState(""); // Estado de error
+
+  const userId = localStorage.getItem("userId");
+
   const navigate = useNavigate(); 
+
+
 
 
       useEffect(() => {
@@ -26,6 +36,30 @@ function Profile() {
                   setEmail(userEmail); // Si hay email, lo establece en el estado
                   setUsername(userName); // También establece el nombre de usuario en el estado
               }
+
+
+                    // Si hay userId, obtenemos los productos del carrito
+      if (userId) {
+        fetch(`http://localhost:3000/cart/${userId}`)
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("No se pudieron obtener los productos");
+            }
+            return res.json();
+          })
+          .then((data) => {
+            setCartItems(data);
+          })
+          .catch((err) => {
+            setError(err.message);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      } else {
+        setLoading(false);
+      }
+    
       
           }, [navigate]);
 
@@ -68,6 +102,35 @@ function Profile() {
         <button className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-400 transition duration-200">
           Cerrar sesión
         </button>
+
+        {/*Apartado de productos añadidos al carrito */}
+        <div className="mt-6">
+          <h3 className="text-lg font-bold mb-3">Mis productos en el carrito:</h3>
+          {loading ? (
+            <p>Cargando productos...</p>
+          ) : error ? (
+            <p className="text-red-600">{error}</p>
+          ) : cartItems.length === 0 ? (
+            <p>No tienes productos en tu carrito.</p>
+          ) : (
+            <ul className="space-y-3">
+              {cartItems.map((item) => (
+                <li key={item.id} className="border p-3 rounded bg-white shadow">
+                  <p className="font-semibold">{item.nombre}</p>
+                  <p className="text-gray-700">Marca: {item.marca}</p>
+                  {item.imagen && (
+                    <img
+                      src={item.imagen}
+                      alt={item.nombre}
+                      className="mt-2 w-24 h-auto"
+                    />
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
       </div>
     </div>
   );
