@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import logo from "./logo.jpg"; // Importamos el logo de la carpeta public
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redire
 import favicon from "./Logo_invertido.png"; // Importamos el favicon de la carpeta public
+import { set } from "../../backend/app";
 
 
 //Creamos el componente llamado Home_IA
@@ -25,6 +26,8 @@ function Home_IA() {
     const [response, setResponse] = useState(""); // Estado para la respuesta generada
 
     const [ loading, setLoading] = useState(false); // Estado para el indicador de carga
+
+    const [products, setProducts] = useState([]); // Estado para los productos obtenidos
 
     useEffect(() => {
             // Verifica si el usuario está autenticado
@@ -70,8 +73,10 @@ function Home_IA() {
 
         if (data.aiResult) {
             setResponse(data.aiResult);
+            setProducts(data.products || []); // Guardamos los productos obtenidos
         } else {
             setResponse("No se pudo generar una respuesta. Inténtalo de nuevo.");
+            setProducts([]); // Limpiamos los productos si no hay respuesta
         }
 
 
@@ -117,6 +122,24 @@ function Home_IA() {
             className="absolute left-4 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-500 transition">
             {isOpen ? "Cerrar ➤" : "Ménu ➤"}
         </button>
+
+        {/* Contenedor scroll horizontal */}
+      <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="min-w-[200px] bg-white rounded-xl shadow p-4 flex-shrink-0"
+          >
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-40 object-contain mb-2"
+            />
+            <h3 className="text-lg font-semibold">{product.name}</h3>
+            <p className="text-gray-500">{product.brand}</p>
+          </div>
+        ))}
+      </div>
 
 
         <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded shadow-md min-h-[150px]">
