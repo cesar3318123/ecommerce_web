@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import logo from "./logo.jpg"; // Importamos el logo de la carpeta public
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redire
 import favicon from "./Logo_invertido.png"; // Importamos el favicon de la carpeta public
-import { set } from "../../backend/app";
 
 
 //Creamos el componente llamado Home_IA
