@@ -124,20 +124,13 @@ function Home_IA() {
 
         {/* Contenedor scroll horizontal */}
       <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="min-w-[200px] bg-white rounded-xl shadow p-4 flex-shrink-0"
-          >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-40 object-contain mb-2"
-            />
-            <h3 className="text-lg font-semibold">{product.name}</h3>
-            <p className="text-gray-500">{product.brand}</p>
-          </div>
-        ))}
+{products.map((product, index) => (
+  <div key={index}>
+    <img src={product.imagen} alt={product.nombre} className="w-full h-40 object-contain mb-2" />
+    <h3 className="text-lg font-semibold">{product.nombre}</h3>
+    <p className="text-gray-500">{product.marca}</p>
+  </div>
+))}
       </div>
 
 
