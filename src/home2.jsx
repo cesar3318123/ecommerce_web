@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import logo from "./logo.jpg"; // Importamos el logo de la carpeta public
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redire
 import favicon from "./Logo_invertido.png"; // Importamos el favicon de la carpeta public
+import addToCart from "./addToCar.jsx"; // Importamos la función para añadir al carrito
 
 
 //Creamos el componente llamado Home_IA
@@ -129,6 +130,12 @@ function Home_IA() {
     <img src={product.imagen} alt={product.nombre} className="w-full h-40 object-contain mb-2" />
     <h3 className="text-lg font-semibold">{product.nombre}</h3>
     <p className="text-gray-500">{product.marca}</p>
+        {/* Agregamos un botón para añadir al carrito */}
+        <button
+            onClick={() => addToCart(product)}
+            className="mt-2 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition">
+                Añadir al carrito 🛒
+        </button>
   </div>
 ))}
       </div>
