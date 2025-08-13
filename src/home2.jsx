@@ -123,7 +123,7 @@ function Home_IA() {
         </button>
 
         {/* Contenedor scroll horizontal */}
-      <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+      <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide px-4 pt-4">
 {products.map((product, index) => (
   <div key={index}>
     <img src={product.imagen} alt={product.nombre} className="w-full h-40 object-contain mb-2" />
@@ -139,7 +139,7 @@ function Home_IA() {
             <p className="whitespace-pre-wrap">{loading ? "Cargando..." : response}</p>
         </div>
 
-        <div className="h-28 bg-white"></div>
+        <div className="h-28 bg-gray-100"></div>
 
 
 
