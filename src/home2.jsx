@@ -118,7 +118,7 @@ function Home_IA() {
         {/*Boton para abrir y cerrar el sidebar */}
         <button
             onClick ={toggleSidebar}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-500 transition">
+            className="fixed left-4 top-1/2 z-50 transform -translate-y-1/2 px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-500 transition">
             {isOpen ? "Cerrar ➤" : "Ménu ➤"}
         </button>
 
@@ -135,7 +135,7 @@ function Home_IA() {
 
 
         <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded shadow-md min-h-[150px]">
-            <h2 className="text-xl font-semibold mb-4">Respuesta IA:</h2>
+            <h2 className="text-xl font-semibold mb-4">Soy un sistema de busqueda basado en lenguaje natural e IA ¿Qué es lo que deseas encontrar?</h2>
             <p className="whitespace-pre-wrap">{loading ? "Cargando..." : response}</p>
         </div>
 
@@ -151,7 +151,7 @@ function Home_IA() {
             </div>
             )}
         {/* Panel inferior tipo chat de IA (como el de ChatGPT) */}
-        <div className="fixed bottom-4 left-4 right-4 bg-black text-white px-6 py-4 rounded-md shadow-lg z-50">
+        <div className="sticky bottom-4 left-4 right-4 bg-black text-white px-6 py-4 rounded-md shadow-lg z-50">
             <div className="flex justify-end items-center gap-4 flex-wrap">
             {/* Input y botón alineados a la derecha */}
             <input
