@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import logo from "./logo.jpg"; // Importamos el logo de la carpeta public
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redirección
 import favicon from "./CIGR_20_2.png"; // Importamos el favicon de la carpeta public
-import addToCart from "./addToCar.jsx"; // Asegúrate de que la ruta sea correcta
+import addToCart from "./addToCar.jsx"; // Importamos la función para añadir al carrito
 
 
 //Declaramos el componente llamado Home
