@@ -8,7 +8,7 @@ function Survey() {
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
 
     {/* Botón de regresar en la esquina superior izquierda */}
-      <div className="absolute top-4 left-4">
+      <div className="fixed top-4 left-4 z-50">
         <button 
           onClick={() => window.history.back()}
           className="bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition"
