@@ -142,7 +142,7 @@ function Home_IA() {
 
 
         <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded shadow-md min-h-[150px]">
-            <h2 className="text-xl font-semibold mb-4">Soy un sistema de busqueda basado en lenguaje natural e IA ¿Qué es lo que deseas encontrar?</h2>
+            <h2 className="text-xl font-semibold mb-4">Soy un sistema de busqueda basado en lenguaje natural e IA ¿Deseas algo?</h2>
             <p className="whitespace-pre-wrap">{loading ? "Cargando..." : response}</p>
         </div>
 

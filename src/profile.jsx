@@ -38,6 +38,8 @@ function Profile() {
               }
 
 
+
+
                     // Si hay userId, obtenemos los productos del carrito
       if (userId) {
         fetch(`https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`)
@@ -63,6 +65,14 @@ function Profile() {
       
           }, [navigate]);
 
+      // 🔹 Función para cerrar sesión
+    const handleLogout = () => {
+      localStorage.removeItem("userId");
+      localStorage.removeItem("username");
+      localStorage.removeItem("userEmail");
+      navigate("/"); // Redirige a la página principal
+     };
+
 
 
 
@@ -70,7 +80,7 @@ function Profile() {
     <div className="relative flex flex-col justify-center items-center min-h-screen bg-gray-100">
       
       {/* Botón de regresar en la esquina superior izquierda */}
-      <div className="absolute top-4 left-4">
+      <div className="fixed top-4 left-4 z-50">
         <button 
           onClick={() => window.history.back()}
           className="bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition"
@@ -99,7 +109,9 @@ function Profile() {
         </label>
 
         {/* Botón cerrar sesión */}
-        <button className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-400 transition duration-200">
+        <button 
+        onClick={handleLogout}
+        className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-400 transition duration-200">
           Cerrar sesión
         </button>
 
