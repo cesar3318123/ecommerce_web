@@ -151,7 +151,7 @@ function Home_IA() {
             </div>
             )}
         {/* Panel inferior tipo chat de IA (como el de ChatGPT) */}
-        <div className="sticky bottom-4 left-4 right-4 bg-black text-white px-6 py-4 rounded-md shadow-lg z-50">
+        <div className="fixed bottom-4 left-4 right-4 bg-black text-white px-6 py-4 rounded-md shadow-lg z-50">
             <div className="flex justify-end items-center gap-4 flex-wrap">
             {/* Input y botón alineados a la derecha */}
             <input
