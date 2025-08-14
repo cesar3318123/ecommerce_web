@@ -1,6 +1,7 @@
 //Importamos React y el hook useState
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"; // Importamos Link para navegación
 
 //Declaramos el componente llamado Instruction
 function Instruction() {
@@ -80,6 +81,8 @@ const [formData, setFormData] = useState({
       setMessage(result.message || "Datos enviados");
 
       if (res.ok) {
+        setMessage(result.mensaje || "Registro creado");
+        alert("Encuesta enviada con éxito");
         setFormData({
           busqueda1: "",
           busqueda2: "",
@@ -153,6 +156,14 @@ const [formData, setFormData] = useState({
       {message && (
         <p className="mt-4 text-center font-medium text-green-600">{message}</p>
       )}
+
+      <p className="text-center mb-6">
+        Recuerda que para poder hacer las pruebas necesitas{" "}
+        <Link to="/reg" className="text-blue-600 hover:underline">
+         registrarte
+       </Link>.
+      </p>
+
 
 
         </div>

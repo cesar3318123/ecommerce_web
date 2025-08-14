@@ -1,6 +1,7 @@
 //Importamos React y el hook useState
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"; // Importamos Link para navegación
 
 //Declaramos el componente llamado Information
 function Information() {
@@ -74,6 +75,7 @@ function Information() {
 
       const data = await response.json();
       if (response.ok) {
+        setMessage(data.mensaje || "Registro creado");
         alert("Encuesta enviada con éxito");
         setFormData({
           satisfaccion: "",
@@ -107,7 +109,7 @@ function Information() {
                 </button>
             </div>
         <h2 className="text-2xl font-bold mb-4 text-center">Prueba 3: Encuesta de UX (por sistema) </h2>
-        <p className="text-center mb-6">Observa cada pregunta y contestas (estoy muy en desacuerdo = 1, estoy en desacuerdo = 2, estoy de acuerdo = 3, muy de acuerdo = 4, totalmente de acuerdo = 5)</p>
+        <p className="text-center mb-6">Observa cada pregunta y contesta (estoy muy en desacuerdo = 1, estoy en desacuerdo = 2, estoy de acuerdo = 3, muy de acuerdo = 4, totalmente de acuerdo = 5)</p>
 
     <form onSubmit={handleSubmit} className="space-y-4">
         
@@ -238,6 +240,13 @@ function Information() {
         <p className="mt-2 text-center text-green-600 font-medium">{message}</p>
       )}
     </form>
+
+      <p className="text-center mb-6">
+        Recuerda que para poder hacer las pruebas necesitas{" "}
+        <Link to="/reg" className="text-blue-600 hover:underline">
+         registrarte
+       </Link>.
+      </p>
 
 
         </div>
