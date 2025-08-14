@@ -207,17 +207,23 @@ function Home_IA() {
                  className="w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition mb-2">
                  Cambiar Modelo ★★
                 </button>
-                {/*Boton para ver instruccines de la prueba */}
+                {/*Boton para la prueba 1*/}
                 <button
-                onClick={() => navigate("/instructions")}
+                onClick={() => navigate("/prueba1")}
                 className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2">
-                Instrucciones de prueba 🔍
+                Prueba 1: Precisión 🔍
                 </button>
-                {/*Botón de formulario */}
+                {/*Botón para la prueba 2*/}
                 <button
-                onClick={() => navigate("/survey")}
+                onClick={() => navigate("/prueba2")}
                 className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2">
-                Formulario de prueba 📝
+                Prueba 2: A/B 📝
+                </button>
+                {/*Botón para la prueba 3*/}
+                <button
+                onClick={() => navigate("/prueba3")}
+                className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2">
+                Prueba 3: A/B 📚
                 </button>
                 <button
                 onClick ={toggleSidebar}
