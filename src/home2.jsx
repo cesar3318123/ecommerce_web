@@ -158,7 +158,7 @@ function Home_IA() {
             <p className="whitespace-pre-wrap">{loading ? "Cargando..." : response}</p>
         </div>
 
-        <div className="h-33 bg-gray-100"></div>
+        <div className="h-20 bg-gray-100"></div>
 
 
 
