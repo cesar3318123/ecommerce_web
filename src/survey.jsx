@@ -114,6 +114,16 @@ function Survey() {
           Regresar
         </button>
       </div>
+      <h2 className="text-2xl font-bold mb-4 text-center">Prueba 2: Pruebas A/B</h2>
+      <p className="text-center mb-6">Observa cada imagen de los resultados de búsquedas y califica del 1 al 3 (1: Irrelevante, 2: Relevante, 3: Muy relevante):</p>
+      <p className="text-center mb-6">•	Realizaras 3 tareas de búsqueda de productos relacionados en despensa</p>
+      <p className="text-center mb-6">•	Completa cada tarea lo más rápido posible y sin ayuda.</p>
+      <p className="text-center mb-6">•	Al final, responde preguntas sobre tu experiencia.</p>
+      <p className="text-center mb-6">•	Tareas sugeridas (ejemplo)</p>
+      <p className="text-center mb-6">1.	“Encuentra una bebida de chocolate con envase ≤ 500 ml.”</p>
+      <p className="text-center mb-6">2.	“Busca snacks bajos en azúcar y elige uno para añadir al carrito.”</p>
+      <p className="text-center mb-6">3.	“Localiza alimentos aptos para intolerancia a la lactosa y selecciona uno.”</p>
+      <p className="text-center mb-6">Por cada tarea terminada se tendrá que contestar ciertas preguntas:</p>
 
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -148,7 +158,7 @@ function Survey() {
 
         {/* Frase exacta */}
         <div>
-          <label className="block mb-1 font-medium">Frase exacta</label>
+          <label className="block mb-1 font-medium">Frase exacta que el participante escribio en la consulta</label>
           <textarea
             name="frase_exacta"
             value={formData.frase_exacta}
@@ -160,7 +170,7 @@ function Survey() {
 
         {/* Sistema usado */}
         <div>
-          <label className="block mb-1 font-medium">Sistema usado (1 o 2)</label>
+          <label className="block mb-1 font-medium">Versión del sistema, (insertar "1" si usaste el sistema de IA y lenguaje natural, inserta "2" si usaste el tradicional)</label>
           <input
             type="number"
             name="sistema_usado"
@@ -175,7 +185,7 @@ function Survey() {
 
         {/* Producto encontrado */}
         <div>
-          <label className="block mb-1 font-medium">Producto encontrado</label>
+          <label className="block mb-1 font-medium">¿Si encontraste el producto?</label>
           <input
             type="text"
             name="producto_encontrado"
@@ -202,7 +212,7 @@ function Survey() {
 
         {/* Claridad */}
         <div>
-          <label className="block mb-1 font-medium">Claridad (1-5)</label>
+          <label className="block mb-1 font-medium">¿Que tan claras fueron las respuestas? (1-5)</label>
           <input
             type="number"
             name="claridad"
@@ -217,7 +227,7 @@ function Survey() {
 
         {/* Comentarios */}
         <div>
-          <label className="block mb-1 font-medium">Comentarios</label>
+          <label className="block mb-1 font-medium">Comentarios breves del participante</label>
           <textarea
             name="comentarios"
             value={formData.comentarios}
