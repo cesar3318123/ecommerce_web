@@ -4,6 +4,7 @@ import logo from "./logo.jpg"; // Importamos el logo de la carpeta public
 import { useNavigate } from "react-router-dom"; // Importamos useNavigate para redirección
 import favicon from "./CIGR_20_2.png"; // Importamos el favicon de la carpeta public
 import addToCart from "./addToCar.jsx"; // Importamos la función para añadir al carrito
+import { Link } from "react-router-dom"; // Importamos Link para navegación
 
 
 //Declaramos el componente llamado Home
@@ -277,6 +278,13 @@ function Home() {
                 className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2">
                 {isOpen ? "Cerrar ❌" : "Cerrar ❌"}
                 </button>
+
+                <p className="text-center mb-6">
+                   ¿No tienes cuenta? {" "}
+                   <Link to="/reg" className="text-blue-600 hover:underline">
+                    registrate
+                   </Link>.
+                </p>
 
 
 
