@@ -126,19 +126,30 @@ function Home_IA() {
 
         {/* Contenedor scroll horizontal */}
       <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide px-4 pt-4">
-{products.map((product, index) => (
-  <div key={index}>
-    <img src={product.imagen} alt={product.nombre} className="w-full h-40 object-contain mb-2" />
-    <h3 className="text-lg font-semibold">{product.nombre}</h3>
-    <p className="text-gray-500">{product.marca}</p>
-        {/* Agregamos un botón para añadir al carrito */}
-        <button
-            onClick={() => addToCart(product)}
-            className="mt-2 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition">
-                Añadir al carrito 🛒
-        </button>
-  </div>
-))}
+  {products.map((product, index) => (
+    <div 
+      key={index} 
+      className="flex flex-col justify-between w-48 bg-white rounded-lg shadow p-3"
+    >
+      <div>
+        <img 
+          src={product.imagen} 
+          alt={product.nombre} 
+          className="w-full h-40 object-contain mb-2" 
+        />
+        <h3 className="text-lg font-semibold">{product.nombre}</h3>
+        <p className="text-gray-500">{product.marca}</p>
+      </div>
+
+      {/* Botón siempre abajo */}
+      <button
+        onClick={() => addToCart(product)}
+        className="mt-4 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
+      >
+        Añadir al carrito 🛒
+      </button>
+    </div>
+  ))}
       </div>
 
 
@@ -147,7 +158,7 @@ function Home_IA() {
             <p className="whitespace-pre-wrap">{loading ? "Cargando..." : response}</p>
         </div>
 
-        <div className="h-28 bg-gray-100"></div>
+        <div className="h-33 bg-gray-100"></div>
 
 
 
