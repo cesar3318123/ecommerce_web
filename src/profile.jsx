@@ -74,6 +74,28 @@ function Profile() {
       alert("Has cerrado sesión correctamente");
       navigate("/"); // Redirige a la página principal
      };
+  const handleDeleteItem = async (itemId) => {
+  if (!userId) return;
+
+  try {
+    const response = await fetch(`https://ecommercebackend-production-8245.up.railway.app/api/cartDelete/${userId}/${itemId}`, {
+      method: "DELETE",
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Removemos el item del estado local
+      setCartItems(cartItems.filter((item) => item.id !== itemId));
+      alert("Producto eliminado correctamente");
+    } else {
+      alert(data.error || "Error al eliminar producto");
+    }
+  } catch (error) {
+    console.error("Error al eliminar producto:", error);
+    alert("No se pudo eliminar el producto");
+  }
+};
 
 
 
@@ -139,7 +161,15 @@ function Profile() {
                       className="mt-2 w-24 h-auto"
                     />
                   )}
+                  {/* Botón eliminar */}
+                  <button
+                    onClick={() => handleDeleteItem(item.id)}
+                    className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-400 transition"
+                  >
+                  Eliminar
+                   </button>
                 </li>
+                
               ))}
             </ul>
           )}
