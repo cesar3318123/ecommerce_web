@@ -115,15 +115,14 @@ function Survey() {
         </button>
       </div>
       <h2 className="text-2xl font-bold mb-4 text-center">Prueba 2: Pruebas A/B</h2>
-      <p className="text-center mb-6">Observa cada imagen de los resultados de búsquedas y califica del 1 al 3 (1: Irrelevante, 2: Relevante, 3: Muy relevante):</p>
-      <p className="text-center mb-6">•	Realizaras 3 tareas de búsqueda de productos relacionados en despensa</p>
-      <p className="text-center mb-6">•	Completa cada tarea lo más rápido posible y sin ayuda.</p>
-      <p className="text-center mb-6">•	Al final, responde preguntas sobre tu experiencia.</p>
-      <p className="text-center mb-6">•	Tareas sugeridas (ejemplo)</p>
-      <p className="text-center mb-6">1.	“Encuentra una bebida de chocolate con envase ≤ 500 ml.”</p>
-      <p className="text-center mb-6">2.	“Busca snacks bajos en azúcar y elige uno para añadir al carrito.”</p>
-      <p className="text-center mb-6">3.	“Localiza alimentos aptos para intolerancia a la lactosa y selecciona uno.”</p>
-      <p className="text-center mb-6">Por cada tarea terminada se tendrá que contestar ciertas preguntas:</p>
+      <p className="text-left mb-6">•	Realizaras 3 tareas de búsqueda de productos relacionados en despensa.</p>
+      <p className="text-left mb-6">•	Completa cada tarea lo más rápido posible y sin ayuda.</p>
+      <p className="text-left mb-6">•	Al final, responde preguntas sobre tu experiencia.</p>
+      <p className="text-left mb-6">•	Tareas sugeridas (ejemplo)</p>
+      <p className="text-left mb-6">1.	“Encuentra una bebida de chocolate con envase ≤ 500 ml.”</p>
+      <p className="text-left mb-6">2.	“Busca snacks bajos en azúcar y elige uno para añadir al carrito.”</p>
+      <p className="text-left mb-6">3.	“Localiza alimentos aptos para intolerancia a la lactosa y selecciona uno.”</p>
+      <p className="text-left mb-6">• Por cada tarea terminada se tendrá que contestar ciertas preguntas.</p>
 
 
       <form onSubmit={handleSubmit} className="space-y-4">
