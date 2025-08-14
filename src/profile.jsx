@@ -45,7 +45,7 @@ function Profile() {
         fetch(`https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`)
           .then((res) => {
             if (!res.ok) {
-              throw new Error("No se pudieron obtener los productos");
+              throw new Error("No tienes productos agregados en tu carrito");
             }
             return res.json();
           })
