@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function Instruction() {
 
 const [formData, setFormData] = useState({
-    userId: "",
     busqueda1: "",
     busqueda2: "",
     busqueda3: "",
@@ -18,6 +17,8 @@ const [formData, setFormData] = useState({
     busqueda9: "",
     busqueda10: ""
   });
+
+
 
    const [message, setMessage] = useState("");
 
@@ -32,12 +33,21 @@ const [formData, setFormData] = useState({
 
 
     const handleSubmit = async (e) => {
+
+
+
     e.preventDefault();
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      alert("No se encontró el usuario en localStorage");
+      return;
+    }
 
     // Convertir los campos de busqueda a números
     const dataToSend = {
       ...formData,
-      userId: Number(formData.userId),
+      userId: Number(userId),
       busqueda1: Number(formData.busqueda1),
       busqueda2: Number(formData.busqueda2),
       busqueda3: Number(formData.busqueda3),
@@ -50,8 +60,15 @@ const [formData, setFormData] = useState({
       busqueda10: Number(formData.busqueda10),
     };
 
+      for (const val of Object.values(dataToSend).filter(v => typeof v === "number")) {
+    if (val < 1 || val > 3) {
+      setMessage("Todos los valores deben estar entre 1 y 3");
+      return;
+    }
+  }
+
         try {
-      const res = await fetch("/api/prueba1", {
+      const res = await fetch("https://ecommercebackend-production-8245.up.railway.app/api/survey/prueba1", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -64,7 +81,6 @@ const [formData, setFormData] = useState({
 
       if (res.ok) {
         setFormData({
-          userId: "",
           busqueda1: "",
           busqueda2: "",
           busqueda3: "",
@@ -97,20 +113,10 @@ const [formData, setFormData] = useState({
                 </button>
             </div>
 
-            <h2 className="text-2xl font-bold mb-4 text-center">Formulario Prueba 1</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center">Prueba 1: Pruebas de precisión y relevancia </h2>
+            <p className="text-center mb-6">Observa cada imagen de los resultados de búsquedas y califica del 1 al 3 (1: Irrelevante, 2: Relevante, 3: Muy relevante):</p>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* ID del usuario */}
-        <div>
-          <label className="block mb-1 font-medium">ID Usuario</label>
-          <input
-            type="number"
-            name="userId"
-            value={formData.userId}
-            onChange={handleChange}
-            className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
-            required
-          />
-        </div>
+        
 
         {/* Campos de búsqueda */}
         {Array.from({ length: 10 }, (_, i) => (
