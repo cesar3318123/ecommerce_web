@@ -125,7 +125,7 @@ const [formData, setFormData] = useState({
               Búsqueda {i + 1} (1-3)
             </label>
             <input
-              type="text" // <-- cambiar a text
+              type="text" 
               name={`busqueda${i + 1}`}
               value={formData[`busqueda${i + 1}`]}
               onChange={(e) => {
