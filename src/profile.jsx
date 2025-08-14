@@ -70,6 +70,8 @@ function Profile() {
       localStorage.removeItem("userId");
       localStorage.removeItem("username");
       localStorage.removeItem("userEmail");
+      //Mandamos un alert para informar al usuario que ha cerrado sesión
+      alert("Has cerrado sesión correctamente");
       navigate("/"); // Redirige a la página principal
      };
 
