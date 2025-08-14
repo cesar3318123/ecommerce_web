@@ -12,7 +12,8 @@ function Information() {
     inteligencia_percibida: "",
     confianza: "",
     volveria_usar: "",
-    comentarios: ""
+    comentarios: "",
+    grupo: ""
   });
 
   const [message, setMessage] = useState("");
@@ -36,6 +37,8 @@ function Information() {
       newErrors.confianza = "Debe ser un número entre 1 y 5";
     if (!rangoValido(formData.volveria_usar))
       newErrors.volveria_usar = "Debe ser un número entre 1 y 5";
+    if (!["A", "B"].includes(formData.grupo.toUpperCase()))
+      newErrors.grupo = "Debe ser A o B";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -79,7 +82,8 @@ function Information() {
           inteligencia_percibida: "",
           confianza: "",
           volveria_usar: "",
-          comentarios: ""
+          comentarios: "",
+          grupo: ""
         });
       } else {
         alert(data.error || "Error al enviar encuesta");
@@ -103,9 +107,23 @@ function Information() {
                 </button>
             </div>
         <h2 className="text-2xl font-bold mb-4 text-center">Prueba 3: Encuesta de UX (por sistema) </h2>
-        <p className="text-center mb-6">Estoy muy en desacuerdo = 1, estoy en desacuerdo = 2, estoy de acuerdo = 3, muy de acuerdo = 4, totalmente de acuerdo = 5 </p>
+        <p className="text-center mb-6">Observa cada pregunta y contestas (estoy muy en desacuerdo = 1, estoy en desacuerdo = 2, estoy de acuerdo = 3, muy de acuerdo = 4, totalmente de acuerdo = 5)</p>
 
     <form onSubmit={handleSubmit} className="space-y-4">
+        
+    {/*Grupo */}
+    <div>
+     <label className="block mb-1 font-medium">Grupo (A o B)</label>
+    <input
+      type="text"
+      name="grupo"
+      maxLength="1"
+      value={formData.grupo}
+      onChange={handleChange}
+      className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
+      required
+    />
+    </div>
       {/* Satisfacción */}
       <div>
         <label className="block mb-1 font-medium">1.	Satisfacción general con el sistema:  (1-5)</label>
