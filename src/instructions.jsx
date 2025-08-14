@@ -125,12 +125,16 @@ const [formData, setFormData] = useState({
               Búsqueda {i + 1} (1-3)
             </label>
             <input
-              type="number"
+              type="text" // <-- cambiar a text
               name={`busqueda${i + 1}`}
-              min="1"
-              max="3"
               value={formData[`busqueda${i + 1}`]}
-              onChange={handleChange}
+              onChange={(e) => {
+              const val = e.target.value;
+              // Solo aceptar un dígito entre 1 y 3
+              if (/^[1-3]?$/.test(val)) {
+                handleChange(e);
+               }
+              }}
               className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
               required
             />
