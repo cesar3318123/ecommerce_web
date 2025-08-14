@@ -15,6 +15,8 @@ function Information() {
     comentarios: ""
   });
 
+  const [message, setMessage] = useState("");
+
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
@@ -100,47 +102,124 @@ function Information() {
                 Regresar
                 </button>
             </div>
+        <h2 className="text-2xl font-bold mb-4 text-center">Prueba 3: Encuesta de UX (por sistema) </h2>
+        <p className="text-center mb-6">Observa cada imagen de los resultados de búsquedas y califica del 1 al 3 (1: Irrelevante, 2: Relevante, 3: Muy relevante):</p>
 
-        <form onSubmit={handleSubmit} className = "space-y-4">
-      <h2>Encuesta de Satisfacción</h2>
-
-      {[
-        { name: "satisfaccion", label: "Satisfacción" },
-        { name: "facilidad_uso", label: "Facilidad de uso" },
-        { name: "relevancia", label: "Relevancia" },
-        { name: "inteligencia_percibida", label: "Inteligencia percibida" },
-        { name: "confianza", label: "Confianza" },
-        { name: "volveria_usar", label: "Volvería a usar" }
-      ].map((field) => (
-        <div key={field.name}>
-          <label>{field.label} (1 a 5)</label>
-          <input
-            type="number"
-            name={field.name}
-            value={formData[field.name]}
-            onChange={handleChange}
-            min="1"
-            max="5"
-            required
-          />
-          {errors[field.name] && (
-            <p style={{ color: "red" }}>{errors[field.name]}</p>
-          )}
-        </div>
-      ))}
-
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Satisfacción */}
       <div>
-        <label>Comentarios (opcional)</label>
-        <textarea
-          name="comentarios"
-          value={formData.comentarios}
+        <label className="block mb-1 font-medium">1.	Satisfacción general con el sistema:  (1-5)</label>
+        <input
+          type="number"
+          name="satisfaccion"
+          min="1"
+          max="5"
+          value={formData.satisfaccion}
           onChange={handleChange}
+          className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
+          required
         />
       </div>
 
-      <button type="submit">Enviar</button>
-    </form>
+      {/* Facilidad de uso */}
+      <div>
+        <label className="block mb-1 font-medium">2.	Facilidad de uso (fue fácil completar las tareas): (1-5)</label>
+        <input
+          type="number"
+          name="facilidad_uso"
+          min="1"
+          max="5"
+          value={formData.facilidad_uso}
+          onChange={handleChange}
+          className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
+          required
+        />
+      </div>
 
+      {/* Relevancia */}
+      <div>
+        <label className="block mb-1 font-medium">3.	Relevancia percibida de los resultados: (1-5)</label>
+        <input
+          type="number"
+          name="relevancia"
+          min="1"
+          max="5"
+          value={formData.relevancia}
+          onChange={handleChange}
+          className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
+          required
+        />
+      </div>
+
+      {/* Inteligencia percibida */}
+      <div>
+        <label className="block mb-1 font-medium">4.	Inteligencia percibida (entendió lo que pedí): (1-5)</label>
+        <input
+          type="number"
+          name="inteligencia_percibida"
+          min="1"
+          max="5"
+          value={formData.inteligencia_percibida}
+          onChange={handleChange}
+          className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
+          required
+        />
+      </div>
+
+      {/* Confianza */}
+      <div>
+        <label className="block mb-1 font-medium">5.	Confianza en las respuestas/resultados: (1-5)</label>
+        <input
+          type="number"
+          name="confianza"
+          min="1"
+          max="5"
+          value={formData.confianza}
+          onChange={handleChange}
+          className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
+          required
+        />
+      </div>
+
+      {/* Volvería a usar */}
+      <div>
+        <label className="block mb-1 font-medium">6.	Volvería a usarlo: (1-5)</label>
+        <input
+          type="number"
+          name="volveria_usar"
+          min="1"
+          max="5"
+          value={formData.volveria_usar}
+          onChange={handleChange}
+          className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
+          required
+        />
+      </div>
+
+      {/* Comentarios */}
+      <div>
+        <label className="block mb-1 font-medium">7.	Comentario abierto (qué mejorarías):</label>
+        <textarea
+          name="comentarios"
+          value={formData.comentarios}
+          onChange={(e) =>
+            setFormData({ ...formData, comentarios: e.target.value })
+          }
+          className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition"
+      >
+        Enviar
+      </button>
+
+      {message && (
+        <p className="mt-2 text-center text-green-600 font-medium">{message}</p>
+      )}
+    </form>
 
 
         </div>
