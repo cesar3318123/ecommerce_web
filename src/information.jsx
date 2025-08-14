@@ -45,12 +45,37 @@ function Information() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  // Si es un campo de rango 1-5, solo permitir un dígito y entre 1-5
+  const camposNumericos = [
+    "satisfaccion",
+    "facilidad_uso",
+    "relevancia",
+    "inteligencia_percibida",
+    "confianza",
+    "volveria_usar"
+  ];
+
+  if (camposNumericos.includes(name)) {
+    // Tomar solo el primer carácter y asegurarnos que sea 1-5
+    const val = value.slice(0, 1);
+    if (val === "" || ["1","2","3","4","5"].includes(val)) {
+      setFormData({ ...formData, [name]: val });
+    }
+  } else if (name === "grupo") {
+    // Convertir a mayúscula y permitir solo A o B
+    const val = value.slice(0, 1).toUpperCase();
+    if (val === "" || ["A", "B"].includes(val)) {
+      setFormData({ ...formData, [name]: val });
+    }
+  } else {
+    // Para los demás campos (comentarios)
+    setFormData({ ...formData, [name]: value });
+  }
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,7 +84,7 @@ function Information() {
 
     const userId = localStorage.getItem("userId");
     if (!userId) {
-      alert("No se encontró el ID de usuario en localStorage");
+      alert("No te has registrado, por favor regístrate primero");
       return;
     }
 

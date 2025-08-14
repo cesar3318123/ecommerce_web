@@ -50,7 +50,7 @@ function Survey() {
     e.preventDefault();
     const userId = localStorage.getItem("userId");
     if (!userId) {
-      alert("No se encontró el usuario en localStorage");
+      alert("No te has registrado, por favor regístrate primero");
       return;
     }
 
