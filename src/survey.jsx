@@ -1,5 +1,6 @@
 //Importamos React y el hook useState
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Importamos Link para navegación
 
 
 //Declaramos el componente llamado Survey
@@ -82,6 +83,7 @@ function Survey() {
       setMessage(result.mensaje || "Registro creado");
 
       if (res.ok) {
+        alert("Encuesta enviada con éxito");
         setFormData({
           grupo: "",
           num_tarea: "",
@@ -244,6 +246,14 @@ function Survey() {
         </button>
 
         {message && <p className="mt-2 text-center text-green-600 font-medium">{message}</p>}
+
+
+      <p className="text-center mb-6">
+        Recuerda que para poder hacer las pruebas necesitas{" "}
+        <Link to="/reg" className="text-blue-600 hover:underline">
+         registrarte
+       </Link>.
+      </p>
       </form>
         
   </div>
