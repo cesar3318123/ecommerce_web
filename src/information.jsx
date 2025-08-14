@@ -103,7 +103,7 @@ function Information() {
                 </button>
             </div>
         <h2 className="text-2xl font-bold mb-4 text-center">Prueba 3: Encuesta de UX (por sistema) </h2>
-        <p className="text-center mb-6">Observa cada imagen de los resultados de búsquedas y califica del 1 al 3 (1: Irrelevante, 2: Relevante, 3: Muy relevante):</p>
+        <p className="text-center mb-6">Estoy muy en desacuerdo = 1, estoy en desacuerdo = 2, estoy de acuerdo = 3, muy de acuerdo = 4, totalmente de acuerdo = 5 </p>
 
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Satisfacción */}
