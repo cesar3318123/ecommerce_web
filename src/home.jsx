@@ -36,11 +36,15 @@ function Home() {
 
     const [loading, setLoading] = useState(false);
 
+    const [searched, setSearched] = useState(false); // Nuevo estado para saber si se buscó algo
+
+
 
 
     const handleSubmit = async (e) => {
         e.preventDefault(); //Evita que la pagina se recargue al enviar el formulario
         setError(''); //Resetea el estado de error antes de hacer la búsqueda
+        setSearched(true); // marcamos que ya se hizo la búsqueda
         setProducts([]); //Resetea el estados de los resultados de productos antes de hacer una nueva búsqueda
         setLoading(true); // Establece el estado de carga a verdadero para mostrar un indicador de carga si es necesario
 
@@ -154,19 +158,17 @@ function Home() {
             </div>
             )}
 
-            {/* Mensaje de cargando o de no encontrado */}
 {loading ? (
   <p className="text-center mt-4 text-blue-500 font-semibold">
     Cargando...
   </p>
 ) : (
-  products.length === 0 && query !== "" && ( // solo muestra si se hizo una búsqueda
+  searched && products.length === 0 && (
     <p className="text-center mt-4 text-red-500 font-semibold">
       No se encontró ningún producto 😢
     </p>
   )
 )}
-
 
 
 {/*Contenedor de los productos que aparecen al buscar*/}
