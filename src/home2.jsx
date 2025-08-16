@@ -95,7 +95,7 @@ function Home_IA() {
 
 
         // Inicia cooldown de 30 segundos (puedes ajustar)
-      setCooldown(40);
+      setCooldown(5);
 
 
 
