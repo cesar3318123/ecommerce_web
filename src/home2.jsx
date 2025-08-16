@@ -30,6 +30,9 @@ function Home_IA() {
 
     const [products, setProducts] = useState([]); // Estado para los productos obtenidos
 
+    // Estado para temporizador
+    const [cooldown, setCooldown] = useState(0);
+
     useEffect(() => {
             // Verifica si el usuario está autenticado
             const userEmail = localStorage.getItem("userEmail");
@@ -44,10 +47,20 @@ function Home_IA() {
     
         }, [navigate]);
 
+    useEffect(() => {
+    let timer;
+    if (cooldown > 0) {
+      timer = setInterval(() => {
+        setCooldown(prev => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [cooldown]);
+
 
     // Función asincrona para manejar la búsqueda
     const handleSearch = async () => {
-        if (!prompt.trim()) return; // Si el prompt está vacío, no hacemos nada
+        if (!prompt.trim() || cooldown > 0) return; // Si el prompt está vacío, no hacemos nada
 
         //Indicamos que estamos cargando (para mostrar "Cargando..." o desactivar el botón)
 
@@ -79,6 +92,10 @@ function Home_IA() {
             setResponse("No se pudo generar una respuesta. Inténtalo de nuevo.");
             setProducts([]); // Limpiamos los productos si no hay respuesta
         }
+
+
+        // Inicia cooldown de 30 segundos (puedes ajustar)
+      setCooldown(30);
 
 
 
@@ -188,7 +205,7 @@ function Home_IA() {
              onClick={handleSearch}
              disabled={loading}
              style={{ backgroundColor: '#00a6ed' }} className="text-black px-4 py-2 rounded-md transition">
-                ⬆️
+                {cooldown > 0 ? `Espera ${cooldown}s` : "⬆️"}
             </button>
          </div>
         </div>
