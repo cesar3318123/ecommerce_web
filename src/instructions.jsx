@@ -16,7 +16,17 @@ const [formData, setFormData] = useState({
     busqueda7: "",
     busqueda8: "",
     busqueda9: "",
-    busqueda10: ""
+    busqueda10: "",
+    busqueda11: "",
+    busqueda12: "",
+    busqueda13: "",
+    busqueda14: "",
+    busqueda15: "",
+    busqueda16: "",
+    busqueda17: "",
+    busqueda18: "",
+    busqueda19: "",
+    busqueda20: ""
   });
 
 
@@ -45,6 +55,14 @@ const [formData, setFormData] = useState({
       return;
     }
 
+      // 🔹 Validar que no haya campos vacíos
+  for (const key in formData) {
+    if (formData[key] === "") {
+      setMessage("Debes llenar todos los campos");
+      return;
+    }
+  }
+
     // Convertir los campos de busqueda a números
     const dataToSend = {
       ...formData,
@@ -59,6 +77,16 @@ const [formData, setFormData] = useState({
       busqueda8: Number(formData.busqueda8),
       busqueda9: Number(formData.busqueda9),
       busqueda10: Number(formData.busqueda10),
+      busqueda11: Number(formData.busqueda11),
+      busqueda12: Number(formData.busqueda12),
+      busqueda13: Number(formData.busqueda13),
+      busqueda14: Number(formData.busqueda14),
+      busqueda15: Number(formData.busqueda15),
+      busqueda16: Number(formData.busqueda16),
+      busqueda17: Number(formData.busqueda17),
+      busqueda18: Number(formData.busqueda18),
+      busqueda19: Number(formData.busqueda19),
+      busqueda20: Number(formData.busqueda20)
     };
 
       for (const val of Object.values(dataToSend).filter(v => typeof v === "number")) {
@@ -93,7 +121,17 @@ const [formData, setFormData] = useState({
           busqueda7: "",
           busqueda8: "",
           busqueda9: "",
-          busqueda10: ""
+          busqueda10: "",
+          busqueda11: "",
+          busqueda12: "",
+          busqueda13: "",
+          busqueda14: "",
+          busqueda15: "",
+          busqueda16: "",
+          busqueda17: "",
+          busqueda18: "",
+          busqueda19: "",
+          busqueda20: ""
         });
       }
     } catch (error) {
@@ -122,7 +160,7 @@ const [formData, setFormData] = useState({
         
 
         {/* Campos de búsqueda */}
-        {Array.from({ length: 10 }, (_, i) => (
+        {Array.from({ length: 20 }, (_, i) => (
           <div key={i}>
             <label className="block mb-1 font-medium">
               Búsqueda {i + 1} (1-3)
