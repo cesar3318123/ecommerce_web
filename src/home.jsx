@@ -154,12 +154,19 @@ function Home() {
             </div>
             )}
 
-            {/* Mensaje de cargando */}
-            {loading && (
-                <p className="text-center mt-4 text-blue-500 font-semibold">
-                    Cargando...
-                </p>
-            )}
+            {/* Mensaje de cargando o de no encontrado */}
+{loading ? (
+  <p className="text-center mt-4 text-blue-500 font-semibold">
+    Cargando...
+  </p>
+) : (
+  products.length === 0 && query !== "" && ( // solo muestra si se hizo una búsqueda
+    <p className="text-center mt-4 text-red-500 font-semibold">
+      No se encontró ningún producto 😢
+    </p>
+  )
+)}
+
 
 
 {/*Contenedor de los productos que aparecen al buscar*/}
