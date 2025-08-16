@@ -162,64 +162,74 @@ function Home() {
             )}
 
 
-            {/*Contenedor de los productos que aparecen al buscar*/}
+{/*Contenedor de los productos que aparecen al buscar*/}
+{products.length > 0 && (
+  <>
+    <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+      Resultados de tu búsqueda:
+    </h2>
 
+    <div className="flex overflow-x-auto space-x-4 p-4">
+      {products.map((product, index) => (
+        <div
+          key={index}
+          className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white"
+        >
+          <h3 className="font-bold text-lg">{product.nombre || 'Sin nombre'}</h3>
+          <p className="text-gray-700">Marca: {product.marca || 'Sin marca'}</p>
+          {product.imagen && (
+            <img
+              src={product.imagen}
+              alt={product.nombre || 'Producto sin nombre'}
+              className="mt-2 w-full h-40 object-cover"
+            />
+          )}
+          <button
+            onClick={() => addToCart(product)}
+            className="mt-2 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
+          >
+            Añadir al carrito 🛒
+          </button>
+        </div>
+      ))}
+    </div>
+  </>
+)}
 
-            {products.length > 0 && (
-               <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
-               Resultados de tu búsqueda:
-               </h2>
-            )}
+{/*Contenedor de los productos que apareceran por default al cargar la pagina*/}
+{productsDefault.length > 0 && (
+  <>
+    <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+      Recomendado para ti:
+    </h2>
 
+    <div className="flex overflow-x-auto space-x-4 p-4">
+      {productsDefault.map((product, index) => (
+        <div
+          key={index}
+          className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white"
+        >
+          <h3 className="font-bold text-lg">{product.nombre || 'Sin nombre'}</h3>
+          <p className="text-gray-700">Marca: {product.marca || 'Sin marca'}</p>
+          {product.imagen && (
+            <img
+              src={product.imagen}
+              alt={product.nombre || 'Producto sin nombre'}
+              className="mt-2 w-full h-40 object-cover"
+            />
+          )}
+          <button
+            onClick={() => addToCart(product)}
+            className="mt-2 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
+          >
+            Añadir al carrito 🛒
+          </button>
+        </div>
+      ))}
+    </div>
+  </>
+)}
 
-            <ul className = "space-y-4">
-                {products.map((product, index) => (
-                    <li key={index} className = "border p-4 rounded shadow">
-                        <h3 className = "font-bold text-lg">{product.nombre || 'Sin nombre' }</h3>
-                        <p className = "text-gray-700">Marca: {product.marca || 'Sin marca' }</p>
-                        {product.imagen && (
-                            <img
-                                src={product.imagen}
-                                alt={product.nombre || 'Producto sin nombre'}
-                                className="mt-2 w-32 h-auto"
-                            />
-
-                        )}
-                        {/* Agregamos un botón para añadir al carrito */}
-                        <button
-                            onClick={() => addToCart(product)}
-                            className="mt-2 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition">
-                            Añadir al carrito 🛒
-                        </button>
-                    </li>
-                ))}
-            </ul>
-            {/*Contenedor de los productos que apareceran por default al cargar la pagina*/}
-            {productsDefault.length > 0 && (
-               <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
-               Recomendado para ti:
-            </h2>)}
-            <ul className = "space-y-4">
-                {productsDefault.map((product, index) => (
-                    <li key={index} className = "border p-4 rounded shadow">
-                        <h3 className = "font-bold text-lg">{product.nombre || 'Sin nombre' }</h3>
-                        <p className = "text-gray-700">Marca: {product.marca || 'Sin marca' }</p>
-                        {product.imagen && (
-                            <img
-                                src={product.imagen}
-                                alt={product.nombre || 'Producto sin nombre'}
-                                className="mt-2 w-32 h-auto"
-                            />
-                        )}
-                        {/* Agregamos un botón para añadir al carrito */}
-                        <button
-                            onClick={() => addToCart(product)}
-                            className="mt-2 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition">
-                            Añadir al carrito 🛒
-                        </button>
-                    </li>
-                ))}
-            </ul>
 
 
   
