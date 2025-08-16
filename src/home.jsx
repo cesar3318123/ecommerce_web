@@ -173,7 +173,7 @@ function Home() {
       {products.map((product, index) => (
         <div
           key={index}
-          className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white"
+          className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white flex flex-col justify-between"
         >
           <h3 className="font-bold text-lg">{product.nombre || 'Sin nombre'}</h3>
           <p className="text-gray-700">Marca: {product.marca || 'Sin marca'}</p>
@@ -186,7 +186,7 @@ function Home() {
           )}
           <button
             onClick={() => addToCart(product)}
-            className="mt-2 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
+            className="mt-4 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
           >
             Añadir al carrito 🛒
           </button>
@@ -207,7 +207,7 @@ function Home() {
       {productsDefault.map((product, index) => (
         <div
           key={index}
-          className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white"
+          className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white flex flex-col justify-between"
         >
           <h3 className="font-bold text-lg">{product.nombre || 'Sin nombre'}</h3>
           <p className="text-gray-700">Marca: {product.marca || 'Sin marca'}</p>
@@ -220,7 +220,7 @@ function Home() {
           )}
           <button
             onClick={() => addToCart(product)}
-            className="mt-2 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
+            className="mt-4 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
           >
             Añadir al carrito 🛒
           </button>
