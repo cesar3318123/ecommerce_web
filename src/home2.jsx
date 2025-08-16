@@ -95,7 +95,7 @@ function Home_IA() {
 
 
         // Inicia cooldown de 30 segundos (puedes ajustar)
-      setCooldown(30);
+      setCooldown(40);
 
 
 
@@ -172,6 +172,7 @@ function Home_IA() {
 
         <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded shadow-md min-h-[150px]">
             <h2 className="text-xl font-semibold mb-4">Soy un sistema de busqueda basado en lenguaje natural e IA ¿Deseas algo?</h2>
+            <p className="text-lg font-semibold mb-4">Nota. Es necesario esperar un cierto tiempo despues de cada consulta para no saturar el servicio</p>
             <p className="whitespace-pre-wrap">{loading ? "Cargando..." : response}</p>
         </div>
 
