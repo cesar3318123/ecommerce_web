@@ -191,7 +191,7 @@ const busquedasConfig = [
     <img
       src={busqueda.img}
       alt={busqueda.titulo}
-      className="w-40 h-40 object-contain mx-auto mb-2 border rounded-lg shadow"
+      className="w-full max-w-2xl h-auto object-contain mx-auto mb-4 border rounded-lg shadow"
     />
 
     {/* Título encima del input */}
