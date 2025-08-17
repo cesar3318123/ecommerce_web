@@ -44,26 +44,26 @@ const [formData, setFormData] = useState({
 
 
   const busquedasConfig = [
-  { titulo: "Busqueda 1: dame bebidas de manzana - Modelo tradicional de busqueda", img: require("../img/Imagen1.png") },
-  { titulo: "Busqueda 2: dame bebidas de manzana - Modelo de lenguaje natural e IA", img: require("../img/Imagen2.png") },
-  { titulo: "Busqueda 3: naranjas - Modelo tradicional de busqueda", img: require("../img/Imagen3.png") },
-  { titulo: "Busqueda 4: naranjas - Modelo de lenguaje natural e IA", img: require("../img/Imagen4.png") },
-  { titulo: "Busqueda 5: dame alimentos y bebidas bajos en azúcar - Modelo tradicional de busqueda", img: require("../img/Imagen5.png") },
-  { titulo: "Busqueda 6: dame alimentos y bebidas bajos en azúcar - Modelo de lenguaje natural e IA", img: require("../img/Imagen6.png") },
-  { titulo: "Busqueda 7: cereales con alto contenido de fibra - Modelo tradicional de busqueda", img: require("../img/Imagen7.png") },
-  { titulo: "Busqueda 8: cereales con alto contenido de fibra - Modelo de lenguaje natural e IA", img: require("../img/Imagen8.png") },
-  { titulo: "Busqueda 9: muéstrame por favor alimentos saludables - Modelo tradicional de busqueda", img: require("../img/Imagen9.png") },
-  { titulo: "Busqueda 10: muéstrame por favor alimentos saludables - Modelo de lenguaje natural e IA", img: require("../img/Imagen10.png") },
-  { titulo: "Busqueda 11: Quiero ver todas las marcas de galletas con chispas de chocolate que tengas - Modelo tradicional de busqueda", img: require("../img/Imagen11.png") },
-  { titulo: "Busqueda 12: Quiero ver todas las marcas de galletas con chispas de chocolate que tengas - Modelo de lenguaje natural e IA", img: require("../img/Imagen12.png") },
-  { titulo: "Busqueda 13: Bebidas energéticas sin azúcar - Modelo tradicional de busqueda", img: require("../img/Imagen13.png") },
-  { titulo: "Busqueda 14: Bebidas energéticas sin azúcar - Modelo de lenguaje natural e IA", img: require("../img/Imagen14.png") },
-  { titulo: "Busqueda 15: Salsas para pasta de tomate natural - Modelo tradicional de busqueda", img: require("../img/Imagen15.png") },
-  { titulo: "Busqueda 16: Salsas para pasta de tomate natural - Modelo de lenguaje natural e IA", img: require("../img/Imagen16.png") },
-  { titulo: "Busqueda 17: Alimentos veganos ricos en proteína - Modelo tradicional de busqueda", img: require("../img/Imagen17.png") },
-  { titulo: "Busqueda 18: Alimentos veganos ricos en proteína - Modelo de lenguaje natural e IA", img: require("../img/Imagen18.png") },
-  { titulo: "Busqueda 19: Botanas saladas para ver una película - Modelo tradicional de busqueda", img: require("../img/Imagen19.png") },
-  { titulo: "Busqueda 20: Botanas saladas para ver una película - Modelo de lenguaje natural e IA", img: require("../img/Imagen20.png") }
+  { titulo: "Busqueda 1: dame bebidas de manzana - Modelo tradicional de busqueda", img: require("/img/Imagen1.png") },
+  { titulo: "Busqueda 2: dame bebidas de manzana - Modelo de lenguaje natural e IA", img: require("/img/Imagen2.png") },
+  { titulo: "Busqueda 3: naranjas - Modelo tradicional de busqueda", img: require("/img/Imagen3.png") },
+  { titulo: "Busqueda 4: naranjas - Modelo de lenguaje natural e IA", img: require("/img/Imagen4.png") },
+  { titulo: "Busqueda 5: dame alimentos y bebidas bajos en azúcar - Modelo tradicional de busqueda", img: require("/img/Imagen5.png") },
+  { titulo: "Busqueda 6: dame alimentos y bebidas bajos en azúcar - Modelo de lenguaje natural e IA", img: require("/img/Imagen6.png") },
+  { titulo: "Busqueda 7: cereales con alto contenido de fibra - Modelo tradicional de busqueda", img: require("/img/Imagen7.png") },
+  { titulo: "Busqueda 8: cereales con alto contenido de fibra - Modelo de lenguaje natural e IA", img: require("/img/Imagen8.png") },
+  { titulo: "Busqueda 9: muéstrame por favor alimentos saludables - Modelo tradicional de busqueda", img: require("/img/Imagen9.png") },
+  { titulo: "Busqueda 10: muéstrame por favor alimentos saludables - Modelo de lenguaje natural e IA", img: require("/img/Imagen10.png") },
+  { titulo: "Busqueda 11: Quiero ver todas las marcas de galletas con chispas de chocolate que tengas - Modelo tradicional de busqueda", img: require("/img/Imagen11.png") },
+  { titulo: "Busqueda 12: Quiero ver todas las marcas de galletas con chispas de chocolate que tengas - Modelo de lenguaje natural e IA", img: require("/img/Imagen12.png") },
+  { titulo: "Busqueda 13: Bebidas energéticas sin azúcar - Modelo tradicional de busqueda", img: require("/img/Imagen13.png") },
+  { titulo: "Busqueda 14: Bebidas energéticas sin azúcar - Modelo de lenguaje natural e IA", img: require("/img/Imagen14.png") },
+  { titulo: "Busqueda 15: Salsas para pasta de tomate natural - Modelo tradicional de busqueda", img: require("/img/Imagen15.png") },
+  { titulo: "Busqueda 16: Salsas para pasta de tomate natural - Modelo de lenguaje natural e IA", img: require("/img/Imagen16.png") },
+  { titulo: "Busqueda 17: Alimentos veganos ricos en proteína - Modelo tradicional de busqueda", img: require("/img/Imagen17.png") },
+  { titulo: "Busqueda 18: Alimentos veganos ricos en proteína - Modelo de lenguaje natural e IA", img: require("/img/Imagen18.png") },
+  { titulo: "Busqueda 19: Botanas saladas para ver una película - Modelo tradicional de busqueda", img: require("/img/Imagen19.png") },
+  { titulo: "Busqueda 20: Botanas saladas para ver una película - Modelo de lenguaje natural e IA", img: require("/img/Imagen20.png") }
   // ...y así hasta Imagen20
 ];
 
