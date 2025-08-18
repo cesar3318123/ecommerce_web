@@ -11,7 +11,6 @@ function Survey() {
     frase_exacta: "",
     sistema_usado: "",
     producto_encontrado: "",
-    tiempo_empleado: "",
     claridad: "",
     comentarios: ""
   });
@@ -36,11 +35,7 @@ function Survey() {
     } else if (name === "claridad") {
       if (!/^[1-5]?$/.test(value)) return;
       setFormData({ ...formData, [name]: value });
-    } else if (name === "tiempo_empleado") {
-      // solo números positivos
-      if (!/^\d*$/.test(value)) return;
-      setFormData({ ...formData, [name]: value });
-    } else {
+    }  else {
       setFormData({ ...formData, [name]: value });
     }
   };
@@ -55,8 +50,8 @@ function Survey() {
     }
 
     // Validaciones finales
-    const { grupo, num_tarea, frase_exacta, sistema_usado, producto_encontrado, tiempo_empleado, claridad, comentarios } = formData;
-    if (!grupo || !num_tarea || !frase_exacta || !sistema_usado || !producto_encontrado || !tiempo_empleado || !claridad || !comentarios) {
+    const { grupo, num_tarea, frase_exacta, sistema_usado, producto_encontrado,  claridad, comentarios } = formData;
+    if (!grupo || !num_tarea || !frase_exacta || !sistema_usado || !producto_encontrado || !claridad || !comentarios) {
       setMessage("Todos los campos son obligatorios");
       return;
     }
@@ -68,7 +63,6 @@ function Survey() {
       frase_exacta,
       sistema_usado: Number(sistema_usado),
       producto_encontrado,
-      tiempo_empleado: Number(tiempo_empleado),
       claridad: Number(claridad),
       comentarios
     };
@@ -90,7 +84,6 @@ function Survey() {
           frase_exacta: "",
           sistema_usado: "",
           producto_encontrado: "",
-          tiempo_empleado: "",
           claridad: "",
           comentarios: ""
         });
@@ -121,9 +114,9 @@ function Survey() {
       <p className="text-left mb-6">•	Completa cada tarea lo más rápido posible y sin ayuda.</p>
       <p className="text-left mb-6">•	Al final, responde preguntas sobre tu experiencia.</p>
       <p className="text-left mb-6">•	Tareas sugeridas (ejemplo)</p>
-      <p className="text-left mb-6">1.	“Encuentra una bebida de chocolate con envase ≤ 500 ml.”</p>
-      <p className="text-left mb-6">2.	“Busca snacks bajos en azúcar y elige uno para añadir al carrito.”</p>
-      <p className="text-left mb-6">3.	“Localiza alimentos aptos para intolerancia a la lactosa y selecciona uno.”</p>
+      <p className="text-left mb-6">1.	“Encuentra una bebida de naranja con zanahoria.”</p>
+      <p className="text-left mb-6">2.	“Cereales con alto contenido de fibra.”</p>
+      <p className="text-left mb-6">3.	“Encuentra botanas saladas ideales para ver una película”</p>
       <p className="text-left mb-6">• Por cada tarea terminada se tendrá que contestar ciertas preguntas.</p>
 
 
@@ -197,19 +190,6 @@ function Survey() {
           />
         </div>
 
-        {/* Tiempo empleado */}
-        <div>
-          <label className="block mb-1 font-medium">Tiempo empleado (segundos)</label>
-          <input
-            type="number"
-            name="tiempo_empleado"
-            min="1"
-            value={formData.tiempo_empleado}
-            onChange={handleChange}
-            className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
-            required
-          />
-        </div>
 
         {/* Claridad */}
         <div>
