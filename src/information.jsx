@@ -143,7 +143,7 @@ const handleChange = (e) => {
         
     {/*Grupo */}
     <div>
-     <label className="block mb-1 font-medium">Grupo (A o B)</label>
+     <label className="block mb-1 font-medium">Inserta "B" si usastes el sistema tradicional, inserta "A" si usastes el sistema de lenguaje natural con IA</label>
     <input
       type="text"
       name="grupo"
