@@ -264,6 +264,12 @@ function Home() {
                 className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2">
                     Perfil 🪪
                 </button>
+                <button
+                 onClick={() => navigate("/model_analysis")}
+                 className="w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition mb-2">
+                 Analisis de Modelos 📈
+                </button>
+
                 {/* Botón para cambiar la Interfaz*/}
                 <button
                 onClick={() => navigate("/home2")}

@@ -233,6 +233,12 @@ function Home_IA() {
                     Perfil 🪪
                 </button>
                 <button
+                 onClick={() => navigate("/model_analysis")}
+                 className="w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition mb-2">
+                 Analisis de Modelos 📈
+                </button>
+
+                <button
                  onClick={() => navigate("/home")}
                  className="w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-400 transition mb-2">
                  Cambiar Modelo ★★
