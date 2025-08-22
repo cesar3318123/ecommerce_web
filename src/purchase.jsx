@@ -88,7 +88,7 @@ function Home3() {
       setProductsTrad(dataTrad);
 
       // Búsqueda IA
-      const resIA = await fetch("https://ecommercebackend-production-8245.up.railway.app/api/searchIA", {
+      const resIA = await fetch("https://ecommercebackend-production-8245.up.railway.app/api/generateContentanalytic", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: query }),
