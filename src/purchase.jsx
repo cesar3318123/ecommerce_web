@@ -184,7 +184,7 @@ function Home3() {
       )}
 
       {/* Productos por defecto */}
-      {productsTrad.length === 0 && !searched && productsTrad.length > 0 && (
+      {productsTrad.length > 0 && (
         <>
           <h2 className="text-xl font-semibold mt-6 mb-2 text-center">Recomendado para ti:</h2>
           {renderProducts(productsTrad)}
