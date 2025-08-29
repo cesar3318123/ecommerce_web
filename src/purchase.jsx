@@ -130,7 +130,7 @@ function Home3() {
   return (
     <div className="relative min-h-screen bg-gray-100 flex flex-col">
       {/* Header */}
-      <header className="w-full bg-[#c9c9c9] shadow-md">
+      <header className="w-full bg-green-600 shadow-md">
         <div className="flex items-center px-4 py-3">
           <button onClick={toggleSidebar} className="fixed left-4 top-1/2 z-50 transform -translate-y-1/2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
             {isOpen ? "Cerrar ➤" : "Ménu ➤"}
@@ -177,8 +177,11 @@ function Home3() {
               {renderProducts(productsIA)}
             </>
           )}
-          {productsTrad.length === 0 && productsIA.length === 0 && (
-            <p className="text-center mt-4 text-red-500 font-semibold">No se encontró ningún producto 😢</p>
+          {!loadingTrad && productsTrad.length === 0 && (
+            <p className="text-center mt-4 text-red-500 font-semibold">No se encontró ningún producto usando el sistema tradicional😢</p>
+          )}
+          {!loadingIA && productsIA.length === 0 && (
+            <p className="text-center mt-4 text-red-500 font-semibold">No se encontró ningún producto usando el sistema de IA con lenguaje natural 😢</p>
           )}
         </>
       )}
