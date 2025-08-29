@@ -38,6 +38,20 @@ function Home3() {
     return () => clearInterval(timer);
   }, [cooldown]);
 
+
+
+    // Función para buscar productos por defecto (tradicional)
+  const buscarProductosDefault = async (termino) => {
+    try {
+      const res = await fetch(`https://ecommercebackend-production-8245.up.railway.app/api/searchTradictional?q=${encodeURIComponent(termino)}`);
+      const data = await res.json();
+      setProductsTrad(data);
+    } catch (error) {
+      console.error("Error al buscar productos por defecto:", error);
+      setErrorTrad("Error al cargar productos recomendados");
+    }
+  };
+
   // Carga inicial: productos por defecto y datos de usuario
   useEffect(() => {
     buscarProductosDefault(queryDefault);
@@ -52,17 +66,7 @@ function Home3() {
     }
   }, [navigate]);
 
-  // Función para buscar productos por defecto (tradicional)
-  const buscarProductosDefault = async (termino) => {
-    try {
-      const res = await fetch(`https://ecommercebackend-production-8245.up.railway.app/api/searchTradictional?q=${encodeURIComponent(termino)}`);
-      const data = await res.json();
-      setProductsTrad(data);
-    } catch (error) {
-      console.error("Error al buscar productos por defecto:", error);
-      setErrorTrad("Error al cargar productos recomendados");
-    }
-  };
+
 
   // Función para buscar ambos sistemas
   const handleSubmit = async (e) => {
