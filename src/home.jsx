@@ -179,7 +179,6 @@ function Home() {
               <div
                 key={index}
                 className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white flex flex-col justify-between"
-                onClick={() => navigate(`/end/${product.id}`)}
               >
                 <h3 className="font-bold text-lg">
                   {product.nombre || "Sin nombre"}
@@ -203,6 +202,13 @@ function Home() {
                   className="mt-4 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
                 >
                   Añadir al carrito 🛒
+                </button>
+                
+                {/*Botón de información del producto */}
+                <button
+                  className ="mt-2 text-blue-600 hover:underline"
+                  onClick={() => navigate(`/end/${product.id}`)}>
+                  Ver descripción 📋
                 </button>
               </div>
             ))}
