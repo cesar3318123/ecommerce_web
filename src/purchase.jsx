@@ -5,6 +5,8 @@ import favicon from "./CIGR_20_2.png";
 import addToCart from "./addToCar.jsx";
 
 function Home3() {
+  const [ads, setAds] = useState([]); // Estado para los anuncios
+
   const [query, setQuery] = useState(""); // Input del usuario
   const [queryDefault] = useState("cookie"); // Término por defecto
 
@@ -67,6 +69,20 @@ function Home3() {
       setUsername(userName);
     }
   }, [navigate]);
+
+      // Selección de 3 imágenes aleatorias de ads al cargar la página
+    useEffect(() => {
+      const totalAds = 10; // tienes imagen1 a imagen10
+      const selected = [];
+      while (selected.length < 3) {
+        const randomNum = Math.floor(Math.random() * totalAds) + 1;
+        const imagePath = `/imgpublicisted/anuncio${randomNum}.jpg`;
+        if (!selected.includes(imagePath)) {
+          selected.push(imagePath);
+        }
+      }
+      setAds(selected);
+    }, []);
 
   // Función para buscar ambos sistemas
   const handleSubmit = async (e) => {
@@ -244,6 +260,20 @@ function Home3() {
             </p>
           )}
         </>
+      )}
+
+            {/* Contenedor de anuncios */}
+      {ads.length > 0 && (
+        <div className="mt-6 p-4 bg-white rounded shadow overflow-x-auto flex space-x-4">
+          {ads.map((ad, idx) => (
+            <img
+              key={idx}
+              src={ad}
+              alt={`Publicidad ${idx + 1}`}
+              className="w-64 h-40 object-cover flex-shrink-0 rounded-lg"
+            />
+          ))}
+        </div>
       )}
 
       {/* Productos por defecto */}
