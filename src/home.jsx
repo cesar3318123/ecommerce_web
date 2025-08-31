@@ -208,8 +208,8 @@ function Home() {
                 <button
                   className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
                   onClick={() => {
-                    localStorage.setItem("selectedProductName", product.nombre); // guardar en localStorage
-                    console.log("Nombre del producto agregado:", product.nombre); // Verificar que el ID se guarda correctamente
+                    localStorage.setItem("selectedId", product.id); // guardar en localStorage
+                    console.log("Nombre del producto agregado:", product.id); // Verificar que el ID se guarda correctamente
                     navigate("/infor_products"); // redirigir a la página de detalle
                   }}
                 >
