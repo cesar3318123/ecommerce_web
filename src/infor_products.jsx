@@ -19,7 +19,7 @@ function Infor_products() {
     }
 
     // Hacer fetch al backend con el id
-    fetch(`https://ecommercebackend-production-8245.up.railway.app/api/product/${name}`)
+    fetch(`https://ecommercebackend-production-8245.up.railway.app/api/product/${encodeURIComponent(name)}`)
     .then((res) => {
     if (!res.ok) throw new Error("Error al obtener el producto");
     return res.json();
