@@ -209,7 +209,7 @@ function Home() {
                   className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
                   onClick={() => {
                     localStorage.setItem("selectedProductId", product.id); // guardar en localStorage
-                    navigate("/end"); // redirigir a la página de detalle
+                    navigate("/infor_products"); // redirigir a la página de detalle
                   }}
                 >
                   Ver descripción 📋
