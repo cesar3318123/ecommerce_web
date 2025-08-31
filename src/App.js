@@ -8,7 +8,7 @@ import Purchasescreen from "./purchase";
 import Home2 from "./home2"; //Para la pagina de inicio IA modo interfaz
 import Information from "./information"; //Para la pagina de informacion
 import Instruction from "./instructions"; //Para la pagina de instrucciones
-import End from "./end"; //Para la pagina de fin de prueba
+import End from "./infor_products"; //Para la pagina de fin de prueba
 import Survey from "./survey"; //Para la pagina de encuesta
 
 function App() {
