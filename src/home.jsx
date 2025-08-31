@@ -8,6 +8,8 @@ import { Link } from "react-router-dom"; // Importamos Link para navegación
 
 //Declaramos el componente llamado Home
 function Home() {
+  const [ads, setAds] = useState([]); // Estado para los anuncios
+
   const [query, setQuery] = useState(""); // Estado para la consulta de búsqueda
 
   const [queryDefault, setQueryDefault] = useState("cookie"); // término por defecto
@@ -94,6 +96,20 @@ function Home() {
       setUsername(userName); // También establece el nombre de usuario en el estado
     }
   }, [navigate]);
+
+    // Selección de 3 imágenes aleatorias de ads al cargar la página
+  useEffect(() => {
+    const totalAds = 10; // tienes imagen1 a imagen10
+    const selected = [];
+    while (selected.length < 3) {
+      const randomNum = Math.floor(Math.random() * totalAds) + 1;
+      const imagePath = `/imgpublicisted/imagen${randomNum}.jpg`;
+      if (!selected.includes(imagePath)) {
+        selected.push(imagePath);
+      }
+    }
+    setAds(selected);
+  }, []);
 
   return (
     <div className="relative min-h-screen bg-gray-100 flex flex-col">
@@ -219,6 +235,20 @@ function Home() {
             ))}
           </div>
         </>
+      )}
+
+      {/* Contenedor de anuncios */}
+      {ads.length > 0 && (
+        <div className="mt-6 p-4 bg-white rounded shadow overflow-x-auto flex space-x-4">
+          {ads.map((ad, idx) => (
+            <img
+              key={idx}
+              src={ad}
+              alt={`Publicidad ${idx + 1}`}
+              className="w-64 h-40 object-cover flex-shrink-0 rounded-lg"
+            />
+          ))}
+        </div>
       )}
 
       {/*Contenedor de los productos que apareceran por default al cargar la pagina*/}
