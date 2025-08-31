@@ -103,7 +103,7 @@ function Home() {
     const selected = [];
     while (selected.length < 3) {
       const randomNum = Math.floor(Math.random() * totalAds) + 1;
-      const imagePath = `/imgpublicisted/imagen${randomNum}.jpg`;
+      const imagePath = `/imgpublicisted/anuncio${randomNum}.jpg`;
       if (!selected.includes(imagePath)) {
         selected.push(imagePath);
       }
