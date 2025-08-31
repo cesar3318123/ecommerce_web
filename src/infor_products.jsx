@@ -10,16 +10,16 @@ function Infor_products() {
 
   useEffect(() => {
         // Recuperar el ID desde localStorage
-    const id = localStorage.getItem("selectedProductId");
+    const name = localStorage.getItem("selectedProductName");
 
-    if (!id) {
+    if (!name) {
       setError("No se encontró el ID del producto en localStorage");
       setLoading(false);
       return;
     }
 
     // Hacer fetch al backend con el id
-    fetch(`https://ecommercebackend-production-8245.up.railway.app/api/product/${id}`)
+    fetch(`https://ecommercebackend-production-8245.up.railway.app/api/product/${name}`)
     .then((res) => {
     if (!res.ok) throw new Error("Error al obtener el producto");
     return res.json();
