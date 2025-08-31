@@ -82,24 +82,7 @@ function Infor_products() {
               <p className="text-gray-700 mb-1">
                 <span className="font-semibold">Categoría:</span> {product.categoria || "No disponible"}
               </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Calorías:</span> {product.calorias || "No disponible"}
-              </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Proteínas:</span> {product.proteinas || "No disponible"}
-              </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Carbohidratos:</span> {product.carbohidratos || "No disponible"}
-              </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Grasas:</span> {product.grasas || "No disponible"}
-              </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Azúcar:</span> {product.azucar || "No disponible"}
-              </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Sodio:</span> {product.sodio || "No disponible"}
-              </p>
+
             </div>
 
             {/* Botón agregar al carrito */}
