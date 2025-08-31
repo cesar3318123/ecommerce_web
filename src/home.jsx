@@ -206,8 +206,8 @@ function Home() {
                 
                 {/*Botón de información del producto */}
                 <button
-                  className ="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition"
-                  onClick={() => navigate(`/end/${product.id}`)}>
+                  className ="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+                  onClick={() => navigate(`/end`)}>
                   Ver descripción 📋
                 </button>
               </div>
