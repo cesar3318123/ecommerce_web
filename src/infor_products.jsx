@@ -10,16 +10,16 @@ function Infor_products() {
 
   useEffect(() => {
         // Recuperar el ID desde localStorage
-    const name = localStorage.getItem("selectedProductName");
+    const id = localStorage.getItem("selectedId");
 
-    if (!name) {
+    if (!id) {
       setError("No se encontró el ID del producto en localStorage");
       setLoading(false);
       return;
     }
 
     // Hacer fetch al backend con el id
-    fetch(`https://ecommercebackend-production-8245.up.railway.app/api/product/${encodeURIComponent(name)}`)
+    fetch(`https://ecommercebackend-production-8245.up.railway.app/api/product/${id}`)
     .then((res) => {
     if (!res.ok) throw new Error("Error al obtener el producto");
     return res.json();
@@ -37,7 +37,16 @@ function Infor_products() {
   }, []);
 
    return (
+
    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+                {/* Botón de regresar en la esquina superior izquierda */}
+            <div className="fixed top-4 left-4 z-50">
+                <button 
+                    onClick={() => window.history.back()}
+                    className="bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition">
+                    Regresar
+                </button>
+            </div>
 <div className="bg-[#c9c9c9] p-8 rounded-xl shadow-md w-full max-w-md">
         <h2 className="text-xl font-bold mb-4 text-center">Descripción del producto</h2>
 
