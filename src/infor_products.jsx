@@ -1,6 +1,6 @@
 //Importamos React y el hook useState
-import React, { use, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+
 
 //Declaramos el componente llamado End
 function Infor_products() {
