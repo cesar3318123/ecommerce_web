@@ -156,6 +156,20 @@ function Home_IA() {
             {isOpen ? "Cerrar ➤" : "Ménu ➤"}
         </button>
 
+                            {/* Contenedor de anuncios */}
+      {ads.length > 0 && (
+        <div className="mt-6 p-4 bg-white rounded shadow overflow-x-auto flex space-x-4">
+          {ads.map((ad, idx) => (
+            <img
+              key={idx}
+              src={ad}
+              alt={`Publicidad ${idx + 1}`}
+              className="w-64 h-40 object-cover flex-shrink-0 rounded-lg"
+            />
+          ))}
+        </div>
+      )}
+
         {/* Contenedor scroll horizontal */}
       <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide px-4 pt-4">
   {products.map((product, index) => (
@@ -195,19 +209,7 @@ function Home_IA() {
   ))}
       </div>
 
-                    {/* Contenedor de anuncios */}
-      {ads.length > 0 && (
-        <div className="mt-6 p-4 bg-white rounded shadow overflow-x-auto flex space-x-4">
-          {ads.map((ad, idx) => (
-            <img
-              key={idx}
-              src={ad}
-              alt={`Publicidad ${idx + 1}`}
-              className="w-64 h-40 object-cover flex-shrink-0 rounded-lg"
-            />
-          ))}
-        </div>
-      )}
+
 
 
         <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded shadow-md min-h-[150px]">
