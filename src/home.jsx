@@ -134,12 +134,11 @@ const handleAddToCart = (product) => {
             {isOpen ? "Cerrar ➤" : "Ménu ➤"}
           </button>
 
-          // Botón derecho flotante
 <button
   onClick={() => setCartOpen(!cartOpen)}
-  className="fixed right-4 top-4 z-50 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+  className="fixed right-4 top-4 z-50 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
 >
-  🛒
+  {isOpen ? "🛒" : "🛒"}
 </button>
 
           <div className="p-4">
