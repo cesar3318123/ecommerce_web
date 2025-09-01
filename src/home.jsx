@@ -136,7 +136,7 @@ const handleAddToCart = (product) => {
 
 <button
   onClick={() => setCartOpen(!cartOpen)}
-  className="fixed right-4 top-4 z-50 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+  className="fixed right-4 top-4 z-50 px-4 py-2 bg-zinc-600 text-white rounded hover:bg-zinc-700 transition"
 >
   {isOpen ? "🛒" : "🛒"}
 </button>
@@ -178,13 +178,16 @@ const handleAddToCart = (product) => {
         <p className="text-red-500 text-center mt-4">{errorDefault}</p>
       )}
 
-      {/*Fondo semitrasparente del overlay */}
-      {isOpen && (
-        <div
-          onClick={closeSidebar} // Cierra sidebar al clicar fuera
-          className="fixed inset-0 bg-black bg-opacity-40 z-40"
-        ></div>
-      )}
+{/* Overlay para ambos sidebars */}
+{(isOpen || cartOpen) && (
+  <div
+    onClick={() => {
+      closeSidebar();   // Cierra el sidebar izquierdo
+      setCartOpen(false); // Cierra el sidebar derecho
+    }}
+    className="fixed inset-0 bg-black bg-opacity-40 z-40"
+  ></div>
+)}
 
       {loading ? (
         <p className="text-center mt-4 text-blue-500 font-semibold">
@@ -415,7 +418,10 @@ const handleAddToCart = (product) => {
     ) : (
       <div className="space-y-4 mt-4">
         {cartItems.map((item, index) => (
-          <div key={index} className="border p-2 rounded flex justify-between items-center">
+          <div
+            key={index}
+            className="border p-2 rounded flex justify-between items-center"
+          >
             <span>{item.nombre}</span>
             <span>${item.precio || "0.00"}</span>
           </div>
