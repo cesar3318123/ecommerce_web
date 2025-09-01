@@ -70,19 +70,19 @@ function Home3() {
     }
   }, [navigate]);
 
-      // Selección de 3 imágenes aleatorias de ads al cargar la página
-    useEffect(() => {
-      const totalAds = 10; // tienes imagen1 a imagen10
-      const selected = [];
-      while (selected.length < 3) {
-        const randomNum = Math.floor(Math.random() * totalAds) + 1;
-        const imagePath = `/imgpublicisted/anuncio${randomNum}.jpg`;
-        if (!selected.includes(imagePath)) {
-          selected.push(imagePath);
-        }
+  // Selección de 3 imágenes aleatorias de ads al cargar la página
+  useEffect(() => {
+    const totalAds = 10; // tienes imagen1 a imagen10
+    const selected = [];
+    while (selected.length < 3) {
+      const randomNum = Math.floor(Math.random() * totalAds) + 1;
+      const imagePath = `/imgpublicisted/anuncio${randomNum}.jpg`;
+      if (!selected.includes(imagePath)) {
+        selected.push(imagePath);
       }
-      setAds(selected);
-    }, []);
+    }
+    setAds(selected);
+  }, []);
 
   // Función para buscar ambos sistemas
   const handleSubmit = async (e) => {
@@ -158,17 +158,17 @@ function Home3() {
           >
             Añadir al carrito 🛒
           </button>
-                          {/*Botón de información del producto */}
-                <button
-                  className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
-                  onClick={() => {
-                    localStorage.setItem("selectedId", product.id); // guardar en localStorage
-                    console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
-                    navigate("/infor_products"); // redirigir a la página de detalle
-                  }}
-                >
-                  Ver descripción 📋
-                </button>
+          {/*Botón de información del producto */}
+          <button
+            className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+            onClick={() => {
+              localStorage.setItem("selectedId", product.id); // guardar en localStorage
+              console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
+              navigate("/infor_products"); // redirigir a la página de detalle
+            }}
+          >
+            Ver descripción 📋
+          </button>
         </div>
       ))}
     </div>
@@ -262,7 +262,7 @@ function Home3() {
         </>
       )}
 
-            {/* Contenedor de anuncios */}
+      {/* Contenedor de anuncios */}
       {ads.length > 0 && (
         <div className="mt-6 p-4 bg-white rounded shadow overflow-x-auto flex space-x-4">
           {ads.map((ad, idx) => (
@@ -346,6 +346,13 @@ function Home3() {
             className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2"
           >
             Prueba 3: A/B 📚
+          </button>
+          {/*Botón para la prueba 4*/}
+          <button
+            onClick={() => navigate("/prueba4")}
+            className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2"
+          >
+            Prueba 4: Compra 🛒
           </button>
           <button
             onClick={toggleSidebar}

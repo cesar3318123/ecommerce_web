@@ -10,6 +10,7 @@ import Information from "./information"; //Para la pagina de informacion
 import Instruction from "./instructions"; //Para la pagina de instrucciones
 import Infor_products from "./infor_products"; //Para la pagina de fin de prueba
 import Survey from "./survey"; //Para la pagina de encuesta
+import Prueba4 from "./prueba4"; //Para la pagina de prueba 4
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
         <Route path="/prueba3" element={<Information />} /> 
         <Route path="/prueba1" element={<Instruction />} />
         <Route path="/infor_products" element={<Infor_products />} />
-        <Route path="/prueba2" element={<Survey />} /> 
+        <Route path="/prueba2" element={<Survey />} />
+        <Route path="/prueba4" element={<Prueba4 />} />
       </Routes>
     </Router>
   );
