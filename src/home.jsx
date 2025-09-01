@@ -433,6 +433,14 @@ const handleAddToCart = (product) => {
             Prueba 3: A/B 📚
           </button>
 
+          {/*Botón para la prueba 4*/}
+          <button
+            onClick={() => navigate("/prueba4")}
+            className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2"
+          >
+            Prueba 4: Compra 🛒
+          </button>
+
           <button
             onClick={toggleSidebar}
             className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2"
