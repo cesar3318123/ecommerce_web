@@ -195,15 +195,7 @@ function Home_IA() {
   ))}
       </div>
 
-
-        <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded shadow-md min-h-[150px]">
-            <h2 className="text-xl font-semibold mb-4">Soy un sistema de busqueda basado en lenguaje natural e IA ¿Deseas algo?</h2>
-            <p className="text-xs font-semibold mb-4">Nota. Es necesario esperar un cierto tiempo despues de cada consulta para no saturar el servicio</p>
-            <p className="whitespace-pre-wrap">{loading ? "Cargando..." : response}</p>
-        </div>
-
-
-              {/* Contenedor de anuncios */}
+                    {/* Contenedor de anuncios */}
       {ads.length > 0 && (
         <div className="mt-6 p-4 bg-white rounded shadow overflow-x-auto flex space-x-4">
           {ads.map((ad, idx) => (
@@ -216,6 +208,16 @@ function Home_IA() {
           ))}
         </div>
       )}
+
+
+        <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded shadow-md min-h-[150px]">
+            <h2 className="text-xl font-semibold mb-4">Soy un sistema de busqueda basado en lenguaje natural e IA ¿Deseas algo?</h2>
+            <p className="text-xs font-semibold mb-4">Nota. Es necesario esperar un cierto tiempo despues de cada consulta para no saturar el servicio</p>
+            <p className="whitespace-pre-wrap">{loading ? "Cargando..." : response}</p>
+        </div>
+
+
+
 
         <div className="h-40 bg-gray-100"></div>
 
