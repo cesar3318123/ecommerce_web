@@ -8,6 +8,10 @@ import { Link } from "react-router-dom"; // Importamos Link para navegación
 
 //Declaramos el componente llamado Home
 function Home() {
+
+const [cartOpen, setCartOpen] = useState(false); // Sidebar derecho del carrito
+const [cartItems, setCartItems] = useState([]); // Productos añadidos al carrito
+
   const [ads, setAds] = useState([]); // Estado para los anuncios
 
   const [query, setQuery] = useState(""); // Estado para la consulta de búsqueda
@@ -83,6 +87,11 @@ function Home() {
     }
   };
 
+  // Función para añadir al carrito y actualizar el estado
+const handleAddToCart = (product) => {
+  setCartItems((prev) => [...prev, product]);
+};
+
   useEffect(() => {
     // Verifica si el usuario está autenticado
     buscarProductos(queryDefault); // Llama a la función para buscar productos con el término por defecto
@@ -124,6 +133,14 @@ function Home() {
           >
             {isOpen ? "Cerrar ➤" : "Ménu ➤"}
           </button>
+
+          // Botón derecho flotante
+<button
+  onClick={() => setCartOpen(!cartOpen)}
+  className="fixed right-4 top-4 z-50 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+>
+  🛒
+</button>
 
           <div className="p-4">
             <img src={favicon} alt="Logo" className="w-32 h-auto" />
@@ -379,6 +396,35 @@ function Home() {
           </p>
         </div>
       </div>
+      <div
+  className={`
+    fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out
+    ${cartOpen ? "translate-x-0" : "translate-x-full"}
+    z-50
+  `}
+>
+  <div className="p-4">
+    <h2 className="text-xl font-semibold mb-4">Carrito 🛒</h2>
+    <button
+      onClick={() => setCartOpen(false)}
+      className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2"
+    >
+      Cerrar ❌
+    </button>
+    {cartItems.length === 0 ? (
+      <p className="text-gray-500 mt-4">Tu carrito está vacío</p>
+    ) : (
+      <div className="space-y-4 mt-4">
+        {cartItems.map((item, index) => (
+          <div key={index} className="border p-2 rounded flex justify-between items-center">
+            <span>{item.nombre}</span>
+            <span>${item.precio || "0.00"}</span>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</div>
     </div>
   );
 }
