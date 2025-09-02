@@ -14,6 +14,7 @@ function Prueba4() {
   });
 
   const [success, setSuccess] = useState(false); // estado para mostrar mensaje
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +35,7 @@ function Prueba4() {
       if (!res.ok) throw new Error(data.error || 'Error al enviar la encuesta');
       //Si todo sale bien mostrar alerta de gracias por participar
       const data = await res.json();
+      setMessage(data.mensaje || "Registro creado");
       console.log("✅ Respuesta guardada:", data);
       alert("¡Gracias por tu participación!");
     } catch (err) {
@@ -54,7 +56,7 @@ function Prueba4() {
       </div>
 
       <h1 className="text-4xl font-bold mb-6">Prueba 4: Compra 🛒</h1>
-      <h3 className="text-lg font-bold mb-6">Utilizando el sistema de analisis de modelos, indaga libremente por la interfaz completando busquedas personales y uso de las funciones disponibles, al finalizar responde una encuesta de cual sistema de busqueda fue más eficiente</h3>
+      <h3 className="text-lg mb-6">Utilizando el sistema de analisis de modelos, indaga libremente por la interfaz completando busquedas personales y uso de las funciones disponibles, al finalizar responde una encuesta de cual sistema de busqueda fue más eficiente</h3>
 
       <form
         onSubmit={handleSubmit}
@@ -103,6 +105,10 @@ function Prueba4() {
           Enviar respuestas
         </button>
       </form>
+
+      {message && (
+        <p className="mt-4 text-center font-medium text-green-600">{message}</p>
+      )}
 
             <p className="text-center mb-6">
         Recuerda que para poder hacer las pruebas necesitas{" "}
