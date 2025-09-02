@@ -376,7 +376,9 @@ const handleDeleteItem = async (itemId) => {
 
         
       </div>
-      <div className="p-4">
+
+
+   <div className="p-4">
     <h2 className="text-xl font-semibold mb-4">Carrito 🛒</h2>
     <button
       onClick={() => setCartOpen(false)}
@@ -419,7 +421,8 @@ const handleDeleteItem = async (itemId) => {
       </div>
     )}
   </div>
-    </div>
+  </div>
+  
   );
 }
 
