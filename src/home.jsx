@@ -430,7 +430,7 @@ const handleAddToCart = (product) => {
             onClick={() => navigate("/prueba3")}
             className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2"
           >
-            Prueba 3: A/B 📚
+            Prueba 3: UX 📚
           </button>
 
           {/*Botón para la prueba 4*/}
@@ -438,7 +438,7 @@ const handleAddToCart = (product) => {
             onClick={() => navigate("/prueba4")}
             className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2"
           >
-            Prueba 4: Compra 🛒
+            Prueba 4: Syde-by-syde 🛒
           </button>
 
           <button
