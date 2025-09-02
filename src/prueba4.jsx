@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Importamos Link para navegación
 
 function Prueba4() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ function Prueba4() {
     moderno: null,
     pocoTiempo: null,
   });
+
+  const [success, setSuccess] = useState(false); // estado para mostrar mensaje
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +31,8 @@ function Prueba4() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+      if (!res.ok) throw new Error(data.error || 'Error al enviar la encuesta');
+      //Si todo sale bien mostrar alerta de gracias por participar
       const data = await res.json();
       console.log("✅ Respuesta guardada:", data);
       alert("¡Gracias por tu participación!");
@@ -49,6 +54,7 @@ function Prueba4() {
       </div>
 
       <h1 className="text-4xl font-bold mb-6">Prueba 4: Compra 🛒</h1>
+      <h3 className="text-4l font-bold mb-6">Utilizando el sistema de analisis de modelos, indaga libremente por la interfaz completando busquedas personales y uso de las funciones disponibles, al finalizar responde una encuesta de cual sistema de busqueda fue más eficiente</h3>
 
       <form
         onSubmit={handleSubmit}
@@ -97,6 +103,13 @@ function Prueba4() {
           Enviar respuestas
         </button>
       </form>
+
+            <p className="text-center mb-6">
+        Recuerda que para poder hacer las pruebas necesitas{" "}
+        <Link to="/reg" className="text-blue-600 hover:underline">
+         registrarte
+       </Link>.
+      </p>
     </div>
   );
 }
