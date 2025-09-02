@@ -54,11 +54,11 @@ function Prueba4() {
       </div>
 
       <h1 className="text-4xl font-bold mb-6">Prueba 4: Compra 🛒</h1>
-      <h3 className="text-4l font-bold mb-6">Utilizando el sistema de analisis de modelos, indaga libremente por la interfaz completando busquedas personales y uso de las funciones disponibles, al finalizar responde una encuesta de cual sistema de busqueda fue más eficiente</h3>
+      <h3 className="text-lg font-bold mb-6">Utilizando el sistema de analisis de modelos, indaga libremente por la interfaz completando busquedas personales y uso de las funciones disponibles, al finalizar responde una encuesta de cual sistema de busqueda fue más eficiente</h3>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-2xl shadow-md w-full max-w-2xl space-y-4"
+        className="space-y-4"
       >
         {[
           { name: "preciso", label: "¿Cuál de los 2 te parece más preciso?" },
