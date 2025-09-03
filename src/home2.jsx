@@ -21,6 +21,8 @@ function Home_IA() {
 
   const closeSidebar = () => setIsOpen(false); // Función para cerrar el drawer
 
+  const [error, setError] = useState(""); // Estado para manejar errores
+
   const navigate = useNavigate(); // Hook para redirección
 
   const [prompt, setPrompt] = useState(""); // Estado para el prompt de búsqueda
@@ -50,6 +52,29 @@ function Home_IA() {
       setEmail(userEmail); // Si hay email, lo establece en el estado
       setUsername(userName); // También establece el nombre de usuario en el estado
     }
+            if (userId) {
+      fetch(
+        `https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`
+      )
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("No tienes productos agregados en tu carrito");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setCartItems(data);
+        })
+        .catch((err) => {
+          setError(err.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  
   }, [navigate]);
 
   useEffect(() => {
@@ -279,6 +304,15 @@ const handleDeleteItem = async (itemId) => {
           </button>
         </div>
       </div>
+
+      {/* Fondo semitransparente del overlay para el carrito */}
+{cartOpen && (
+  <div
+    onClick={() => setCartOpen(false)} // cierra carrito al hacer clic fuera
+    className="fixed inset-0 bg-black bg-opacity-40 z-40"
+  ></div>
+)}
+
 
       {/* Sidebar Carrito */}
 <div
