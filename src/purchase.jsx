@@ -5,6 +5,7 @@ import favicon from "./CIGR_20_2.png";
 import addToCart from "./addToCar.jsx";
 
 function Home3() {
+  const userId = localStorage.getItem("userId");
   const [ads, setAds] = useState([]); // Estado para los anuncios
 
   const [query, setQuery] = useState(""); // Input del usuario
@@ -25,6 +26,14 @@ function Home3() {
 
   const [searched, setSearched] = useState(false);
   const [cooldown, setCooldown] = useState(0);
+
+  const [error, setError] = useState(""); // Estado para manejar errores
+  const [loading, setLoading] = useState(false); // Estado para el indicador de carga
+
+  // Estados del carrito
+  const [cartOpen, setCartOpen] = useState(false); // Sidebar derecho del carrito
+
+  const [cartItems, setCartItems] = useState([]); // Productos añadidos al carrito
 
   const navigate = useNavigate();
 
@@ -68,6 +77,30 @@ function Home3() {
       setEmail(userEmail);
       setUsername(userName);
     }
+
+
+                if (userId) {
+      fetch(
+        `https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`
+      )
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("No tienes productos agregados en tu carrito");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setCartItems(data);
+        })
+        .catch((err) => {
+          setError(err.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
   }, [navigate]);
 
   // Selección de 3 imágenes aleatorias de ads al cargar la página
@@ -83,6 +116,33 @@ function Home3() {
     }
     setAds(selected);
   }, []);
+
+    // Función para eliminar un producto del carrito
+const handleDeleteItem = async (itemId) => {
+  if (!userId) return;
+
+  try {
+    const response = await fetch(
+      `https://ecommercebackend-production-8245.up.railway.app/api/cartDelete/${userId}/${itemId}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Removemos el item del estado local
+      setCartItems(cartItems.filter((item) => item.id !== itemId));
+      alert("Producto eliminado correctamente");
+    } else {
+      alert(data.error || "Error al eliminar producto");
+    }
+  } catch (error) {
+    console.error("Error al eliminar producto:", error);
+    alert("No se pudo eliminar el producto");
+  }
+};
 
   // Función para buscar ambos sistemas
   const handleSubmit = async (e) => {
@@ -178,6 +238,13 @@ function Home3() {
     <div className="relative min-h-screen bg-gray-100 flex flex-col">
       {/* Header */}
       <header className="w-full bg-green-600 shadow-md">
+              {/* Botón para abrir/cerrar carrito */}
+      <button
+        onClick={() => setCartOpen(!cartOpen)}
+        className="fixed right-4 top-4 z-50 px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-800 transition"
+      >
+        🛒
+      </button>
         <div className="flex items-center px-4 py-3">
           <button
             onClick={toggleSidebar}
@@ -369,6 +436,58 @@ function Home3() {
           </p>
         </div>
       </div>
+            {/* Sidebar Carrito */}
+<div
+  className={`
+    fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out
+    ${cartOpen ? "translate-x-0" : "translate-x-full"}
+    z-50
+  `}
+>
+  <div className="p-4">
+    <h2 className="text-xl font-semibold mb-4">Carrito 🛒</h2>
+    <button
+      onClick={() => setCartOpen(false)}
+      className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2"
+    >
+      Cerrar ❌
+    </button>
+
+    {/* 👇 Productos del carrito */}
+    {cartItems.length === 0 ? (
+      <p className="text-gray-600 text-center mt-4">Tu carrito está vacío 🛒</p>
+    ) : (
+      <div className="space-y-4 max-h-[70vh] overflow-y-auto">
+        {cartItems.map((item) => (
+          <div
+            key={item.id}
+            className="border rounded-lg p-2 flex flex-col bg-gray-50 shadow-sm"
+          >
+            <h3 className="font-semibold text-sm truncate">
+              {item.nombre || "Sin nombre"}
+            </h3>
+            <p className="text-gray-700 text-xs">
+              Marca: {item.marca || "Sin marca"}
+            </p>
+            {item.imagen && (
+              <img
+                src={item.imagen}
+                alt={item.nombre || "Producto"}
+                className="mt-2 w-full h-24 object-cover rounded"
+              />
+            )}
+            <button
+              onClick={() => handleDeleteItem(item.id)}
+              className="mt-2 bg-red-600 text-white px-2 py-1 rounded hover:bg-red-500 transition text-sm"
+            >
+              Eliminar ❌
+            </button>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</div>
     </div>
   );
 }
