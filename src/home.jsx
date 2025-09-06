@@ -8,11 +8,10 @@ import { Link } from "react-router-dom"; // Importamos Link para navegación
 
 //Declaramos el componente llamado Home
 function Home() {
-
   const userId = localStorage.getItem("userId");
 
-const [cartOpen, setCartOpen] = useState(false); // Sidebar derecho del carrito
-const [cartItems, setCartItems] = useState([]); // Productos añadidos al carrito
+  const [cartOpen, setCartOpen] = useState(false); // Sidebar derecho del carrito
+  const [cartItems, setCartItems] = useState([]); // Productos añadidos al carrito
 
   const [ads, setAds] = useState([]); // Estado para los anuncios
 
@@ -90,9 +89,9 @@ const [cartItems, setCartItems] = useState([]); // Productos añadidos al carrit
   };
 
   // Función para añadir al carrito y actualizar el estado
-const handleAddToCart = (product) => {
-  setCartItems((prev) => [...prev, product]);
-};
+  const handleAddToCart = (product) => {
+    setCartItems((prev) => [...prev, product]);
+  };
 
   useEffect(() => {
     // Verifica si el usuario está autenticado
@@ -107,7 +106,7 @@ const handleAddToCart = (product) => {
       setUsername(userName); // También establece el nombre de usuario en el estado
     }
 
-        if (userId) {
+    if (userId) {
       fetch(
         `https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`
       )
@@ -131,7 +130,7 @@ const handleAddToCart = (product) => {
     }
   }, [navigate]);
 
-    // Selección de 3 imágenes aleatorias de ads al cargar la página
+  // Selección de 3 imágenes aleatorias de ads al cargar la página
   useEffect(() => {
     const totalAds = 10; // tienes imagen1 a imagen10
     const selected = [];
@@ -145,7 +144,7 @@ const handleAddToCart = (product) => {
     setAds(selected);
   }, []);
 
-    const handleDeleteItem = async (itemId) => {
+  const handleDeleteItem = async (itemId) => {
     if (!userId) return;
 
     try {
@@ -185,12 +184,12 @@ const handleAddToCart = (product) => {
             {isOpen ? "Cerrar ➤" : "Ménu ➤"}
           </button>
 
-<button
-  onClick={() => setCartOpen(!cartOpen)}
-  className="fixed right-4 top-4 z-50 px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-800 transition"
->
-  {isOpen ? "🛒" : "🛒"}
-</button>
+          <button
+            onClick={() => setCartOpen(!cartOpen)}
+            className="fixed right-4 top-4 z-50 px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-800 transition"
+          >
+            {isOpen ? "🛒" : "🛒"}
+          </button>
 
           <div className="p-4">
             <img src={favicon} alt="Logo" className="w-32 h-auto" />
@@ -229,16 +228,16 @@ const handleAddToCart = (product) => {
         <p className="text-red-500 text-center mt-4">{errorDefault}</p>
       )}
 
-{/* Overlay para ambos sidebars */}
-{(isOpen || cartOpen) && (
-  <div
-    onClick={() => {
-      closeSidebar();   // Cierra el sidebar izquierdo
-      setCartOpen(false); // Cierra el sidebar derecho
-    }}
-    className="fixed inset-0 bg-black bg-opacity-40 z-40"
-  ></div>
-)}
+      {/* Overlay para ambos sidebars */}
+      {(isOpen || cartOpen) && (
+        <div
+          onClick={() => {
+            closeSidebar(); // Cierra el sidebar izquierdo
+            setCartOpen(false); // Cierra el sidebar derecho
+          }}
+          className="fixed inset-0 bg-black bg-opacity-40 z-40"
+        ></div>
+      )}
 
       {loading ? (
         <p className="text-center mt-4 text-blue-500 font-semibold">
@@ -353,7 +352,7 @@ const handleAddToCart = (product) => {
                 >
                   Añadir al carrito 🛒
                 </button>
-                                {/*Botón de información del producto */}
+                {/*Botón de información del producto */}
                 <button
                   className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
                   onClick={() => {
@@ -458,57 +457,70 @@ const handleAddToCart = (product) => {
         </div>
       </div>
       <div
-  className={`
+        className={`
     fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out
     ${cartOpen ? "translate-x-0" : "translate-x-full"}
     z-50
   `}
->
-  <div className="p-4">
-    <h2 className="text-xl font-semibold mb-4">Carrito 🛒</h2>
-    <button
-      onClick={() => setCartOpen(false)}
-      className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2"
-    >
-      Cerrar ❌
-    </button>
-
-        {/* 👇 Aquí desplegamos los productos */}
-    {cartItems.length === 0 ? (
-      <p className="text-gray-600 text-center mt-4">Tu carrito está vacío 🛒</p>
-    ) : (
-      <div className="space-y-4 max-h-[70vh] overflow-y-auto">
-        {cartItems.map((item) => (
-          <div
-            key={item.id}
-            className="border rounded-lg p-2 flex flex-col bg-gray-50 shadow-sm"
+      >
+        <div className="p-4">
+          <h2 className="text-xl font-semibold mb-4">Carrito 🛒</h2>
+          <button
+            onClick={() => setCartOpen(false)}
+            className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2"
           >
-            <h3 className="font-semibold text-sm truncate">
-              {item.nombre || "Sin nombre"}
-            </h3>
-            <p className="text-gray-700 text-xs">
-              Marca: {item.marca || "Sin marca"}
-            </p>
-            {item.imagen && (
-              <img
-                src={item.imagen}
-                alt={item.nombre || "Producto"}
-                className="mt-2 w-full h-24 object-cover rounded"
-              />
-            )}
-            <button
-              onClick={() => handleDeleteItem(item.id)}
-              className="mt-2 bg-red-600 text-white px-2 py-1 rounded hover:bg-red-500 transition text-sm"
-            >
-              Eliminar ❌
-            </button>
-          </div>
-        ))}
-      </div>
-    )}
+            Cerrar ❌
+          </button>
 
-  </div>
-</div>
+          {/* 👇 Aquí desplegamos los productos */}
+          {cartItems.length === 0 ? (
+            <p className="text-gray-600 text-center mt-4">
+              Tu carrito está vacío 🛒
+            </p>
+          ) : (
+            <div className="space-y-4 max-h-[70vh] overflow-y-auto">
+              {cartItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="border rounded-lg p-2 flex flex-col bg-gray-50 shadow-sm"
+                >
+                  <h3 className="font-semibold text-sm truncate">
+                    {item.nombre || "Sin nombre"}
+                  </h3>
+                  <p className="text-gray-700 text-xs">
+                    Marca: {item.marca || "Sin marca"}
+                  </p>
+                  {item.imagen && (
+                    <img
+                      src={item.imagen}
+                      alt={item.nombre || "Producto"}
+                      className="mt-2 w-full h-24 object-cover rounded"
+                    />
+                  )}
+                  <button
+                    onClick={() => handleDeleteItem(item.id)}
+                    className="mt-2 bg-red-600 text-white px-2 py-1 rounded hover:bg-red-500 transition text-sm"
+                  >
+                    Eliminar ❌
+                  </button>
+
+                  {/*Botón de información del producto */}
+                  <button
+                    className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+                    onClick={() => {
+                      localStorage.setItem("selectedId", item.id); // guardar en localStorage
+                      console.log("Id del producto agregado: ", item.id); // Verificar que el ID se guarda correctamente
+                      navigate("/infor_products"); // redirigir a la página de detalle
+                    }}
+                  >
+                    Ver descripción 📋
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
