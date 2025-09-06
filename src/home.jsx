@@ -508,14 +508,15 @@ function Home() {
                   <button
                     className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
                     onClick={() => {
-                      const productId = item.productId || item.id;
-                      localStorage.setItem("selectedId", productId);
-                      console.log("Id del producto seleccionado:", productId);
-                      navigate("/infor_products");
+                      localStorage.setItem("selectedId", item.productId); // guardar en localStorage
+                      console.log("Id del producto agregado: ", item.productId); // Verificar que el ID se guarda correctamente
+                      navigate("/infor_products"); // redirigir a la página de detalle
                     }}
                   >
                     Ver descripción 📋
                   </button>
+
+                  {/*Botón de información del producto */}
                 </div>
               ))}
             </div>
