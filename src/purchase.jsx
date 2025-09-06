@@ -361,6 +361,14 @@ const toggleCart = () => {
         </>
       )}
 
+            {/* Fondo semitransparente del overlay para el carrito */}
+      {cartOpen && (
+        <div
+          onClick={() => setCartOpen(false)} // cierra carrito al hacer clic fuera
+          className="fixed inset-0 bg-black bg-opacity-40 z-40"
+        ></div>
+      )}
+
       {/* Contenedor de anuncios */}
       {ads.length > 0 && (
         <div className="mt-6 p-4 bg-white rounded shadow overflow-x-auto flex space-x-4">
