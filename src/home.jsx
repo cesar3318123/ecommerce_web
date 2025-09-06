@@ -88,6 +88,23 @@ function Home() {
     }
   };
 
+  useEffect(() => {
+    if (cartOpen && userId) {
+      setLoading(true);
+      fetch(
+        `https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`
+      )
+        .then((res) => {
+          if (!res.ok)
+            throw new Error("No tienes productos agregados en tu carrito");
+          return res.json();
+        })
+        .then((data) => setCartItems(data))
+        .catch((err) => setError(err.message))
+        .finally(() => setLoading(false));
+    }
+  }, [cartOpen]);
+
   // Función para añadir al carrito y actualizar el estado
   const handleAddToCart = (product) => {
     setCartItems((prev) => [...prev, product]);
