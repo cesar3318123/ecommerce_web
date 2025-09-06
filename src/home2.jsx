@@ -21,7 +21,15 @@ function Home_IA() {
 
   const [isOpen, setIsOpen] = useState(false); // Estado para el drawer (Sidebar)
 
-  const toggleSidebar = () => setIsOpen(!isOpen); // Función para alternar el estado del drawer
+  const toggleSidebar = () => {
+    if (!isOpen) setCartOpen(false); // Si abrimos menú, cerramos carrito
+    setIsOpen(!isOpen);
+  };
+
+  const toggleCart = () => {
+    if (!cartOpen) setIsOpen(false); // Si abrimos carrito, cerramos menú
+    setCartOpen(!cartOpen);
+  };
 
   const closeSidebar = () => setIsOpen(false); // Función para cerrar el drawer
 
@@ -235,7 +243,7 @@ function Home_IA() {
 
       {/* Botón para abrir/cerrar carrito */}
       <button
-        onClick={() => setCartOpen(!cartOpen)}
+        onClick={toggleCart}
         className="fixed right-4 top-4 z-50 px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-800 transition"
       >
         🛒
@@ -302,69 +310,68 @@ function Home_IA() {
         ))}
       </div>
 
-<div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded shadow-md min-h-[150px]">
-  <h2 className="text-xl font-semibold mb-4">
-    {response
-      ? response.split("#.#")[0].trim() // Primera sección como título
-      : "Soy un sistema de busqueda basado en lenguaje natural e IA ¿Deseas algo?"}
-  </h2>
-  <p className="text-xs font-semibold mb-4">
-    Nota. Es necesario esperar un cierto tiempo después de cada consulta
-    para no saturar el servicio
-  </p>
+      <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded shadow-md min-h-[150px]">
+        <h2 className="text-xl font-semibold mb-4">
+          {response
+            ? response.split("#.#")[0].trim() // Primera sección como título
+            : "Soy un sistema de busqueda basado en lenguaje natural e IA ¿Deseas algo?"}
+        </h2>
+        <p className="text-xs font-semibold mb-4">
+          Nota. Es necesario esperar un cierto tiempo después de cada consulta
+          para no saturar el servicio
+        </p>
 
-  {loading ? (
-    "Cargando..."
-  ) : response && products.length > 0 ? (
-    response
-      .split("#.#")
-      .slice(1) // Quitamos la primera sección que ya está en el título
-      .map((section, index) => {
-        const product = products[index] || {};
-        return (
-          <div
-            key={index}
-            className="border p-4 rounded shadow mb-4 bg-gray-50"
-          >
-            {product.imagen && (
-              <img
-                src={product.imagen}
-                alt={product.nombre || `Producto ${index + 1}`}
-                className="w-full h-40 object-contain mb-2"
-              />
-            )}
-            <h3 className="text-lg font-semibold mb-1">
-              {product.nombre || `Producto ${index + 1}`}
-            </h3>
-            {product.marca && (
-              <p className="text-gray-500 mb-2">{product.marca}</p>
-            )}
-            <p className="text-gray-700">{section.trim()}</p>
-            <div className="mt-2 flex gap-2">
-              <button
-                onClick={() => addToCart(product)}
-                className="bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
-              >
-                Añadir al carrito 🛒
-              </button>
-              <button
-                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
-                onClick={() => {
-                  localStorage.setItem("selectedId", product.id);
-                  navigate("/infor_products");
-                }}
-              >
-                Ver descripción 📋
-              </button>
-            </div>
-          </div>
-        );
-      })
-  ) : (
-    <p>Hoy me siento con suerte</p>
-  )}
-</div>
-
+        {loading ? (
+          "Cargando..."
+        ) : response && products.length > 0 ? (
+          response
+            .split("#.#")
+            .slice(1) // Quitamos la primera sección que ya está en el título
+            .map((section, index) => {
+              const product = products[index] || {};
+              return (
+                <div
+                  key={index}
+                  className="border p-4 rounded shadow mb-4 bg-gray-50"
+                >
+                  {product.imagen && (
+                    <img
+                      src={product.imagen}
+                      alt={product.nombre || `Producto ${index + 1}`}
+                      className="w-full h-40 object-contain mb-2"
+                    />
+                  )}
+                  <h3 className="text-lg font-semibold mb-1">
+                    {product.nombre || `Producto ${index + 1}`}
+                  </h3>
+                  {product.marca && (
+                    <p className="text-gray-500 mb-2">{product.marca}</p>
+                  )}
+                  <p className="text-gray-700">{section.trim()}</p>
+                  <div className="mt-2 flex gap-2">
+                    <button
+                      onClick={() => addToCart(product)}
+                      className="bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
+                    >
+                      Añadir al carrito 🛒
+                    </button>
+                    <button
+                      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+                      onClick={() => {
+                        localStorage.setItem("selectedId", product.id);
+                        navigate("/infor_products");
+                      }}
+                    >
+                      Ver descripción 📋
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+        ) : (
+          <p>Hoy me siento con suerte</p>
+        )}
+      </div>
 
       {/*Contenedor de los productos que apareceran por default al cargar la pagina*/}
       {productsDefault.length > 0 && (
