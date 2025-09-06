@@ -10,6 +10,7 @@ const addToCart = async (product) => {
       },
       body: JSON.stringify({
         userId,
+        productId: product.id,
         nombre: product.nombre,
         marca: product.marca,
         imagen: product.imagen,
@@ -19,7 +20,7 @@ const addToCart = async (product) => {
     if (response.ok) {
       alert(`Producto ${product.nombre} añadido al carrito`);
     } else {
-      alert("Error al añadir al carrito");
+      alert("Error al añadir al carrito, el id no se ha enviado correctamente" + product.id);
     }
   } catch (error) {
     alert("Error en la conexión con el servidor");
