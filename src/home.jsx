@@ -33,7 +33,15 @@ function Home() {
 
   const [isOpen, setIsOpen] = useState(false); // Estado para el drawer (Sidebar)
 
-  const toggleSidebar = () => setIsOpen(!isOpen); // Función para alternar el estado del drawer
+  const toggleSidebar = () => {
+    if (!isOpen) setCartOpen(false); // Si abrimos menú, cerramos carrito
+    setIsOpen(!isOpen);
+  }; // Función para alternar el estado del drawer
+
+  const toggleCart = () => {
+    if (!cartOpen) setIsOpen(false); // Si abrimos carrito, cerramos menú
+    setCartOpen(!cartOpen);
+  };
 
   const closeSidebar = () => setIsOpen(false); // Función para cerrar el drawer
 
@@ -202,7 +210,7 @@ function Home() {
           </button>
 
           <button
-            onClick={() => setCartOpen(!cartOpen)}
+            onClick={toggleCart}
             className="fixed right-4 top-4 z-50 px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-800 transition"
           >
             {isOpen ? "🛒" : "🛒"}

@@ -37,7 +37,16 @@ function Home3() {
 
   const navigate = useNavigate();
 
-  const toggleSidebar = () => setIsOpen(!isOpen);
+  const toggleSidebar = () => {
+  if (!isOpen) setCartOpen(false); // Si abrimos menú, cerramos carrito
+  setIsOpen(!isOpen);
+};
+
+// Función para abrir/cerrar el carrito
+const toggleCart = () => {
+  if (!cartOpen) setIsOpen(false); // Si abrimos carrito, cerramos menú
+  setCartOpen(!cartOpen);
+};
   const closeSidebar = () => setIsOpen(false);
 
   // Cooldown
@@ -256,7 +265,7 @@ function Home3() {
       <header className="w-full bg-green-600 shadow-md">
         {/* Botón para abrir/cerrar carrito */}
         <button
-          onClick={() => setCartOpen(!cartOpen)}
+          onClick={toggleCart}
           className="fixed right-4 top-4 z-50 px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-800 transition"
         >
           🛒
