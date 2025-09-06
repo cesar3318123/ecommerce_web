@@ -52,7 +52,7 @@ function Home_IA() {
       setEmail(userEmail); // Si hay email, lo establece en el estado
       setUsername(userName); // También establece el nombre de usuario en el estado
     }
-            if (userId) {
+    if (userId) {
       fetch(
         `https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`
       )
@@ -74,7 +74,6 @@ function Home_IA() {
     } else {
       setLoading(false);
     }
-  
   }, [navigate]);
 
   useEffect(() => {
@@ -100,6 +99,23 @@ function Home_IA() {
     }
     setAds(selected);
   }, []);
+
+  useEffect(() => {
+    if (cartOpen && userId) {
+      setLoading(true);
+      fetch(
+        `https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`
+      )
+        .then((res) => {
+          if (!res.ok)
+            throw new Error("No tienes productos agregados en tu carrito");
+          return res.json();
+        })
+        .then((data) => setCartItems(data))
+        .catch((err) => setError(err.message))
+        .finally(() => setLoading(false));
+    }
+  }, [cartOpen]);
 
   // Función asincrona para manejar la búsqueda
   const handleSearch = async () => {
@@ -150,31 +166,31 @@ function Home_IA() {
   };
 
   // Función para eliminar un producto del carrito
-const handleDeleteItem = async (itemId) => {
-  if (!userId) return;
+  const handleDeleteItem = async (itemId) => {
+    if (!userId) return;
 
-  try {
-    const response = await fetch(
-      `https://ecommercebackend-production-8245.up.railway.app/api/cartDelete/${userId}/${itemId}`,
-      {
-        method: "DELETE",
+    try {
+      const response = await fetch(
+        `https://ecommercebackend-production-8245.up.railway.app/api/cartDelete/${userId}/${itemId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Removemos el item del estado local
+        setCartItems(cartItems.filter((item) => item.id !== itemId));
+        alert("Producto eliminado correctamente");
+      } else {
+        alert(data.error || "Error al eliminar producto");
       }
-    );
-
-    const data = await response.json();
-
-    if (response.ok) {
-      // Removemos el item del estado local
-      setCartItems(cartItems.filter((item) => item.id !== itemId));
-      alert("Producto eliminado correctamente");
-    } else {
-      alert(data.error || "Error al eliminar producto");
+    } catch (error) {
+      console.error("Error al eliminar producto:", error);
+      alert("No se pudo eliminar el producto");
     }
-  } catch (error) {
-    console.error("Error al eliminar producto:", error);
-    alert("No se pudo eliminar el producto");
-  }
-};
+  };
 
   return (
     <div className="relative min-h-screen bg-gray-100 flex flex-col overflow-x-hidden">
@@ -306,22 +322,21 @@ const handleDeleteItem = async (itemId) => {
       </div>
 
       {/* Fondo semitransparente del overlay para el carrito */}
-{cartOpen && (
-  <div
-    onClick={() => setCartOpen(false)} // cierra carrito al hacer clic fuera
-    className="fixed inset-0 bg-black bg-opacity-40 z-40"
-  ></div>
-)}
-
+      {cartOpen && (
+        <div
+          onClick={() => setCartOpen(false)} // cierra carrito al hacer clic fuera
+          className="fixed inset-0 bg-black bg-opacity-40 z-40"
+        ></div>
+      )}
 
       {/* Sidebar Carrito */}
-<div
-  className={`
+      <div
+        className={`
     fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out
     ${cartOpen ? "translate-x-0" : "translate-x-full"}
     z-50
   `}
-></div>
+      ></div>
 
       {/*Drawer (Sidebar) */}
       <div
@@ -407,69 +422,75 @@ const handleDeleteItem = async (itemId) => {
             .
           </p>
         </div>
-
-        
       </div>
 
       {/* Sidebar Carrito */}
-<div
-  className={`
+      <div
+        className={`
     fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out
     ${cartOpen ? "translate-x-0" : "translate-x-full"}
     z-50
   `}
->
-  <div className="p-4">
-    <h2 className="text-xl font-semibold mb-4">Carrito 🛒</h2>
-    <button
-      onClick={() => setCartOpen(false)}
-      className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2"
-    >
-      Cerrar ❌
-    </button>
-
-    {/* 👇 Productos del carrito */}
-    {cartItems.length === 0 ? (
-      <p className="text-gray-600 text-center mt-4">Tu carrito está vacío 🛒</p>
-    ) : (
-      <div className="space-y-4 max-h-[70vh] overflow-y-auto">
-        {cartItems.map((item) => (
-          <div
-            key={item.id}
-            className="border rounded-lg p-2 flex flex-col bg-gray-50 shadow-sm"
+      >
+        <div className="p-4">
+          <h2 className="text-xl font-semibold mb-4">Carrito 🛒</h2>
+          <button
+            onClick={() => setCartOpen(false)}
+            className="w-full bg-zinc-800 text-white px-4 py-2 rounded-md hover:bg-zinc-500 transition mb-2"
           >
-            <h3 className="font-semibold text-sm truncate">
-              {item.nombre || "Sin nombre"}
-            </h3>
-            <p className="text-gray-700 text-xs">
-              Marca: {item.marca || "Sin marca"}
+            Cerrar ❌
+          </button>
+
+          {/* 👇 Productos del carrito */}
+          {cartItems.length === 0 ? (
+            <p className="text-gray-600 text-center mt-4">
+              Tu carrito está vacío 🛒
             </p>
-            {item.imagen && (
-              <img
-                src={item.imagen}
-                alt={item.nombre || "Producto"}
-                className="mt-2 w-full h-24 object-cover rounded"
-              />
-            )}
-            <button
-              onClick={() => handleDeleteItem(item.id)}
-              className="mt-2 bg-red-600 text-white px-2 py-1 rounded hover:bg-red-500 transition text-sm"
-            >
-              Eliminar ❌
-            </button>
-          </div>
-        ))}
+          ) : (
+            <div className="space-y-4 max-h-[70vh] overflow-y-auto">
+              {cartItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="border rounded-lg p-2 flex flex-col bg-gray-50 shadow-sm"
+                >
+                  <h3 className="font-semibold text-sm truncate">
+                    {item.nombre || "Sin nombre"}
+                  </h3>
+                  <p className="text-gray-700 text-xs">
+                    Marca: {item.marca || "Sin marca"}
+                  </p>
+                  {item.imagen && (
+                    <img
+                      src={item.imagen}
+                      alt={item.nombre || "Producto"}
+                      className="mt-2 w-full h-24 object-cover rounded"
+                    />
+                  )}
+                  <button
+                    onClick={() => handleDeleteItem(item.id)}
+                    className="mt-2 bg-red-600 text-white px-2 py-1 rounded hover:bg-red-500 transition text-sm"
+                  >
+                    Eliminar ❌
+                  </button>
+
+                  {/*Botón de información del producto */}
+                  <button
+                    className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+                    onClick={() => {
+                      localStorage.setItem("selectedId", item.productId); // guardar en localStorage
+                      console.log("Id del producto agregado: ", item.productId); // Verificar que el ID se guarda correctamente
+                      navigate("/infor_products"); // redirigir a la página de detalle
+                    }}
+                  >
+                    Ver descripción 📋
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    )}
-  </div>
-</div>
-
-
-
-
-
-  </div>
-  
+    </div>
   );
 }
 

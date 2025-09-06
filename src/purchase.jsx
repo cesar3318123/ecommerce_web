@@ -144,6 +144,20 @@ const handleDeleteItem = async (itemId) => {
   }
 };
 
+useEffect(() => {
+  if (cartOpen && userId) {
+    setLoading(true);
+    fetch(`https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("No tienes productos agregados en tu carrito");
+        return res.json();
+      })
+      .then((data) => setCartItems(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }
+}, [cartOpen]);
+
   // Función para buscar ambos sistemas
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -482,6 +496,18 @@ const handleDeleteItem = async (itemId) => {
             >
               Eliminar ❌
             </button>
+
+                              {/*Botón de información del producto */}
+                  <button
+                    className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+                    onClick={() => {
+                      localStorage.setItem("selectedId", item.productId); // guardar en localStorage
+                      console.log("Id del producto agregado: ", item.productId); // Verificar que el ID se guarda correctamente
+                      navigate("/infor_products"); // redirigir a la página de detalle
+                    }}
+                  >
+                    Ver descripción 📋
+                  </button>
           </div>
         ))}
       </div>
