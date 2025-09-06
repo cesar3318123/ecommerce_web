@@ -308,12 +308,57 @@ function Home_IA() {
           algo?
         </h2>
         <p className="text-xs font-semibold mb-4">
-          Nota. Es necesario esperar un cierto tiempo despues de cada consulta
+          Nota. Es necesario esperar un cierto tiempo después de cada consulta
           para no saturar el servicio
         </p>
-        <p className="whitespace-pre-wrap">
-          {loading ? "Cargando..." : response}
-        </p>
+
+        {loading ? (
+          "Cargando..."
+        ) : response && products.length > 0 ? (
+          response.split("#.#").map((section, index) => {
+            const product = products[index] || {};
+            return (
+              <div
+                key={index}
+                className="border p-4 rounded shadow mb-4 bg-gray-50"
+              >
+                {product.imagen && (
+                  <img
+                    src={product.imagen}
+                    alt={product.nombre || `Producto ${index + 1}`}
+                    className="w-full h-40 object-contain mb-2"
+                  />
+                )}
+                <h3 className="text-lg font-semibold mb-1">
+                  {product.nombre || `Producto ${index + 1}`}
+                </h3>
+                {product.marca && (
+                  <p className="text-gray-500 mb-2">{product.marca}</p>
+                )}
+                <p className="text-gray-700">{section.trim()}</p>
+                <div className="mt-2 flex gap-2">
+                  <button
+                    onClick={() => addToCart(product)}
+                    className="bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
+                  >
+                    Añadir al carrito 🛒
+                  </button>
+                  <button
+                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+                    onClick={() => {
+                      localStorage.setItem("selectedId", product.id);
+                      navigate("/infor_products");
+                    }}
+                  >
+                    Ver descripción 📋
+                  </button>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p>No hay productos o respuesta</p>
+        )}
       </div>
 
       {/*Contenedor de los productos que apareceran por default al cargar la pagina*/}
