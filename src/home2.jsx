@@ -13,7 +13,11 @@ function Home_IA() {
 
   const [email, setEmail] = useState(""); // Estado para el email
 
+  const [productsDefault, setProductsDefault] = useState([]); // Estado para almacenar los productos por defecto
+
   const [username, setUsername] = useState(""); // Estado para el nombre de usuario
+
+  const [queryDefault, setQueryDefault] = useState("cookie"); // término por defecto
 
   const [isOpen, setIsOpen] = useState(false); // Estado para el drawer (Sidebar)
 
@@ -24,6 +28,8 @@ function Home_IA() {
   const [error, setError] = useState(""); // Estado para manejar errores
 
   const navigate = useNavigate(); // Hook para redirección
+
+  const [errorDefault, setErrorDefault] = useState(""); // Estado para manejar errores por defecto
 
   const [prompt, setPrompt] = useState(""); // Estado para el prompt de búsqueda
 
@@ -41,8 +47,30 @@ function Home_IA() {
   // Estado para temporizador
   const [cooldown, setCooldown] = useState(0);
 
+  const buscarProductos = async (termino) => {
+    setProductsDefault([]); // Resetea el estado de los productos antes de buscar
+    setErrorDefault(""); // Resetea el estado de error antes de buscar
+    try {
+      // Búsqueda IA
+      const resIA = await fetch(
+        "https://ecommercebackend-production-8245.up.railway.app/api/generateContentanalytic",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: termino }),
+        }
+      );
+      if (!resIA.ok) throw new Error("Error búsqueda IA");
+      const dataIA = await resIA.json();
+      setProductsDefault(dataIA.products);
+    } catch (error) {
+      console.error("Error al buscar productos:", error);
+    }
+  };
+
   useEffect(() => {
     // Verifica si el usuario está autenticado
+    buscarProductos(queryDefault);
     const userEmail = localStorage.getItem("userEmail");
     const userName = localStorage.getItem("username");
     if (!userEmail) {
@@ -287,6 +315,55 @@ function Home_IA() {
           {loading ? "Cargando..." : response}
         </p>
       </div>
+
+      {/*Contenedor de los productos que apareceran por default al cargar la pagina*/}
+      {productsDefault.length > 0 && (
+        <>
+          <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+            Recomendado para ti:
+          </h2>
+
+          <div className="flex overflow-x-auto space-x-4 p-4">
+            {productsDefault.map((product, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white flex flex-col justify-between"
+              >
+                <h3 className="font-bold text-lg">
+                  {product.nombre || "Sin nombre"}
+                </h3>
+                <p className="text-gray-700">
+                  Marca: {product.marca || "Sin marca"}
+                </p>
+                {product.imagen && (
+                  <img
+                    src={product.imagen}
+                    alt={product.nombre || "Producto sin nombre"}
+                    className="mt-2 w-full h-40 object-cover"
+                  />
+                )}
+                <button
+                  onClick={() => addToCart(product)}
+                  className="mt-4 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
+                >
+                  Añadir al carrito 🛒
+                </button>
+                {/*Botón de información del producto */}
+                <button
+                  className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+                  onClick={() => {
+                    localStorage.setItem("selectedId", product.id); // guardar en localStorage
+                    console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
+                    navigate("/infor_products"); // redirigir a la página de detalle
+                  }}
+                >
+                  Ver descripción 📋
+                </button>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
 
       <div className="h-40 bg-gray-100"></div>
 
