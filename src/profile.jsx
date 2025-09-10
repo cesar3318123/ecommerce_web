@@ -159,23 +159,26 @@ function Profile() {
                     />
                   )}
                   {/* Botón eliminar */}
-                  <button
-                    onClick={() => handleDeleteItem(item.id)}
-                    className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-400 transition"
-                  >
-                    Eliminar
-                  </button>
-                  {/*Botón de descripción */}
-                <div>  
-                  <button
-                    className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-500 transition"
-                    onClick={() => {
-                      localStorage.setItem("selectedId", item.productId);
-                      navigate("/infor_products");
-                    }}
-                  >
-                    Ver descripción 📋
-                  </button>
+                  {/* Contenedor en columna */}
+                  <div className="flex flex-col gap-2 mt-2">
+                    {/* Botón eliminar */}
+                    <button
+                      onClick={() => handleDeleteItem(item.id)}
+                      className="bg-red-600 text-white py-2 rounded hover:bg-red-400 transition w-full"
+                    >
+                      Eliminar
+                    </button>
+
+                    {/* Botón de descripción */}
+                    <button
+                      className="bg-green-600 text-white py-2 rounded hover:bg-green-500 transition w-full"
+                      onClick={() => {
+                        localStorage.setItem("selectedId", item.productId);
+                        navigate("/infor_products");
+                      }}
+                    >
+                      Ver descripción 📋
+                    </button>
                   </div>
                 </li>
               ))}
