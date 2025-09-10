@@ -44,6 +44,7 @@ function Profile() {
         })
         .then((data) => {
           setCartItems(data);
+          console.log("Productos en carrito:", data);
         })
         .catch((err) => {
           setError(err.message);
