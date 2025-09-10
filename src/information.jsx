@@ -134,10 +134,11 @@ const handleChange = (e) => {
                 </button>
             </div>
         <h2 className="text-2xl font-bold mb-4 text-center">Prueba 3: Encuesta de UX (por sistema) </h2>
-<p className="text-center mb-6">
-  Con base en la experiencia obtenida durante la realización de la prueba 2 y/o el uso personal y opcional que hayas realizado durante la navegación por los 2 sistemas de busqueda, observa cada pregunta y contesta:<br />
-  (estoy muy en desacuerdo = 1, estoy en desacuerdo = 2, estoy de acuerdo = 3, muy de acuerdo = 4, totalmente de acuerdo = 5)
-</p>
+    <img
+      src={"../imgsurvey/img3.png"}
+      alt={"Instrucciones"}
+      className="w-full max-w-2xl h-auto object-contain mx-auto mb-4 border rounded-lg shadow"
+    />
 
     <form onSubmit={handleSubmit} className="space-y-4">
         
