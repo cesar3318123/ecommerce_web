@@ -74,12 +74,11 @@ function Prueba4() {
       </div>
 
       <h1 className="text-4xl font-bold mb-6">Prueba 4: Compra 🛒</h1>
-      <h3 className="text-lg mb-6">
-        Utilizando el sistema de analisis de modelos, indaga libremente por la
-        interfaz completando busquedas personales y uso de las funciones
-        disponibles, al finalizar responde una encuesta de cual sistema de
-        busqueda fue más eficiente
-      </h3>
+    <img
+      src={"../imgsurvey/img2.png"}
+      alt={"Instrucciones"}
+      className="w-full max-w-2xl h-auto object-contain mx-auto mb-4 border rounded-lg shadow"
+    />
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {[

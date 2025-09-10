@@ -110,14 +110,11 @@ function Survey() {
         </button>
       </div>
       <h2 className="text-2xl font-bold mb-4 text-center">Prueba 2: Pruebas A/B</h2>
-      <p className="text-left mb-6">•	Realizaras 3 tareas de búsqueda de productos relacionados en despensa.</p>
-      <p className="text-left mb-6">•	Completa cada tarea lo más rápido posible y sin ayuda.</p>
-      <p className="text-left mb-6">•	Al final, responde preguntas sobre tu experiencia.</p>
-      <p className="text-left mb-6">•	Tareas sugeridas (ejemplo)</p>
-      <p className="text-left mb-6">1.	“Encuentra una bebida de naranja con zanahoria.”</p>
-      <p className="text-left mb-6">2.	“Cereales con alto contenido de fibra.”</p>
-      <p className="text-left mb-6">3.	“Encuentra botanas saladas ideales para ver una película”</p>
-      <p className="text-left mb-6">• Por cada tarea terminada se tendrá que contestar ciertas preguntas.</p>
+    <img
+      src={"../imgsurvey/img1.png"}
+      alt={"Instrucciones"}
+      className="w-full max-w-2xl h-auto object-contain mx-auto mb-4 border rounded-lg shadow"
+    />
 
 
       <form onSubmit={handleSubmit} className="space-y-4">
