@@ -166,8 +166,9 @@ function Profile() {
                     Eliminar
                   </button>
                   {/*Botón de descripción */}
+                <div>  
                   <button
-                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+                    className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-500 transition"
                     onClick={() => {
                       localStorage.setItem("selectedId", item.productId);
                       navigate("/infor_products");
@@ -175,6 +176,7 @@ function Profile() {
                   >
                     Ver descripción 📋
                   </button>
+                  </div>
                 </li>
               ))}
             </ul>
