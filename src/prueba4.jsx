@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Importamos Link para navegación
 
 function Prueba4() {
+
+  const userId = localStorage.getItem("userId");
   const [formData, setFormData] = useState({
     preciso: null,
     preferencia: null,
@@ -11,6 +13,7 @@ function Prueba4() {
     facilidad: null,
     moderno: null,
     pocoTiempo: null,
+    userId: userId,
   });
 
   const [success, setSuccess] = useState(false); // estado para mostrar mensaje
@@ -41,6 +44,7 @@ function Prueba4() {
       setMessage(data.mensaje || "Registro creado");
       console.log("✅ Respuesta guardada:", data);
       alert("¡Gracias por tu participación!");
+      const userId = localStorage.getItem("userId");
 
       // 🔹 Resetear formulario (volver todo a null)
       setFormData({
@@ -52,6 +56,7 @@ function Prueba4() {
         facilidad: null,
         moderno: null,
         pocoTiempo: null,
+        userId: null,
       });
 
       // 🔹 También limpiar los radios seleccionados
@@ -73,7 +78,7 @@ function Prueba4() {
         </button>
       </div>
 
-      <h1 className="text-4xl font-bold mb-6">Prueba 4: Compra 🛒</h1>
+      <h1 className="text-4xl font-bold mb-6">Prueba 4: Syde by syde 🛒</h1>
     <img
       src={"../imgsurvey/img2.png"}
       alt={"Instrucciones"}
