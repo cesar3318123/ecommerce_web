@@ -326,7 +326,7 @@ function Home_IA() {
         ) : response && products.length > 0 ? (
           response
             .split("#.#")
-            .slice(1) // Quitamos la primera sección que ya está en el título
+            .slice(1, 9) // Quitamos la primera sección que ya está en el título
             .map((section, index) => {
               const product = products[index] || {};
               return (
