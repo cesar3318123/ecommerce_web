@@ -39,7 +39,7 @@ function Login() {
                 localStorage.setItem("userId", data.userId);  // Guardamos el userId en localStorage
                 console.log("Usuario autenticado:", data.userId);  // Mostramos el usuario autenticado en la consola
                 alert(`Tu cuenta: ${form.email} ha sido identificada correctamente`);  // Si la respuesta es exitosa, mostramos un mensaje de bienvenida
-                navigate("/home");  // Redirige a la página de inicio
+                navigate("/menu");  // Redirige a la página de inicio
                 localStorage.setItem("userEmail", form.email);  // Guardamos el email del usuario en localStorage
 
                 try {
