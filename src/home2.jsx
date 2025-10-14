@@ -138,7 +138,7 @@ function Home_IA() {
 
   useEffect(() => {
     if (cartOpen && userId) {
-      setLoading(true);
+      //setLoading(true);
       fetch(
         `https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`
       )
@@ -258,6 +258,7 @@ function Home_IA() {
       </button>
 
       {/* Contenedor de anuncios */}
+      <h2 className="text-xl font-semibold mt-6 mb-2 text-center">Anuncios</h2>
       {ads.length > 0 && (
         <div className="mt-6 p-4 bg-white rounded shadow overflow-x-auto flex space-x-4">
           {ads.map((ad, idx) => (
@@ -270,45 +271,6 @@ function Home_IA() {
           ))}
         </div>
       )}
-
-      {/* Contenedor scroll horizontal */}
-      <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide px-4 pt-4">
-        {products.map((product, index) => (
-          <div
-            key={index}
-            className="flex flex-col justify-between w-48 bg-white rounded-lg shadow p-3"
-          >
-            <div>
-              <img
-                src={product.imagen}
-                alt={product.nombre}
-                className="w-full h-40 object-contain mb-2"
-              />
-              <h3 className="text-lg font-semibold">{product.nombre}</h3>
-              <p className="text-gray-500">{product.marca}</p>
-            </div>
-
-            {/* Botón siempre abajo */}
-            <button
-              onClick={() => addToCart(product)}
-              className="mt-4 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
-            >
-              Añadir al carrito 🛒
-            </button>
-            {/*Botón de información del producto */}
-            <button
-              className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
-              onClick={() => {
-                localStorage.setItem("selectedId", product.id); // guardar en localStorage
-                console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
-                navigate("/infor_products"); // redirigir a la página de detalle
-              }}
-            >
-              Ver descripción 📋
-            </button>
-          </div>
-        ))}
-      </div>
 
       <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded shadow-md min-h-[150px]">
         <h2 className="text-xl font-semibold mb-4">
@@ -373,6 +335,48 @@ function Home_IA() {
         )}
       </div>
 
+      {/* Contenedor scroll horizontal */}
+      <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide px-4 pt-4">
+        {products.map((product, index) => (
+          <>
+            <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+              Resultados de tu búsqueda:
+            </h2>
+
+            <div
+              key={index}
+              onClick={() => {
+                localStorage.setItem("selectedId", product.id); // guardar en localStorage
+                console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
+                navigate("/infor_products"); // redirigir a la página de detalle
+              }}
+              className="flex flex-col justify-between w-48 bg-white rounded-lg shadow p-3 cursor-pointer hover:shadow-lg transition"
+            >
+              <div>
+                <img
+                  src={product.imagen}
+                  alt={product.nombre}
+                  className="w-full h-40 object-contain mb-2"
+                />
+                <h3 className="text-lg font-semibold">{product.nombre}</h3>
+                <p className="text-gray-500">{product.marca}</p>
+              </div>
+
+              {/* Botón siempre abajo */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(); // Evita que se dispare el clic del div
+                  addToCart(product); // Agregar al carrito
+                }}
+                className="mt-4 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
+              >
+                Añadir al carrito 🛒
+              </button>
+            </div>
+          </>
+        ))}
+      </div>
+
       {/*Contenedor de los productos que apareceran por default al cargar la pagina*/}
       {productsDefault.length > 0 && (
         <>
@@ -384,7 +388,12 @@ function Home_IA() {
             {productsDefault.map((product, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white flex flex-col justify-between"
+                onClick={() => {
+                  localStorage.setItem("selectedId", product.id); // guardar en localStorage
+                  console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
+                  navigate("/infor_products"); // redirigir a la página de detalle
+                }}
+                className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white flex flex-col justify-between cursor-pointer hover:shadow-lg transition"
               >
                 <h3 className="font-bold text-lg">
                   {product.nombre || "Sin nombre"}
@@ -400,21 +409,13 @@ function Home_IA() {
                   />
                 )}
                 <button
-                  onClick={() => addToCart(product)}
+                  onClick={(e) => {
+                    e.stopPropagation(); // Evita que se dispare el clic del div
+                    addToCart(product); // Agregar al carrito
+                  }}
                   className="mt-4 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
                 >
                   Añadir al carrito 🛒
-                </button>
-                {/*Botón de información del producto */}
-                <button
-                  className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
-                  onClick={() => {
-                    localStorage.setItem("selectedId", product.id); // guardar en localStorage
-                    console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
-                    navigate("/infor_products"); // redirigir a la página de detalle
-                  }}
-                >
-                  Ver descripción 📋
                 </button>
               </div>
             ))}
