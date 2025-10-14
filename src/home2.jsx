@@ -244,7 +244,7 @@ function Home_IA() {
       {/* Botón para abrir/cerrar carrito */}
       <button
         onClick={toggleCart}
-        className="fixed right-4 top-4 z-50 px-4 py-2 bg-zinc-800 text-white rounded hover:bg-zinc-800 transition"
+        className="fixed right-4 top-4 z-50 px-4 py-2 bg-green-600 text-white rounded hover:bg-zinc-800 transition"
       >
         🛒
       </button>
@@ -339,10 +339,6 @@ function Home_IA() {
       <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide px-4 pt-4">
         {products.map((product, index) => (
           <>
-            <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
-              Resultados de tu búsqueda:
-            </h2>
-
             <div
               key={index}
               onClick={() => {
@@ -352,6 +348,9 @@ function Home_IA() {
               }}
               className="flex flex-col justify-between w-48 bg-white rounded-lg shadow p-3 cursor-pointer hover:shadow-lg transition"
             >
+              <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
+                Resultados de tu búsqueda:
+              </h2>
               <div>
                 <img
                   src={product.imagen}
