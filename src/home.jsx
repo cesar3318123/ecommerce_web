@@ -289,11 +289,11 @@ function Home() {
               <div
                 key={index}
                 onClick={() => {
-                  localStorage.setItem("selectedId", product.id); // guardar en localStorage
-                  console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
-                  navigate("/infor_products"); // redirigir a la página de detalle
+                  localStorage.setItem("selectedId", product.id); // Guardar ID en localStorage
+                  console.log("Id del producto seleccionado: ", product.id);
+                  navigate("/infor_products"); // Redirigir a la página de detalle
                 }}
-                className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white flex flex-col justify-between"
+                className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white flex flex-col justify-between cursor-pointer hover:shadow-lg transition"
               >
                 <h3 className="font-bold text-lg">
                   {product.nombre || "Sin nombre"}
@@ -306,29 +306,18 @@ function Home() {
                   <img
                     src={product.imagen}
                     alt={product.nombre || "Producto sin nombre"}
-                    className="mt-2 w-full h-40 object-cover"
+                    className="mt-2 w-full h-40 object-cover rounded"
                   />
                 )}
+
                 <button
                   onClick={(e) => {
-                    e.stopPropagation(); // 👈 evita la redirección
-                    addToCart(product);
+                    e.stopPropagation(); // Evita que se dispare el clic del div
+                    addToCart(product); // Agregar al carrito
                   }}
                   className="mt-4 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
                 >
                   Añadir al carrito 🛒
-                </button>
-
-                {/*Botón de información del producto */}
-                <button
-                  className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
-                  onClick={() => {
-                    localStorage.setItem("selectedId", product.id); // guardar en localStorage
-                    console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
-                    navigate("/infor_products"); // redirigir a la página de detalle
-                  }}
-                >
-                  Ver descripción 📋
                 </button>
               </div>
             ))}
