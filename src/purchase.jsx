@@ -38,15 +38,15 @@ function Home3() {
   const navigate = useNavigate();
 
   const toggleSidebar = () => {
-  if (!isOpen) setCartOpen(false); // Si abrimos menú, cerramos carrito
-  setIsOpen(!isOpen);
-};
+    if (!isOpen) setCartOpen(false); // Si abrimos menú, cerramos carrito
+    setIsOpen(!isOpen);
+  };
 
-// Función para abrir/cerrar el carrito
-const toggleCart = () => {
-  if (!cartOpen) setIsOpen(false); // Si abrimos carrito, cerramos menú
-  setCartOpen(!cartOpen);
-};
+  // Función para abrir/cerrar el carrito
+  const toggleCart = () => {
+    if (!cartOpen) setIsOpen(false); // Si abrimos carrito, cerramos menú
+    setCartOpen(!cartOpen);
+  };
   const closeSidebar = () => setIsOpen(false);
 
   // Cooldown
@@ -154,7 +154,7 @@ const toggleCart = () => {
 
   useEffect(() => {
     if (cartOpen && userId) {
-      setLoading(true);
+      //setLoading(true);
       fetch(
         `https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`
       )
@@ -224,7 +224,12 @@ const toggleCart = () => {
       {products.map((product, index) => (
         <div
           key={index}
-          className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white flex flex-col justify-between"
+          onClick={() => {
+            localStorage.setItem("selectedId", product.id); // guardar en localStorage
+            console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
+            navigate("/infor_products"); // redirigir a la página de detalle
+          }}
+          className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white flex flex-col justify-between cursor-pointer hover:shadow-lg transition"
         >
           <h3 className="font-bold text-lg">
             {product.nombre || "Sin nombre"}
@@ -238,20 +243,16 @@ const toggleCart = () => {
             />
           )}
           <button
-            onClick={() => addToCart(product)}
+            onClick={(e) => {
+              e.stopPropagation(); // Evita que se dispare el clic del div
+              addToCart(product); // Agregar al carrito
+            }}
             className="mt-4 bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
           >
             Añadir al carrito 🛒
           </button>
           {/*Botón de información del producto */}
-          <button
-            className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
-            onClick={() => {
-              localStorage.setItem("selectedId", product.id); // guardar en localStorage
-              console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
-              navigate("/infor_products"); // redirigir a la página de detalle
-            }}
-          >
+          <button className="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition">
             Ver descripción 📋
           </button>
         </div>
@@ -321,76 +322,79 @@ const toggleCart = () => {
         </p>
       )}
 
-
       {/* Resultados Comparativos */}
-      {searched && (
-        <>
-          {productsTrad.length > 0 && (
-            <>
-              <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
-                Resultados Tradicionales:
-              </h2>
-              {renderProducts(productsTrad)}
-              <p className="text-center mt-2 text-gray-700">
-                Total resultados: {productsTrad.length}
-              </p>
-            </>
-          )}
-          {productsIA.length > 0 && (
-            <>
-              <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
-                Resultados IA:
-              </h2>
-              {renderProducts(productsIA)}
-              <p className="text-center mt-2 text-gray-700">
-                Total resultados: {productsIA.length}
-              </p>
-            </>
-          )}
-          {!loadingTrad && productsTrad.length === 0 && (
-            <p className="text-center mt-4 text-red-500 font-semibold">
-              No se encontró ningún producto usando el sistema tradicional 😢
-            </p>
-          )}
-          {!loadingIA && productsIA.length === 0 && (
-            <p className="text-center mt-4 text-red-500 font-semibold">
-              No se encontró ningún producto usando el sistema de IA con
-              lenguaje natural 😢
-            </p>
-          )}
-        </>
-      )}
+      {/* Resultados Comparativos */}
+      <div className="mt-10 px-6">
+        {searched && (
+          <>
+            {/* Resultados Tradicionales */}
+            {productsTrad.length > 0 && (
+              <div className="mb-10">
+                <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
+                  🧩 Resultados Tradicionales
+                </h2>
 
-            {/* Fondo semitransparente del overlay para el carrito */}
+                <div className="flex overflow-x-auto space-x-6 p-4 bg-gray-50 rounded-lg shadow-inner">
+                  {renderProducts(productsTrad)}
+                </div>
+
+                <p className="text-center mt-3 text-gray-600">
+                  Total resultados:{" "}
+                  <span className="font-semibold">{productsTrad.length}</span>
+                </p>
+              </div>
+            )}
+
+            {/* Línea divisoria entre resultados */}
+            {productsTrad.length > 0 && productsIA.length > 0 && (
+              <div className="relative flex items-center justify-center my-10">
+                <div className="border-t border-gray-300 w-full"></div>
+                <span className="absolute bg-white px-4 text-gray-500 text-sm font-medium">
+                  Comparativa entre sistemas
+                </span>
+              </div>
+            )}
+
+            {/* Resultados IA */}
+            {productsIA.length > 0 && (
+              <div className="mb-10">
+                <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
+                  🤖 Resultados con IA Generativa
+                </h2>
+
+                <div className="flex overflow-x-auto space-x-6 p-4 bg-gray-50 rounded-lg shadow-inner">
+                  {renderProducts(productsIA)}
+                </div>
+
+                <p className="text-center mt-3 text-gray-600">
+                  Total resultados:{" "}
+                  <span className="font-semibold">{productsIA.length}</span>
+                </p>
+              </div>
+            )}
+
+            {/* Mensajes si no hay resultados */}
+            {!loadingTrad && productsTrad.length === 0 && (
+              <p className="text-center mt-4 text-red-500 font-semibold">
+                No se encontró ningún producto usando el sistema tradicional 😢
+              </p>
+            )}
+            {!loadingIA && productsIA.length === 0 && (
+              <p className="text-center mt-4 text-red-500 font-semibold">
+                No se encontró ningún producto usando el sistema de IA con
+                lenguaje natural 😢
+              </p>
+            )}
+          </>
+        )}
+      </div>
+
+      {/* Fondo semitransparente del overlay para el carrito */}
       {cartOpen && (
         <div
           onClick={() => setCartOpen(false)} // cierra carrito al hacer clic fuera
           className="fixed inset-0 bg-black bg-opacity-40 z-40"
         ></div>
-      )}
-
-      {/* Contenedor de anuncios */}
-      {ads.length > 0 && (
-        <div className="mt-6 p-4 bg-white rounded shadow overflow-x-auto flex space-x-4">
-          {ads.map((ad, idx) => (
-            <img
-              key={idx}
-              src={ad}
-              alt={`Publicidad ${idx + 1}`}
-              className="w-64 h-40 object-cover flex-shrink-0 rounded-lg"
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Productos por defecto */}
-      {productsTrad.length > 0 && (
-        <>
-          <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
-            Recomendado para ti:
-          </h2>
-          {renderProducts(productsTrad)}
-        </>
       )}
 
       {/* Sidebar */}
