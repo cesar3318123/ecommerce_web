@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom"; // Importamos Link para navegación
 
+
 //Declaramos el componente llamado Instruction
 function Instruction() {
 

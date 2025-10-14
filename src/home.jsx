@@ -98,7 +98,7 @@ function Home() {
 
   useEffect(() => {
     if (cartOpen && userId) {
-      setLoading(true);
+      //setLoading(true);
       fetch(
         `https://ecommercebackend-production-8245.up.railway.app/api/cartGet/${userId}`
       )
@@ -221,7 +221,7 @@ function Home() {
           </div>
 
           <h1 className="text-3xl font-semibold text-center">
-            Modelo Tradicional 📦
+            Modelo de palabras clave 📦
           </h1>
         </div>
         {/*Parte inferior*/}
@@ -288,6 +288,11 @@ function Home() {
             {products.map((product, index) => (
               <div
                 key={index}
+                onClick={() => {
+                  localStorage.setItem("selectedId", product.id); // guardar en localStorage
+                  console.log("Id del producto agregado: ", product.id); // Verificar que el ID se guarda correctamente
+                  navigate("/infor_products"); // redirigir a la página de detalle
+                }}
                 className="flex-shrink-0 w-64 border p-4 rounded shadow bg-white flex flex-col justify-between"
               >
                 <h3 className="font-bold text-lg">
@@ -332,6 +337,7 @@ function Home() {
       )}
 
       {/* Contenedor de anuncios */}
+      <h2 className="text-xl font-semibold mt-6 mb-2 text-center">Anuncios</h2>
       {ads.length > 0 && (
         <div className="mt-6 p-4 bg-white rounded shadow overflow-x-auto flex space-x-4">
           {ads.map((ad, idx) => (
@@ -349,7 +355,7 @@ function Home() {
       {productsDefault.length > 0 && (
         <>
           <h2 className="text-xl font-semibold mt-6 mb-2 text-center">
-            Recomendado para ti:
+            Productos recomendados para ti:
           </h2>
 
           <div className="flex overflow-x-auto space-x-4 p-4">
