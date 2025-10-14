@@ -36,6 +36,9 @@ function Home3() {
 
   const [cartItems, setCartItems] = useState([]); // Productos añadidos al carrito
 
+  // Estados para esconder la imager
+  const [imagen, setImagen] = useState(true);
+
   const navigate = useNavigate();
 
   const toggleSidebar = () => {
@@ -128,7 +131,6 @@ function Home3() {
 
   // Función para eliminar un producto del carrito
   const handleDeleteItem = async (itemId) => {
-
     if (!userId) return;
 
     try {
@@ -173,6 +175,7 @@ function Home3() {
 
   // Función para buscar ambos sistemas
   const handleSubmit = async (e) => {
+    setImagen(true);
     e.preventDefault();
     if (!query.trim() || cooldown > 0) return;
 
@@ -306,10 +309,6 @@ function Home3() {
         </div>
       </header>
 
-      <p>Realiza tus consultas de productos en el buscador de la parte de arriba</p>
-
-
-
       {/* Errores */}
       {errorTrad && (
         <p className="text-red-500 text-center mt-4">{errorTrad}</p>
@@ -402,14 +401,22 @@ function Home3() {
           className="fixed inset-0 bg-black bg-opacity-40 z-40"
         ></div>
       )}
-      {/*Insertamos la imagen de ecommerce */}
-      <div className="flex justify-center my-4">
-        <img
-          src={ecommerce}
-          alt="Ecommerce"
-          className="w-full max-w-4xl h-auto object-contain mx-auto mb-4 border rounded-lg shadow"
-        />
-      </div>
+      {imagen && (
+        <div>
+          <p className="text-xl font-bold mb-6">
+            Realiza tus consultas de productos en el buscador de la parte de
+            arriba
+          </p>
+
+          <div className="flex justify-center my-4">
+            <img
+              src={ecommerce}
+              alt="Ecommerce"
+              className="w-full max-w-4xl h-auto object-contain mx-auto mb-4 border rounded-lg shadow"
+            />
+          </div>
+        </div>
+      )}
 
       {/* Sidebar */}
       {isOpen && (
