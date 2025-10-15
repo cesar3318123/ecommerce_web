@@ -518,14 +518,14 @@ function Home_IA() {
             Prueba 1: Precisión 🔍
           </button>
           {/*Botón para la prueba 2*/}
-          {email === "cgutierrez23@ucol.mx" && (
+
             <button
               onClick={() => navigate("/prueba2")}
               className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2"
             >
               Prueba 2: A/B 📝
             </button>
-          )}
+          
           {/*Botón para la prueba 3*/}
           <button
             onClick={() => navigate("/prueba3")}

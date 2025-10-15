@@ -35,8 +35,8 @@ function Menu() {
           </p>
 
 
-          <p>En el boton izquierdo encontraras el menu con las pruebas y otras opciones</p>
-          <p>En el boton derecho encontraras el carrito con todos los productos agregados</p>
+          <p>En el boton izquierdo encontraras el menu con las pruebas y otras opciones.</p>
+          <p>En el boton derecho encontraras el carrito con todos los productos agregados.</p>
 
           <p>En esta versión, el sistema no puede realizar compras ni visualizar precios</p>
           <p>pero si buscar productos, que es el objetivo principal de la investigación</p>
