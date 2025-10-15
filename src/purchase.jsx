@@ -465,14 +465,14 @@ function Home3() {
           >
             Prueba 1: Precisión 🔍
           </button>
-          {email === "cgutierrez23@ucol.mx" && (
+
             <button
               onClick={() => navigate("/prueba2")}
               className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2"
             >
               Prueba 2: A/B 📝
             </button>
-          )}
+
           <button
             onClick={() => navigate("/prueba3")}
             className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2"
