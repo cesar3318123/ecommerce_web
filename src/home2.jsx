@@ -180,6 +180,12 @@ function Home_IA() {
       //Parseamos la respuesta JSON
       const data = await res.json();
 
+                if (!data || data.length === 0) {
+      setError("No se encontraron productos para tu búsqueda 😔");
+      setProducts([]);
+      return;
+    }
+
       // Guardamos la respuesta de la IA en el estado, si no hay respuesta, mostramos un mensaje de error
 
       if (data.aiResult) {
