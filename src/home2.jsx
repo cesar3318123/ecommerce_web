@@ -13,6 +13,8 @@ function Home_IA() {
 
   const [email, setEmail] = useState(""); // Estado para el email
 
+  const [error2, setErro2] = useState("");
+
   const [productsDefault, setProductsDefault] = useState([]); // Estado para almacenar los productos por defecto
 
   const [username, setUsername] = useState(""); // Estado para el nombre de usuario
@@ -94,7 +96,7 @@ function Home_IA() {
       )
         .then((res) => {
           if (!res.ok) {
-            throw new Error("No tienes productos agregados en tu carrito");
+            throw new Error("");
           }
           return res.json();
         })
@@ -144,7 +146,7 @@ function Home_IA() {
       )
         .then((res) => {
           if (!res.ok)
-            throw new Error("No tienes productos agregados en tu carrito");
+            throw new Error("");
           return res.json();
         })
         .then((data) => setCartItems(data))
@@ -154,58 +156,47 @@ function Home_IA() {
   }, [cartOpen]);
 
   // Función asincrona para manejar la búsqueda
-  const handleSearch = async () => {
-    if (!prompt.trim() || cooldown > 0) return; // Si el prompt está vacío, no hacemos nada
+const handleSearch = async () => {
+  if (!prompt.trim() || cooldown > 0) return;
 
-    //Indicamos que estamos cargando (para mostrar "Cargando..." o desactivar el botón)
+  setLoading(true);
+  setResponse("");
+  setErro2(""); // Limpiamos error2 al iniciar
 
-    setLoading(true);
+  try {
+    const res = await fetch(
+      "https://ecommercebackend-production-8245.up.railway.app/api/searchIA",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt }),
+      }
+    );
 
-    //Limpiamos cualquier respuesta previa
-    setResponse("");
+    const data = await res.json();
 
-    try {
-      //Realizamos una petición POST a la API de búsqueda
-      const res = await fetch(
-        "https://ecommercebackend-production-8245.up.railway.app/api/searchIA",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          }, // Indicamos que el cuerpo de la petición es JSON
-          body: JSON.stringify({ prompt }), // Convertimos el prompt a JSON
-        }
-      );
-
-      //Parseamos la respuesta JSON
-      const data = await res.json();
-
-                if (!data || data.length === 0) {
-      setError("No se encontraron productos para tu búsqueda 😔");
+    if (!data || data.length === 0) {
+      setErro2("No se encontraron productos para tu búsqueda 😔");
       setProducts([]);
       return;
     }
 
-      // Guardamos la respuesta de la IA en el estado, si no hay respuesta, mostramos un mensaje de error
-
-      if (data.aiResult) {
-        setResponse(data.aiResult);
-        setProducts(data.products || []); // Guardamos los productos obtenidos
-      } else {
-        setResponse("No se pudo generar una respuesta. Inténtalo de nuevo.");
-        setProducts([]); // Limpiamos los productos si no hay respuesta
-      }
-
-      // Inicia cooldown de 30 segundos (puedes ajustar)
-      setCooldown(5);
-    } catch (error) {
-      setResponse("Error al conectar con el servidor.");
-      console.error("Error al buscar:", error);
-    } finally {
-      // Indicamos que hemos terminado de cargar
-      setLoading(false);
+    if (data.aiResult) {
+      setResponse(data.aiResult);
+      setProducts(data.products || []);
+    } else {
+      setErro2("No se pudo generar una respuesta. Inténtalo de nuevo.");
+      setProducts([]);
     }
-  };
+
+    setCooldown(5); // cooldown
+  } catch (error) {
+    setErro2("Error al conectar con el servidor.");
+    console.error("Error al buscar:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   // Función para eliminar un producto del carrito
   const handleDeleteItem = async (itemId) => {
@@ -291,8 +282,8 @@ function Home_IA() {
 
       {loading ? (
   "Cargando..."
-) : error ? (
-  <p className="text-red-600 font-semibold text-center">{error}</p>
+) : error2 ? (
+  <p className="text-red-600 font-semibold text-center">{error2}</p>
 ) : response && products.length > 0 ? (
   response
     .split("#.#")
