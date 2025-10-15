@@ -70,7 +70,13 @@ function Home() {
         throw new Error("Error al buscar productos");
       }
 
+
       const data = await response.json(); //Convierte la respuesta a JSON
+          if (!data || data.length === 0) {
+      setError("No se encontraron productos para tu búsqueda 😔");
+      setProducts([]);
+      return;
+    }
       setProducts(data); //Actualiza el estado de los productos con los datos obtenidos
     } catch (error) {
       console.error("Error frontend: No se pudo buscar productos:", error);
