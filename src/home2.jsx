@@ -94,7 +94,7 @@ function Home_IA() {
       )
         .then((res) => {
           if (!res.ok) {
-            throw new Error("No tienes productos agregados en tu carrito");
+            throw new Error("");
           }
           return res.json();
         })
@@ -144,7 +144,7 @@ function Home_IA() {
       )
         .then((res) => {
           if (!res.ok)
-            throw new Error("No tienes productos agregados en tu carrito");
+            throw new Error("");
           return res.json();
         })
         .then((data) => setCartItems(data))
