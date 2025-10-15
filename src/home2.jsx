@@ -334,7 +334,6 @@ const handleSearch = async () => {
     })
 ) : (
   <p className="text-gray-700 font-semibold text-center">
-    No se encontraron productos 😔
   </p>
 )}
 
