@@ -350,6 +350,18 @@ function Home3() {
               </div>
             )}
 
+            {searched && !loadingTrad && productsTrad.length === 0 && (
+              <p className="text-center mt-4 text-red-500 font-semibold">
+                No se encontró ningún producto usando el sistema tradicional 😢
+              </p>
+            )}
+            {searched && !loadingIA && productsIA.length === 0 && (
+              <p className="text-center mt-4 text-red-500 font-semibold">
+                No se encontró ningún producto usando el sistema de IA con
+                lenguaje natural 😢
+              </p>
+            )}
+
             {/* Línea divisoria entre resultados */}
             {productsTrad.length > 0 && productsIA.length > 0 && (
               <div className="relative flex items-center justify-center my-10">
@@ -466,12 +478,12 @@ function Home3() {
             Prueba 1: Precisión 🔍
           </button>
 
-            <button
-              onClick={() => navigate("/prueba2")}
-              className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2"
-            >
-              Prueba 2: A/B 📝
-            </button>
+          <button
+            onClick={() => navigate("/prueba2")}
+            className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 transition mb-2"
+          >
+            Prueba 2: A/B 📝
+          </button>
 
           <button
             onClick={() => navigate("/prueba3")}
