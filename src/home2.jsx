@@ -289,59 +289,64 @@ function Home_IA() {
           para no saturar el servicio
         </p>
 
-        {loading ? (
-          "Cargando..."
-        ) : response && products.length > 0 ? (
-          response
-            .split("#.#")
-            .slice(1, 9) // Quitamos la primera sección que ya está en el título
-            .map((section, index) => {
-              const product = products[index] || {};
-              return (
-               <>                  
-               <p className="text-gray-700">{section.trim()}</p>
-                <div
-                  key={index}
-                  className="border p-4 rounded shadow mb-4 bg-gray-50"
-                >
-                  
-                  {product.imagen && (
-                    <img
-                      src={product.imagen}
-                      alt={product.nombre || `Producto ${index + 1}`}
-                      className="w-full h-40 object-contain mb-2"
-                    />
-                  )}
-                  <h3 className="text-lg font-semibold mb-1">
-                    {product.nombre || `Producto ${index + 1}`}
-                  </h3>
-                  {product.marca && (
-                    <p className="text-gray-500 mb-2">{product.marca}</p>
-                  )}
+      {loading ? (
+  "Cargando..."
+) : error ? (
+  <p className="text-red-600 font-semibold text-center">{error}</p>
+) : response && products.length > 0 ? (
+  response
+    .split("#.#")
+    .slice(1, 9)
+    .map((section, index) => {
+      const product = products[index] || {};
+      return (
+        <>
+          <p className="text-gray-700">{section.trim()}</p>
+          <div
+            key={index}
+            className="border p-4 rounded shadow mb-4 bg-gray-50"
+          >
+            {product.imagen && (
+              <img
+                src={product.imagen}
+                alt={product.nombre || `Producto ${index + 1}`}
+                className="w-full h-40 object-contain mb-2"
+              />
+            )}
+            <h3 className="text-lg font-semibold mb-1">
+              {product.nombre || `Producto ${index + 1}`}
+            </h3>
+            {product.marca && (
+              <p className="text-gray-500 mb-2">{product.marca}</p>
+            )}
 
-                  <div className="mt-2 flex gap-2">
-                    <button
-                      onClick={() => addToCart(product)}
-                      className="bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
-                    >
-                      Añadir al carrito 🛒
-                    </button>
-                    <button
-                      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
-                      onClick={() => {
-                        localStorage.setItem("selectedId", product.id);
-                        navigate("/infor_products");
-                      }}
-                    >
-                      Ver descripción 📋
-                    </button>
-                  </div>
-                </div></>
-              );
-            })
-        ) : (
-          <p>Hoy me siento con suerte</p>
-        )}
+            <div className="mt-2 flex gap-2">
+              <button
+                onClick={() => addToCart(product)}
+                className="bg-zinc-800 text-white px-4 py-2 rounded hover:bg-zinc-500 transition"
+              >
+                Añadir al carrito 🛒
+              </button>
+              <button
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 transition"
+                onClick={() => {
+                  localStorage.setItem("selectedId", product.id);
+                  navigate("/infor_products");
+                }}
+              >
+                Ver descripción 📋
+              </button>
+            </div>
+          </div>
+        </>
+      );
+    })
+) : (
+  <p className="text-gray-700 font-semibold text-center">
+    No se encontraron productos 😔
+  </p>
+)}
+
       </div>
 
       {/* Contenedor scroll horizontal */}
