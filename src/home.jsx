@@ -104,7 +104,7 @@ function Home() {
       )
         .then((res) => {
           if (!res.ok)
-            //throw new Error("No tienes productos agregados en tu carrito");
+            throw new Error("");
           return res.json();
         })
         .then((data) => setCartItems(data))
@@ -137,7 +137,7 @@ function Home() {
       )
         .then((res) => {
           if (!res.ok) {
-            //throw new Error("No tienes productos agregados en tu carrito");
+            throw new Error("");
           }
           return res.json();
         })
