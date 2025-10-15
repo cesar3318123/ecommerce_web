@@ -292,10 +292,13 @@ function Home_IA() {
             .map((section, index) => {
               const product = products[index] || {};
               return (
+               <>                  
+               <p className="text-gray-700">{section.trim()}</p>
                 <div
                   key={index}
                   className="border p-4 rounded shadow mb-4 bg-gray-50"
                 >
+                  
                   {product.imagen && (
                     <img
                       src={product.imagen}
@@ -309,7 +312,7 @@ function Home_IA() {
                   {product.marca && (
                     <p className="text-gray-500 mb-2">{product.marca}</p>
                   )}
-                  <p className="text-gray-700">{section.trim()}</p>
+
                   <div className="mt-2 flex gap-2">
                     <button
                       onClick={() => addToCart(product)}
@@ -327,7 +330,7 @@ function Home_IA() {
                       Ver descripción 📋
                     </button>
                   </div>
-                </div>
+                </div></>
               );
             })
         ) : (
